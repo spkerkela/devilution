@@ -1,6 +1,6 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//inv
+// inv
 extern int invflag;
 extern void *pInvCels;
 extern int drawsbarflag; // idb
@@ -17,7 +17,8 @@ int __fastcall GoldAutoPlace(int pnum);
 int __fastcall WeaponAutoPlace(int pnum);
 int __fastcall SwapItem(ItemStruct *a, ItemStruct *b);
 void __fastcall CheckInvPaste(int pnum, int mx, int my);
-void __fastcall CheckInvSwap(int pnum, int bLoc, int idx, int wCI, int seed, int bId);
+void __fastcall CheckInvSwap(int pnum, int bLoc, int idx, int wCI, int seed,
+                             int bId);
 void __fastcall CheckInvCut(int pnum, int mx, int my);
 void __fastcall inv_update_rem_item(int pnum, int iv);
 void __fastcall RemoveInvItem(int pnum, int iv);
@@ -30,12 +31,15 @@ void __fastcall CheckQuestItem(int pnum);
 void __fastcall InvGetItem(int pnum, int ii);
 void __fastcall AutoGetItem(int pnum, int ii);
 int __fastcall FindGetItem(int indx, unsigned short ci, int iseed);
-void __fastcall SyncGetItem(int x, int y, int idx, unsigned short ci, int iseed);
+void __fastcall SyncGetItem(int x, int y, int idx, unsigned short ci,
+                            int iseed);
 int __fastcall CanPut(int i, int j);
 int __cdecl TryInvPut();
 void __fastcall DrawInvMsg(char *msg);
 int __fastcall InvPutItem(int pnum, int x, int y);
-int __fastcall SyncPutItem(int pnum, int x, int y, int idx, int icreateinfo, int iseed, int Id, int dur, int mdur, int ch, int mch, int ivalue, unsigned int ibuff);
+int __fastcall SyncPutItem(int pnum, int x, int y, int idx, int icreateinfo,
+                           int iseed, int Id, int dur, int mdur, int ch,
+                           int mch, int ivalue, unsigned int ibuff);
 int __cdecl CheckInvHLight();
 void __fastcall RemoveScroll(int pnum);
 bool __cdecl UseScroll();

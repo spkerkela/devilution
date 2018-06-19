@@ -1,6 +1,6 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//interfac
+// interfac
 extern void *sgpBackCel;
 extern float interfac_cpp_init_value;
 extern int sgdwProgress;

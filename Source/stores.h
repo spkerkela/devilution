@@ -1,45 +1,46 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//stores
-extern int stextup; // weak
-extern int storenumh; // weak
+// stores
+extern int stextup;    // weak
+extern int storenumh;  // weak
 extern int stextlhold; // weak
 extern ItemStruct boyitem;
 extern int stextshold; // idb
 extern ItemStruct premiumitem[6];
 extern void *pSTextBoxCels;
 extern int premiumlevel; // idb
-extern int talker; // weak
+extern int talker;       // weak
 extern STextStruct stext[24];
-extern char stextsize; // weak
-extern int stextsmax; // weak
+extern char stextsize;  // weak
+extern int stextsmax;   // weak
 extern int InStoreFlag; // idb
 extern ItemStruct storehold[48];
 extern int gossipstart; // weak
 extern ItemStruct witchitem[20];
-extern int stextscrl; // weak
+extern int stextscrl;  // weak
 extern int numpremium; // idb
 extern ItemStruct healitem[20];
 extern ItemStruct golditem;
 extern char storehidx[48];
 extern void *pSTextSlidCels;
-extern int stextvhold; // weak
-extern int stextsel; // weak
+extern int stextvhold;     // weak
+extern int stextsel;       // weak
 extern char stextscrldbtn; // weak
-extern int gossipend; // weak
+extern int gossipend;      // weak
 extern void *pCelBuff;
 extern int stextsval; // idb
-extern int boylevel; // weak
+extern int boylevel;  // weak
 extern ItemStruct smithitem[20];
-extern int stextdown; // weak
+extern int stextdown;      // weak
 extern char stextscrlubtn; // weak
-extern char stextflag; // weak
+extern char stextflag;     // weak
 
 void __cdecl InitStores();
 void __cdecl SetupTownStores();
 void __cdecl FreeStoreMem();
 void __cdecl DrawSTextBack();
-void __fastcall PrintSString(int x, int y, unsigned char cjustflag, char *str, int col, int val);
+void __fastcall PrintSString(int x, int y, unsigned char cjustflag, char *str,
+                             int col, int val);
 void __fastcall DrawSLine(int y);
 void __fastcall DrawSArrows(int a1, int a2);
 void __cdecl DrawSTextHelp();
@@ -47,7 +48,8 @@ void __fastcall ClearSText(int s, int e);
 void __fastcall AddSLine(int y);
 void __fastcall AddSTextVal(int y, int val);
 void __fastcall OffsetSTextY(int y, int yo);
-void __fastcall AddSText(int x, int y, unsigned char j, char *str, int clr, int sel);
+void __fastcall AddSText(int x, int y, unsigned char j, char *str, int clr,
+                         int sel);
 void __cdecl StoreAutoPlace();
 void __cdecl S_StartSmith();
 void __fastcall S_ScrollSBuy(int idx);

@@ -1,6 +1,6 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//dx
+// dx
 extern void *sgpBackBuf;
 extern int dx_cpp_init_value; // weak
 extern IDirectDraw *lpDDInterface;
@@ -9,8 +9,8 @@ extern int sgdwLockCount;
 extern Screen *gpBuffer;
 extern IDirectDrawSurface *lpDDSBackBuf;
 extern IDirectDrawSurface *lpDDSPrimary;
-extern char gbBackBuf; // weak
-extern char gbEmulate; // weak
+extern char gbBackBuf;    // weak
+extern char gbEmulate;    // weak
 extern HMODULE ghDiabMod; // idb
 
 void __cdecl dx_cpp_init_1();
@@ -21,7 +21,8 @@ void __cdecl dx_cleanup_mutex();
 void __fastcall dx_init(HWND hWnd);
 void __cdecl dx_create_back_buffer();
 void __cdecl dx_create_primary_surface();
-HRESULT __fastcall dx_DirectDrawCreate(GUID *guid, IDirectDraw **DD, void *unknown);
+HRESULT __fastcall dx_DirectDrawCreate(GUID *guid, IDirectDraw **DD,
+                                       void *unknown);
 void __cdecl j_dx_lock_mutex();
 void __cdecl dx_lock_mutex();
 void __cdecl j_dx_unlock_mutex();

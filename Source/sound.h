@@ -1,6 +1,6 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//sound
+// sound
 extern float sound_cpp_init_value;
 extern IDirectSoundBuffer *DSBs[8];
 extern IDirectSound *sglpDS;
@@ -24,7 +24,8 @@ void __fastcall sound_file_cleanup(TSnd *sound_file);
 void __fastcall snd_init(HWND hWnd);
 void __fastcall sound_load_volume(char *value_name, int *value);
 void __fastcall sound_create_primary_buffer(int music_track);
-int __fastcall sound_DirectSoundCreate(GUID *guid, IDirectSound **DS, int always_null);
+int __fastcall sound_DirectSoundCreate(GUID *guid, IDirectSound **DS,
+                                       int always_null);
 void __cdecl sound_cleanup();
 void __fastcall sound_store_volume(char *key, int value);
 void __cdecl music_stop();
@@ -39,8 +40,8 @@ extern int sound_inf; // weak
 
 /* rdata */
 
-extern char gbMusicOn; // weak
-extern char gbSoundOn; // weak
+extern char gbMusicOn;   // weak
+extern char gbSoundOn;   // weak
 extern char gbDupSounds; // weak
 extern int sgnMusicTrack;
 extern char *sgszMusicTracks[6];

@@ -1,19 +1,20 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//towners
-extern int storeflag; // weak
-extern int sgnCowMsg; // weak
-extern int numtowners; // idb
+// towners
+extern int storeflag;     // weak
+extern int sgnCowMsg;     // weak
+extern int numtowners;    // idb
 extern int sgdwCowClicks; // weak
-extern int bannerflag; // weak // unused 0x6AAC28
-extern int boyloadflag; // weak
-extern void *pCowCels; // idb
+extern int bannerflag;    // weak // unused 0x6AAC28
+extern int boyloadflag;   // weak
+extern void *pCowCels;    // idb
 extern TownerStruct towner[16];
 
 int __fastcall GetActiveTowner(int t);
 void __fastcall SetTownerGPtrs(void *pData, void **pAnim);
 void __fastcall NewTownerAnim(int tnum, void *pAnim, int numFrames, int Delay);
-void __fastcall InitTownerInfo(int i, int w, bool sel, int t, int x, int y, int ao, int tp);
+void __fastcall InitTownerInfo(int i, int w, bool sel, int t, int x, int y,
+                               int ao, int tp);
 void __fastcall InitQstSnds(int i);
 void __cdecl InitSmith();
 void __cdecl InitBarOwner();

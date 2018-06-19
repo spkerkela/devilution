@@ -1,20 +1,20 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//automap
+// automap
 extern short automaptype[512];
 extern int AMdword_4B7E40; // weak
 extern int AMdword_4B7E44; // weak
-extern bool automapflag; // idb
+extern bool automapflag;   // idb
 extern char AMbyte_4B7E4C[32];
 extern char automapview[40][40];
-extern int AutoMapScale; // idb
-extern int AutoMapXOfs; // weak
-extern int AutoMapYOfs; // weak
+extern int AutoMapScale;   // idb
+extern int AutoMapXOfs;    // weak
+extern int AutoMapYOfs;    // weak
 extern int AutoMapPosBits; // weak
-extern int AutoMapXPos; // weak
-extern int AutoMapYPos; // weak
-extern int AMPlayerX; // weak
-extern int AMPlayerY; // weak
+extern int AutoMapXPos;    // weak
+extern int AutoMapYPos;    // weak
+extern int AMPlayerX;      // weak
+extern int AMPlayerY;      // weak
 
 void __cdecl InitAutomapOnce();
 void __cdecl InitAutomap();

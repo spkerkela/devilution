@@ -1,6 +1,6 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//sync
+// sync
 extern short sync_word_6AA708[200];
 extern int dword_6AA898; // weak
 extern short sync_word_6AA89C[200];

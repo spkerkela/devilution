@@ -1,6 +1,6 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//debug
+// debug
 extern void *pSquareCel;
 extern char dMonsDbg[17][112][112];
 extern char dFlagDbg[17][112][112];

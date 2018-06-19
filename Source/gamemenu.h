@@ -1,4 +1,4 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
 void __cdecl gamemenu_previous();
 void __cdecl gamemenu_enable_single();
@@ -12,7 +12,8 @@ void __cdecl gamemenu_save_game();
 void __cdecl gamemenu_restart_town();
 void __cdecl gamemenu_options();
 void __cdecl gamemenu_get_music();
-void __fastcall gamemenu_sound_music_toggle(char **names, TMenuItem *menu_item, int gamma);
+void __fastcall gamemenu_sound_music_toggle(char **names, TMenuItem *menu_item,
+                                            int gamma);
 void __cdecl gamemenu_get_sound();
 void __cdecl gamemenu_get_color_cycling();
 void __cdecl gamemenu_get_gamma();

@@ -1,6 +1,6 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//items
+// items
 extern int itemactive[127];
 extern int uitemflag;
 extern int itemavail[127];
@@ -43,9 +43,12 @@ void __fastcall GetStaffSpell(int i, int lvl, unsigned char onlygood);
 void __fastcall GetItemAttrs(int i, int idata, int lvl);
 int __fastcall RndPL(int param1, int param2);
 int __fastcall PLVal(int pv, int p1, int p2, int minv, int maxv);
-void __fastcall SaveItemPower(int i, int power, int param1, int param2, int minval, int maxval, int multval);
-void __fastcall GetItemPower(int i, int minlvl, int maxlvl, int flgs, int onlygood);
-void __fastcall GetItemBonus(int i, int idata, int minlvl, int maxlvl, int onlygood);
+void __fastcall SaveItemPower(int i, int power, int param1, int param2,
+                              int minval, int maxval, int multval);
+void __fastcall GetItemPower(int i, int minlvl, int maxlvl, int flgs,
+                             int onlygood);
+void __fastcall GetItemBonus(int i, int idata, int minlvl, int maxlvl,
+                             int onlygood);
 void __fastcall SetupItem(int i);
 int __fastcall RndItem(int m);
 int __fastcall RndUItem(int m);
@@ -55,16 +58,23 @@ int __fastcall CheckUnique(int i, int lvl, int uper, bool recreate);
 void __fastcall GetUniqueItem(int i, int uid);
 void __fastcall SpawnUnique(int uid, int x, int y);
 void __fastcall ItemRndDur(int ii);
-void __fastcall SetupAllItems(int ii, int idx, int iseed, int lvl, int uper, int onlygood, int recreate, int pregen);
+void __fastcall SetupAllItems(int ii, int idx, int iseed, int lvl, int uper,
+                              int onlygood, int recreate, int pregen);
 void __fastcall SpawnItem(int m, int x, int y, unsigned char sendmsg);
 void __fastcall CreateItem(int uid, int x, int y);
-void __fastcall CreateRndItem(int x, int y, unsigned char onlygood, unsigned char sendmsg, int delta);
+void __fastcall CreateRndItem(int x, int y, unsigned char onlygood,
+                              unsigned char sendmsg, int delta);
 void __fastcall SetupAllUseful(int ii, int iseed, int lvl);
 void __fastcall CreateRndUseful(int pnum, int x, int y, unsigned char sendmsg);
-void __fastcall CreateTypeItem(int x, int y, unsigned char onlygood, int itype, int imisc, int sendmsg, int delta);
-void __fastcall RecreateItem(int ii, int idx, unsigned short ic, int iseed, int ivalue);
-void __fastcall RecreateEar(int ii, unsigned short ic, int iseed, unsigned char Id, int dur, int mdur, int ch, int mch, int ivalue, int ibuff);
-void __fastcall SpawnQuestItem(int itemid, int x, int y, int randarea, int selflag);
+void __fastcall CreateTypeItem(int x, int y, unsigned char onlygood, int itype,
+                               int imisc, int sendmsg, int delta);
+void __fastcall RecreateItem(int ii, int idx, unsigned short ic, int iseed,
+                             int ivalue);
+void __fastcall RecreateEar(int ii, unsigned short ic, int iseed,
+                            unsigned char Id, int dur, int mdur, int ch,
+                            int mch, int ivalue, int ibuff);
+void __fastcall SpawnQuestItem(int itemid, int x, int y, int randarea,
+                               int selflag);
 void __cdecl SpawnRock();
 void __fastcall RespawnItem(int i, bool FlipFlag);
 void __fastcall DeleteItem(int ii, int i);
@@ -115,11 +125,14 @@ void __fastcall RecreatePremiumItem(int ii, int idx, int lvl, int iseed);
 void __fastcall RecreateBoyItem(int ii, int idx, int lvl, int iseed);
 void __fastcall RecreateWitchItem(int ii, int idx, int lvl, int iseed);
 void __fastcall RecreateHealerItem(int ii, int idx, int lvl, int iseed);
-void __fastcall RecreateTownItem(int ii, int idx, unsigned short icreateinfo, int iseed, int ivalue);
+void __fastcall RecreateTownItem(int ii, int idx, unsigned short icreateinfo,
+                                 int iseed, int ivalue);
 void __cdecl RecalcStoreStats();
 int __cdecl ItemNoFlippy();
-void __fastcall CreateSpellBook(int x, int y, int ispell, bool sendmsg, int delta);
-void __fastcall CreateMagicItem(int x, int y, int imisc, int icurs, int sendmsg, int delta);
+void __fastcall CreateSpellBook(int x, int y, int ispell, bool sendmsg,
+                                int delta);
+void __fastcall CreateMagicItem(int x, int y, int imisc, int icurs, int sendmsg,
+                                int delta);
 bool __fastcall GetItemRecord(int dwSeed, int CI, int indx);
 void __fastcall NextItemRecord(int i);
 void __fastcall SetItemRecord(int dwSeed, int CI, int indx);
@@ -132,7 +145,6 @@ extern PLStruct PL_Suffix[96];
 extern UItemStruct UniqueItemList[91];
 
 /* rdata */
-
 
 extern ItemDataStruct AllItemsList[157];
 extern unsigned char ItemCAnimTbl[169];

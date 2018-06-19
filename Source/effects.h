@@ -1,8 +1,8 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//effects
+// effects
 extern int effects_cpp_init_value; // weak
-extern int sfxdelay; // weak
+extern int sfxdelay;               // weak
 extern int sfxdnum;
 extern void *sfx_stream;
 extern TSFX *sfx_data_cur;
@@ -30,7 +30,7 @@ void __stdcall effects_play_sound(char *snd_file);
 
 /* data */
 
-extern int effects_inf; // weak
+extern int effects_inf;              // weak
 extern char monster_action_sounds[]; // idb
 
 /* rdata */

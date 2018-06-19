@@ -1,8 +1,8 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//wave
+// wave
 extern int wave_cpp_init_value; // weak
-//int dword_6ABB9C; // weak
+// int dword_6ABB9C; // weak
 
 void __cdecl wave_cpp_init();
 bool __fastcall WCloseFile(void *file);
@@ -10,9 +10,11 @@ int __fastcall WGetFileSize(HANDLE hsFile, unsigned long *a2);
 void __fastcall WGetFileArchive(HANDLE hsFile, int *a2, char *dwInitParam);
 int __fastcall WOpenFile(char *dwInitParam, HANDLE *phsFile, int a3);
 char __fastcall WReadFile(HANDLE hsFile, char *buf, int a3);
-int __fastcall WSetFilePointer(HANDLE file1, int offset, HANDLE file2, int whence);
+int __fastcall WSetFilePointer(HANDLE file1, int offset, HANDLE file2,
+                               int whence);
 int __fastcall LoadWaveFormat(HANDLE hsFile, WAVEFORMATEX *pwfx);
-void *__fastcall AllocateMemFile(HANDLE hsFile, MEMFILE *pMemFile, unsigned int a3);
+void *__fastcall AllocateMemFile(HANDLE hsFile, MEMFILE *pMemFile,
+                                 unsigned int a3);
 void __fastcall FreeMemFile(MEMFILE *pMemFile);
 int __fastcall ReadWaveFile(MEMFILE *pMemFile, WAVEFORMATEX *pwfx, int *a3);
 int __fastcall ReadMemFile(MEMFILE *pMemFile, void *lpBuf, size_t a3);

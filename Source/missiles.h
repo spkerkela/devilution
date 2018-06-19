@@ -1,6 +1,6 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//missile
+// missile
 extern int missileactive[125];
 extern int missileavail[125];
 extern MissileStruct missile[125];
@@ -21,11 +21,16 @@ void __fastcall GetMissileVel(int i, int sx, int sy, int dx, int dy, int v);
 void __fastcall PutMissile(int i);
 void __fastcall GetMissilePos(int i);
 void __fastcall MoveMissilePos(int i);
-bool __fastcall MonsterTrapHit(int m, int mindam, int maxdam, int dist, int t, int shift);
-bool __fastcall MonsterMHit(int pnum, int m, int mindam, int maxdam, int dist, int t, int shift);
-bool __fastcall PlayerMHit(int pnum, int m, int dist, int mind, int maxd, int mtype, int shift, int earflag);
-bool __fastcall Plr2PlrMHit(int pnum, int p, int mindam, int maxdam, int dist, int mtype, int shift);
-void __fastcall CheckMissileCol(int i, int mindam, int maxdam, bool shift, int mx, int my, int nodel);
+bool __fastcall MonsterTrapHit(int m, int mindam, int maxdam, int dist, int t,
+                               int shift);
+bool __fastcall MonsterMHit(int pnum, int m, int mindam, int maxdam, int dist,
+                            int t, int shift);
+bool __fastcall PlayerMHit(int pnum, int m, int dist, int mind, int maxd,
+                           int mtype, int shift, int earflag);
+bool __fastcall Plr2PlrMHit(int pnum, int p, int mindam, int maxdam, int dist,
+                            int mtype, int shift);
+void __fastcall CheckMissileCol(int i, int mindam, int maxdam, bool shift,
+                                int mx, int my, int nodel);
 void __fastcall SetMissAnim(int mi, int animtype);
 void __fastcall SetMissDir(int mi, int dir);
 void __fastcall LoadMissileGFX(int mi);
@@ -34,67 +39,126 @@ void __fastcall FreeMissileGFX(int mi);
 void __cdecl FreeMissiles();
 void __cdecl FreeMissiles2();
 void __cdecl InitMissiles();
-void __fastcall AddLArrow(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddArrow(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
+void __fastcall AddLArrow(int mi, int sx, int sy, int dx, int dy, int midir,
+                          int mienemy, int id, int dam);
+void __fastcall AddArrow(int mi, int sx, int sy, int dx, int dy, int midir,
+                         int mienemy, int id, int dam);
 void __fastcall GetVileMissPos(int mi, int dx, int dy);
-void __fastcall AddRndTeleport(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddFirebolt(int mi, int sx, int sy, int dx, int dy, int midir, int micaster, int id, int dam);
-void __fastcall AddMagmaball(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall miss_null_33(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddTeleport(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddLightball(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddFirewall(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddFireball(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddLightctrl(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddLightning(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddMisexp(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddWeapexp(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
+void __fastcall AddRndTeleport(int mi, int sx, int sy, int dx, int dy,
+                               int midir, int mienemy, int id, int dam);
+void __fastcall AddFirebolt(int mi, int sx, int sy, int dx, int dy, int midir,
+                            int micaster, int id, int dam);
+void __fastcall AddMagmaball(int mi, int sx, int sy, int dx, int dy, int midir,
+                             int mienemy, int id, int dam);
+void __fastcall miss_null_33(int mi, int sx, int sy, int dx, int dy, int midir,
+                             int mienemy, int id, int dam);
+void __fastcall AddTeleport(int mi, int sx, int sy, int dx, int dy, int midir,
+                            int mienemy, int id, int dam);
+void __fastcall AddLightball(int mi, int sx, int sy, int dx, int dy, int midir,
+                             int mienemy, int id, int dam);
+void __fastcall AddFirewall(int mi, int sx, int sy, int dx, int dy, int midir,
+                            int mienemy, int id, int dam);
+void __fastcall AddFireball(int mi, int sx, int sy, int dx, int dy, int midir,
+                            int mienemy, int id, int dam);
+void __fastcall AddLightctrl(int mi, int sx, int sy, int dx, int dy, int midir,
+                             int mienemy, int id, int dam);
+void __fastcall AddLightning(int mi, int sx, int sy, int dx, int dy, int midir,
+                             int mienemy, int id, int dam);
+void __fastcall AddMisexp(int mi, int sx, int sy, int dx, int dy, int midir,
+                          int mienemy, int id, int dam);
+void __fastcall AddWeapexp(int mi, int sx, int sy, int dx, int dy, int midir,
+                           int mienemy, int id, int dam);
 bool __fastcall CheckIfTrig(int x, int y);
-void __fastcall AddTown(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddFlash(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddFlash2(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddManashield(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddFiremove(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddGuardian(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddChain(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall miss_null_11(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall miss_null_12(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall miss_null_13(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddRhino(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall miss_null_32(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddFlare(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddAcid(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall miss_null_1D(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddAcidpud(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddStone(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddGolem(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddEtherealize(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall miss_null_1F(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall miss_null_23(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddBoom(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddHeal(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddHealOther(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddElement(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddIdentify(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddFirewallC(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddInfra(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddWave(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddNova(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddRepair(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddRecharge(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddDisarm(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddApoca(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddFlame(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddFlamec(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddCbolt(int mi, int sx, int sy, int dx, int dy, int midir, int micaster, int id, int dam);
-void __fastcall AddHbolt(int mi, int sx, int sy, int dx, int dy, int midir, int micaster, int id, int dam);
-void __fastcall AddResurrect(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddResurrectBeam(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddTelekinesis(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddBoneSpirit(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddRportal(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-void __fastcall AddDiabApoca(int mi, int sx, int sy, int dx, int dy, int midir, int mienemy, int id, int dam);
-int __fastcall AddMissile(int sx, int sy, int v1, int v2, int midir, int mitype, int micaster, int id, int v3, int spllvl);
+void __fastcall AddTown(int mi, int sx, int sy, int dx, int dy, int midir,
+                        int mienemy, int id, int dam);
+void __fastcall AddFlash(int mi, int sx, int sy, int dx, int dy, int midir,
+                         int mienemy, int id, int dam);
+void __fastcall AddFlash2(int mi, int sx, int sy, int dx, int dy, int midir,
+                          int mienemy, int id, int dam);
+void __fastcall AddManashield(int mi, int sx, int sy, int dx, int dy, int midir,
+                              int mienemy, int id, int dam);
+void __fastcall AddFiremove(int mi, int sx, int sy, int dx, int dy, int midir,
+                            int mienemy, int id, int dam);
+void __fastcall AddGuardian(int mi, int sx, int sy, int dx, int dy, int midir,
+                            int mienemy, int id, int dam);
+void __fastcall AddChain(int mi, int sx, int sy, int dx, int dy, int midir,
+                         int mienemy, int id, int dam);
+void __fastcall miss_null_11(int mi, int sx, int sy, int dx, int dy, int midir,
+                             int mienemy, int id, int dam);
+void __fastcall miss_null_12(int mi, int sx, int sy, int dx, int dy, int midir,
+                             int mienemy, int id, int dam);
+void __fastcall miss_null_13(int mi, int sx, int sy, int dx, int dy, int midir,
+                             int mienemy, int id, int dam);
+void __fastcall AddRhino(int mi, int sx, int sy, int dx, int dy, int midir,
+                         int mienemy, int id, int dam);
+void __fastcall miss_null_32(int mi, int sx, int sy, int dx, int dy, int midir,
+                             int mienemy, int id, int dam);
+void __fastcall AddFlare(int mi, int sx, int sy, int dx, int dy, int midir,
+                         int mienemy, int id, int dam);
+void __fastcall AddAcid(int mi, int sx, int sy, int dx, int dy, int midir,
+                        int mienemy, int id, int dam);
+void __fastcall miss_null_1D(int mi, int sx, int sy, int dx, int dy, int midir,
+                             int mienemy, int id, int dam);
+void __fastcall AddAcidpud(int mi, int sx, int sy, int dx, int dy, int midir,
+                           int mienemy, int id, int dam);
+void __fastcall AddStone(int mi, int sx, int sy, int dx, int dy, int midir,
+                         int mienemy, int id, int dam);
+void __fastcall AddGolem(int mi, int sx, int sy, int dx, int dy, int midir,
+                         int mienemy, int id, int dam);
+void __fastcall AddEtherealize(int mi, int sx, int sy, int dx, int dy,
+                               int midir, int mienemy, int id, int dam);
+void __fastcall miss_null_1F(int mi, int sx, int sy, int dx, int dy, int midir,
+                             int mienemy, int id, int dam);
+void __fastcall miss_null_23(int mi, int sx, int sy, int dx, int dy, int midir,
+                             int mienemy, int id, int dam);
+void __fastcall AddBoom(int mi, int sx, int sy, int dx, int dy, int midir,
+                        int mienemy, int id, int dam);
+void __fastcall AddHeal(int mi, int sx, int sy, int dx, int dy, int midir,
+                        int mienemy, int id, int dam);
+void __fastcall AddHealOther(int mi, int sx, int sy, int dx, int dy, int midir,
+                             int mienemy, int id, int dam);
+void __fastcall AddElement(int mi, int sx, int sy, int dx, int dy, int midir,
+                           int mienemy, int id, int dam);
+void __fastcall AddIdentify(int mi, int sx, int sy, int dx, int dy, int midir,
+                            int mienemy, int id, int dam);
+void __fastcall AddFirewallC(int mi, int sx, int sy, int dx, int dy, int midir,
+                             int mienemy, int id, int dam);
+void __fastcall AddInfra(int mi, int sx, int sy, int dx, int dy, int midir,
+                         int mienemy, int id, int dam);
+void __fastcall AddWave(int mi, int sx, int sy, int dx, int dy, int midir,
+                        int mienemy, int id, int dam);
+void __fastcall AddNova(int mi, int sx, int sy, int dx, int dy, int midir,
+                        int mienemy, int id, int dam);
+void __fastcall AddRepair(int mi, int sx, int sy, int dx, int dy, int midir,
+                          int mienemy, int id, int dam);
+void __fastcall AddRecharge(int mi, int sx, int sy, int dx, int dy, int midir,
+                            int mienemy, int id, int dam);
+void __fastcall AddDisarm(int mi, int sx, int sy, int dx, int dy, int midir,
+                          int mienemy, int id, int dam);
+void __fastcall AddApoca(int mi, int sx, int sy, int dx, int dy, int midir,
+                         int mienemy, int id, int dam);
+void __fastcall AddFlame(int mi, int sx, int sy, int dx, int dy, int midir,
+                         int mienemy, int id, int dam);
+void __fastcall AddFlamec(int mi, int sx, int sy, int dx, int dy, int midir,
+                          int mienemy, int id, int dam);
+void __fastcall AddCbolt(int mi, int sx, int sy, int dx, int dy, int midir,
+                         int micaster, int id, int dam);
+void __fastcall AddHbolt(int mi, int sx, int sy, int dx, int dy, int midir,
+                         int micaster, int id, int dam);
+void __fastcall AddResurrect(int mi, int sx, int sy, int dx, int dy, int midir,
+                             int mienemy, int id, int dam);
+void __fastcall AddResurrectBeam(int mi, int sx, int sy, int dx, int dy,
+                                 int midir, int mienemy, int id, int dam);
+void __fastcall AddTelekinesis(int mi, int sx, int sy, int dx, int dy,
+                               int midir, int mienemy, int id, int dam);
+void __fastcall AddBoneSpirit(int mi, int sx, int sy, int dx, int dy, int midir,
+                              int mienemy, int id, int dam);
+void __fastcall AddRportal(int mi, int sx, int sy, int dx, int dy, int midir,
+                           int mienemy, int id, int dam);
+void __fastcall AddDiabApoca(int mi, int sx, int sy, int dx, int dy, int midir,
+                             int mienemy, int id, int dam);
+int __fastcall AddMissile(int sx, int sy, int v1, int v2, int midir, int mitype,
+                          int micaster, int id, int v3, int spllvl);
 int __fastcall Sentfire(int i, int sx, int sy);
 void __fastcall MI_Dummy(int i);
 void __fastcall MI_Golem(int i);

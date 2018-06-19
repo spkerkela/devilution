@@ -1,10 +1,10 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//msg
-extern int sgdwOwnerWait; // weak
+// msg
+extern int sgdwOwnerWait;      // weak
 extern int msg_cpp_init_value; // weak
-extern int sgdwRecvOffset; // idb
-extern int sgnCurrMegaPlayer; // weak
+extern int sgdwRecvOffset;     // idb
+extern int sgnCurrMegaPlayer;  // weak
 extern DLevel sgLevels[17];
 extern char sbLastCmd; // weak
 extern TMegaPkt *sgpCurrPkt;
@@ -14,11 +14,11 @@ extern LocalLevel sgLocals[17];
 extern DJunk sgJunk[4];
 extern TMegaPkt *sgpMegaPkt;
 extern char sgbDeltaChanged; // weak
-extern char sgbDeltaChunks; // weak
-extern int deltaload; // weak
-extern char gbBufferMsgs; // weak
-extern int dword_676198; // weak
-extern int msg_err_timer; // weak
+extern char sgbDeltaChunks;  // weak
+extern int deltaload;        // weak
+extern char gbBufferMsgs;    // weak
+extern int dword_676198;     // weak
+extern int msg_err_timer;    // weak
 
 void __cdecl msg_cpp_init();
 void __fastcall msg_send_drop_pkt(int pnum, int reason);
@@ -36,7 +36,8 @@ void *__fastcall DeltaExportMonster(void *dst, void *src);
 char *__fastcall DeltaExportJunk(char *a1);
 int __fastcall msg_comp_level(char *buffer, int size);
 void __cdecl delta_init();
-void __fastcall delta_kill_monster(int mi, unsigned char x, unsigned char y, unsigned char bLevel);
+void __fastcall delta_kill_monster(int mi, unsigned char x, unsigned char y,
+                                   unsigned char bLevel);
 void __fastcall delta_monster_hp(int mi, int hp, unsigned char bLevel);
 void __fastcall delta_sync_monster(TCmdLocParam1 *packet, char level);
 void __fastcall delta_sync_golem(TCmdGolem *pG, int pnum, int bLevel);
@@ -47,24 +48,44 @@ void __fastcall DeltaAddItem(int ii);
 void __cdecl DeltaSaveLevel();
 void __cdecl DeltaLoadLevel();
 void __fastcall NetSendCmd(unsigned char bHiPri, unsigned char bCmd);
-void __fastcall NetSendCmdGolem(unsigned char mx, unsigned char my, unsigned char dir, unsigned char menemy, int hp, int cl);
-void __fastcall NetSendCmdLoc(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y);
-void __fastcall NetSendCmdLocParam1(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1);
-void __fastcall NetSendCmdLocParam2(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1, int wParam2);
-void __fastcall NetSendCmdLocParam3(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y, int wParam1, int wParam2, int wParam3);
-void __fastcall NetSendCmdParam1(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1);
-void __fastcall NetSendCmdParam2(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1, unsigned short wParam2);
-void __fastcall NetSendCmdParam3(unsigned char bHiPri, unsigned char bCmd, unsigned short wParam1, unsigned short wParam2, int wParam3);
+void __fastcall NetSendCmdGolem(unsigned char mx, unsigned char my,
+                                unsigned char dir, unsigned char menemy, int hp,
+                                int cl);
+void __fastcall NetSendCmdLoc(unsigned char bHiPri, unsigned char bCmd,
+                              unsigned char x, unsigned char y);
+void __fastcall NetSendCmdLocParam1(unsigned char bHiPri, unsigned char bCmd,
+                                    unsigned char x, unsigned char y,
+                                    int wParam1);
+void __fastcall NetSendCmdLocParam2(unsigned char bHiPri, unsigned char bCmd,
+                                    unsigned char x, unsigned char y,
+                                    int wParam1, int wParam2);
+void __fastcall NetSendCmdLocParam3(unsigned char bHiPri, unsigned char bCmd,
+                                    unsigned char x, unsigned char y,
+                                    int wParam1, int wParam2, int wParam3);
+void __fastcall NetSendCmdParam1(unsigned char bHiPri, unsigned char bCmd,
+                                 unsigned short wParam1);
+void __fastcall NetSendCmdParam2(unsigned char bHiPri, unsigned char bCmd,
+                                 unsigned short wParam1,
+                                 unsigned short wParam2);
+void __fastcall NetSendCmdParam3(unsigned char bHiPri, unsigned char bCmd,
+                                 unsigned short wParam1, unsigned short wParam2,
+                                 int wParam3);
 void __fastcall NetSendCmdQuest(unsigned char bHiPri, unsigned char q);
-void __fastcall NetSendCmdGItem(unsigned char bHiPri, unsigned char bCmd, unsigned char mast, unsigned char pnum, int ii);
-void __fastcall NetSendCmdGItem2(unsigned char usonly, unsigned char bCmd, unsigned char mast, unsigned char pnum, struct TCmdGItem *p);
-bool __fastcall NetSendCmdReq2(unsigned char bCmd, unsigned char mast, unsigned char pnum, struct TCmdGItem *p);
+void __fastcall NetSendCmdGItem(unsigned char bHiPri, unsigned char bCmd,
+                                unsigned char mast, unsigned char pnum, int ii);
+void __fastcall NetSendCmdGItem2(unsigned char usonly, unsigned char bCmd,
+                                 unsigned char mast, unsigned char pnum,
+                                 struct TCmdGItem *p);
+bool __fastcall NetSendCmdReq2(unsigned char bCmd, unsigned char mast,
+                               unsigned char pnum, struct TCmdGItem *p);
 void __fastcall NetSendCmdExtra(struct TCmdGItem *p);
-void __fastcall NetSendCmdPItem(unsigned char bHiPri, unsigned char bCmd, unsigned char x, unsigned char y);
+void __fastcall NetSendCmdPItem(unsigned char bHiPri, unsigned char bCmd,
+                                unsigned char x, unsigned char y);
 void __fastcall NetSendCmdChItem(unsigned char bHiPri, unsigned char bLoc);
 void __fastcall NetSendCmdDelItem(unsigned char bHiPri, unsigned char bLoc);
 void __fastcall NetSendCmdDItem(unsigned char bHiPri, int ii);
-void __fastcall NetSendCmdDamage(unsigned char bHiPri, unsigned char bPlr, unsigned int dwDam);
+void __fastcall NetSendCmdDamage(unsigned char bHiPri, unsigned char bPlr,
+                                 unsigned int dwDam);
 void __fastcall NetSendCmdString(int a1, const char *pszStr);
 void __fastcall RemovePlrPortal(int pnum);
 int __fastcall ParseCmd(int pnum, TCmd *pCmd);
@@ -91,7 +112,8 @@ int __fastcall On_REQUESTAGITEM(struct TCmdGItem *pCmd, int pnum);
 int __fastcall On_AGETITEM(struct TCmdGItem *pCmd, int pnum);
 int __fastcall On_ITEMEXTRA(struct TCmdGItem *pCmd, int pnum);
 int __fastcall On_PUTITEM(struct TCmdPItem *pCmd, int pnum);
-void __fastcall delta_put_item(struct TCmdPItem *pI, int x, int y, unsigned char bLevel);
+void __fastcall delta_put_item(struct TCmdPItem *pI, int x, int y,
+                               unsigned char bLevel);
 void __fastcall check_update_plr(int pnum);
 int __fastcall On_SYNCPUTITEM(struct TCmdPItem *pCmd, int pnum);
 int __fastcall On_RESPAWNITEM(struct TCmdPItem *pCmd, int pnum);
@@ -125,7 +147,8 @@ int __fastcall On_MONSTDAMAGE(struct TCmdLocParam1 *pCmd, int pnum);
 int __fastcall On_PLRDEAD(struct TCmdParam1 *pCmd, int pnum);
 int __fastcall On_PLRDAMAGE(struct TCmdDamage *pCmd, int pnum);
 int __fastcall On_OPENDOOR(struct TCmdParam1 *pCmd, int pnum);
-void __fastcall delta_sync_object(int oi, unsigned char bCmd, unsigned char bLevel);
+void __fastcall delta_sync_object(int oi, unsigned char bCmd,
+                                  unsigned char bLevel);
 int __fastcall On_CLOSEDOOR(struct TCmdParam1 *pCmd, int pnum);
 int __fastcall On_OPERATEOBJ(struct TCmdParam1 *pCmd, int pnum);
 int __fastcall On_PLROPOBJ(struct TCmdParam2 *pCmd, int pnum);
@@ -138,7 +161,8 @@ int __fastcall On_SEND_PLRINFO(struct TCmdPlrInfoHdr *pCmd, int pnum);
 int __fastcall On_ACK_PLRINFO(struct TCmdPlrInfoHdr *pCmd, int pnum);
 int __fastcall On_PLAYER_JOINLEVEL(struct TCmdLocParam1 *pCmd, int pnum);
 int __fastcall On_ACTIVATEPORTAL(DJunk *pCmd, int pnum);
-void __fastcall delta_open_portal(int pnum, int x, int y, int bLevel, int bLType, int bSetLvl);
+void __fastcall delta_open_portal(int pnum, int x, int y, int bLevel,
+                                  int bLType, int bSetLvl);
 int __fastcall On_DEACTIVATEPORTAL(struct TCmd *pCmd, int pnum);
 int __fastcall On_RETOWN(struct TCmd *pCmd, int pnum);
 int __fastcall On_SETSTR(struct TCmdParam1 *pCmd, int pnum);

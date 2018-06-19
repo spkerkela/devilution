@@ -1,6 +1,6 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//tmsg
+// tmsg
 extern TMsg *sgpTimedMsgHead;
 
 int __fastcall tmsg_get(unsigned char *pbMsg, char bLen);

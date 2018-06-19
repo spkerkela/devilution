@@ -1,6 +1,6 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//palette
+// palette
 extern PALETTEENTRY logical_palette[256];
 extern int palette_cpp_init_value; // weak
 extern PALETTEENTRY system_palette[256];
@@ -17,7 +17,8 @@ void __fastcall LoadRndLvlPal(int l);
 void __cdecl ResetPal();
 void __cdecl palette_inc_gamma();
 void __cdecl palette_update();
-void __fastcall palette_apply_gamma_correction(PALETTEENTRY *dst, PALETTEENTRY *src, int n);
+void __fastcall palette_apply_gamma_correction(PALETTEENTRY *dst,
+                                               PALETTEENTRY *src, int n);
 void __cdecl palette_dec_gamma();
 int __fastcall palette_update_gamma(int gamma);
 void __cdecl BlackPalette();
@@ -35,6 +36,6 @@ extern int palette_inf; // weak
 
 /* rdata */
 
-extern int gamma_correction; // idb
+extern int gamma_correction;      // idb
 extern int color_cycling_enabled; // idb
 extern bool sgbFadedIn;

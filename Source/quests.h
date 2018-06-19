@@ -1,19 +1,19 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//quests
+// quests
 extern int qtopline; // idb
 extern int questlog; // weak
 extern void *pQLogCel;
 extern QuestStruct quests[16];
 extern int qline; // weak
 extern int qlist[16];
-extern int numqlines; // weak
-extern int WaterDone; // idb
+extern int numqlines;  // weak
+extern int WaterDone;  // idb
 extern int ReturnLvlY; // idb
 extern int ReturnLvlX; // idb
 extern int ReturnLvlT; // idb
-extern int ALLQUESTS; // idb
-extern int ReturnLvl; // idb
+extern int ALLQUESTS;  // idb
+extern int ReturnLvl;  // idb
 
 void __cdecl InitQuests();
 void __cdecl CheckQuests();
@@ -32,7 +32,8 @@ void __cdecl SetReturnLvlPos();
 void __cdecl GetReturnLvlPos();
 void __cdecl ResyncMPQuests();
 void __cdecl ResyncQuests();
-void __fastcall PrintQLString(int x, int y, unsigned char cjustflag, char *str, int col);
+void __fastcall PrintQLString(int x, int y, unsigned char cjustflag, char *str,
+                              int col);
 void __cdecl DrawQuestLog();
 void __cdecl StartQuestlog();
 void __cdecl QuestlogUp();

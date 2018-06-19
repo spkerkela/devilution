@@ -1,8 +1,8 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//drlg_l3
-extern char lavapool; // weak
-extern int abyssx; // weak
+// drlg_l3
+extern char lavapool;  // weak
+extern int abyssx;     // weak
 extern int lockoutcnt; // weak
 extern char lockout[40][40];
 
@@ -30,7 +30,8 @@ void __cdecl DRLG_L3Pool();
 int __fastcall DRLG_L3SpawnEdge(int x, int y, int *totarea);
 int __fastcall DRLG_L3Spawn(int x, int y, int *totarea);
 void __cdecl DRLG_L3PoolFix();
-int __fastcall DRLG_L3PlaceMiniSet(unsigned char *miniset, int tmin, int tmax, int cx, int cy, bool setview, int ldir);
+int __fastcall DRLG_L3PlaceMiniSet(unsigned char *miniset, int tmin, int tmax,
+                                   int cx, int cy, bool setview, int ldir);
 void __fastcall DRLG_L3PlaceRndSet(unsigned char *miniset, int rndper);
 void __cdecl DRLG_L3Wood();
 bool __fastcall WoodVertU(int i, int y);
@@ -81,4 +82,4 @@ extern unsigned char L3XTRA5[4];
 extern unsigned char L3ANVIL[244];
 extern unsigned char L3SpawnTbl1[15]; /* local spawntable? */
 extern unsigned char L3SpawnTbl2[15]; /* local spawntable? */
-extern unsigned char L3PoolSub[15]; /* local poolsub? */
+extern unsigned char L3PoolSub[15];   /* local poolsub? */

@@ -1,16 +1,18 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//portal
+// portal
 extern PortalStruct portal[4];
 extern int portalindex;
 // int END_portalstruct; // weak
 
 void __cdecl InitPortals();
-void __fastcall SetPortalStats(int i, int o, int x, int y, int lvl, int lvltype);
+void __fastcall SetPortalStats(int i, int o, int x, int y, int lvl,
+                               int lvltype);
 void __fastcall AddWarpMissile(int i, int x, int y);
 void __cdecl SyncPortals();
 void __fastcall AddInTownPortal(int i);
-void __fastcall ActivatePortal(int i, int x, int y, int lvl, int lvltype, int sp);
+void __fastcall ActivatePortal(int i, int x, int y, int lvl, int lvltype,
+                               int sp);
 void __fastcall DeactivatePortal(int i);
 bool __fastcall PortalOnLevel(int i);
 void __fastcall RemovePortalMissile(int id);

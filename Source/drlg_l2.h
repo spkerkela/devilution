@@ -1,6 +1,6 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//drlg_l2
+// drlg_l2
 extern int nSx1;
 extern int nSx2; // weak
 extern int nSy1;
@@ -20,14 +20,16 @@ void __fastcall CreateL2Dungeon(int rseed, int entry);
 void __cdecl DRLG_LoadL2SP();
 void __cdecl DRLG_FreeL2SP();
 void __fastcall DRLG_L2(int entry);
-bool __fastcall DRLG_L2PlaceMiniSet(char *miniset, int tmin, int tmax, int cx, int cy, bool setview, int ldir);
+bool __fastcall DRLG_L2PlaceMiniSet(char *miniset, int tmin, int tmax, int cx,
+                                    int cy, bool setview, int ldir);
 void __fastcall DRLG_L2PlaceRndSet(char *miniset, int rndper);
 void __cdecl DRLG_L2Subs();
 void __cdecl DRLG_L2Shadows();
 void __fastcall DRLG_L2SetRoom(int rx1, int ry1);
 void __cdecl L2TileFix();
 bool __cdecl CreateDungeon();
-void __fastcall CreateRoom(int nX1, int nY1, int nX2, int nY2, int nRDest, int nHDir, int ForceHW, int nH, int nW);
+void __fastcall CreateRoom(int nX1, int nY1, int nX2, int nY2, int nRDest,
+                           int nHDir, int ForceHW, int nH, int nW);
 void __fastcall DefineRoom(int nX1, int nY1, int nX2, int nY2, int ForceHW);
 void __fastcall AddHall(int nX1, int nY1, int nX2, int nY2, int nHd);
 void __fastcall GetHall(int *nX1, int *nY1, int *nX2, int *nY2, int *nHd);
@@ -53,7 +55,7 @@ extern int Room_Min; // weak
 extern int Dir_Xadd[5];
 extern int Dir_Yadd[5];
 extern ShadowStruct SPATSL2[2];
-//short word_48489A;
+// short word_48489A;
 extern unsigned char BTYPESL2[161];
 extern unsigned char BSTYPESL2[161];
 extern unsigned char VARCH1[];

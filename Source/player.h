@@ -1,21 +1,21 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//player
-extern int plr_lframe_size; // idb
-extern int plr_wframe_size; // idb
-extern char plr_gfx_flag; // weak
+// player
+extern int plr_lframe_size;       // idb
+extern int plr_wframe_size;       // idb
+extern char plr_gfx_flag;         // weak
 extern int player_cpp_init_value; // weak
-extern int plr_aframe_size; // idb
+extern int plr_aframe_size;       // idb
 extern int myplr;
 extern PlayerStruct plr[4];
 extern int plr_fframe_size; // idb
 extern int plr_qframe_size; // idb
-extern int deathflag; // idb
+extern int deathflag;       // idb
 extern int plr_hframe_size; // idb
 extern int plr_bframe_size; // idb
-extern char plr_gfx_bflag; // weak
+extern char plr_gfx_bflag;  // weak
 extern int plr_sframe_size; // idb
-extern int deathdelay; // weak
+extern int deathdelay;      // weak
 extern int plr_dframe_size; // idb
 
 void __cdecl player_cpp_init();
@@ -25,7 +25,8 @@ void __fastcall InitPlayerGFX(int pnum);
 void __fastcall InitPlrGFXMem(int pnum);
 int __fastcall GetPlrGFXSize(char *szCel);
 void __fastcall FreePlayerGFX(int pnum);
-void __fastcall NewPlrAnim(int pnum, int Peq, int numFrames, int Delay, int width);
+void __fastcall NewPlrAnim(int pnum, int Peq, int numFrames, int Delay,
+                           int width);
 void __fastcall ClearPlrPVars(int pnum);
 void __fastcall SetPlrAnims(int pnum);
 void __fastcall ClearPlrRVars(PlayerStruct *pPlayer);
@@ -47,9 +48,13 @@ void __fastcall StartStand(int pnum, int dir);
 void __fastcall StartWalkStand(int pnum);
 void __fastcall PM_ChangeLightOff(int pnum);
 void __fastcall PM_ChangeOffset(int pnum);
-void __fastcall StartWalk(int pnum, int xvel, int yvel, int xadd, int yadd, int EndDir, int sdir);
-void __fastcall StartWalk2(int pnum, int xvel, int yvel, int xoff, int yoff, int xadd, int yadd, int EndDir, int sdir);
-void __fastcall StartWalk3(int pnum, int xvel, int yvel, int xoff, int yoff, int xadd, int yadd, int mapx, int mapy, int EndDir, int sdir);
+void __fastcall StartWalk(int pnum, int xvel, int yvel, int xadd, int yadd,
+                          int EndDir, int sdir);
+void __fastcall StartWalk2(int pnum, int xvel, int yvel, int xoff, int yoff,
+                           int xadd, int yadd, int EndDir, int sdir);
+void __fastcall StartWalk3(int pnum, int xvel, int yvel, int xoff, int yoff,
+                           int xadd, int yadd, int mapx, int mapy, int EndDir,
+                           int sdir);
 void __fastcall StartAttack(int pnum, int d);
 void __fastcall StartRangeAttack(int pnum, int d, int cx, int cy);
 void __fastcall StartPlrBlock(int pnum, int dir);

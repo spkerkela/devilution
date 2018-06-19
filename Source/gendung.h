@@ -1,10 +1,10 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//gendung
+// gendung
 extern short level_frame_types[2048];
 extern int themeCount;
 extern char nTransTable[2049];
-//int dword_52D204;
+// int dword_52D204;
 extern int dMonster[112][112];
 extern char dungeon[40][40];
 extern char dObject[112][112];
@@ -25,10 +25,10 @@ extern void *pMegaTiles;
 extern DPiece dpiece_defs[2];
 extern int gnDifficulty; // idb
 extern char block_lvid[2049];
-//char byte_5B78EB;
+// char byte_5B78EB;
 extern char dung_map[112][112];
 extern char nTrapTable[2049];
-extern char leveltype; // weak
+extern char leveltype;          // weak
 extern unsigned char currlevel; // idb
 extern char TransList[256];
 extern char nSolidTable[2049];
@@ -38,9 +38,9 @@ extern void *pDungeonCels;
 extern int speed_cel_frame_num_from_light_index_frame_num[16][128];
 extern THEME_LOC themeLoc[50];
 extern char dPlayer[112][112];
-extern int dword_5C2FF8; // weak
-extern int dword_5C2FFC; // weak
-extern int scr_pix_width; // weak
+extern int dword_5C2FF8;   // weak
+extern int dword_5C2FFC;   // weak
+extern int scr_pix_width;  // weak
 extern int scr_pix_height; // weak
 extern char dArch[112][112];
 extern char nBlockTable[2049];
@@ -52,17 +52,17 @@ extern int level_frame_sizes[2048];
 extern char nMissileTable[2049];
 extern char *pSetPiece_2;
 extern char setlvltype; // weak
-extern char setlevel; // weak
-extern int LvlViewY; // weak
-extern int LvlViewX; // weak
-extern int dmaxx; // weak
-extern int dmaxy; // weak
-extern int setpc_h; // weak
-extern int setpc_w; // weak
-extern int setpc_x; // idb
-extern int ViewX; // idb
-extern int ViewY; // idb
-extern int setpc_y; // idb
+extern char setlevel;   // weak
+extern int LvlViewY;    // weak
+extern int LvlViewX;    // weak
+extern int dmaxx;       // weak
+extern int dmaxy;       // weak
+extern int setpc_h;     // weak
+extern int setpc_w;     // weak
+extern int setpc_x;     // idb
+extern int ViewX;       // idb
+extern int ViewY;       // idb
+extern int setpc_y;     // idb
 extern char dMissile[112][112];
 extern int dminx; // weak
 extern int dminy; // weak
@@ -84,9 +84,11 @@ void __fastcall DRLG_AreaTrans(int num, unsigned char *List);
 void __cdecl DRLG_InitSetPC();
 void __cdecl DRLG_SetPC();
 void __fastcall Make_SetPC(int x, int y, int w, int h);
-bool __fastcall DRLG_WillThemeRoomFit(int floor, int x, int y, int minSize, int maxSize, int *width, int *height);
+bool __fastcall DRLG_WillThemeRoomFit(int floor, int x, int y, int minSize,
+                                      int maxSize, int *width, int *height);
 void __fastcall DRLG_CreateThemeRoom(int themeIndex);
-void __fastcall DRLG_PlaceThemeRooms(int minSize, int maxSize, int floor, int freq, int rndSize);
+void __fastcall DRLG_PlaceThemeRooms(int minSize, int maxSize, int floor,
+                                     int freq, int rndSize);
 void __cdecl DRLG_HoldThemeRooms();
 bool __fastcall SkipThemeRoom(int x, int y);
 void __cdecl InitLevels();

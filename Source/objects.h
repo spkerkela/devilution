@@ -1,13 +1,13 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//objects
-extern int trapid; // weak
+// objects
+extern int trapid;  // weak
 extern int trapdir; // weak
 extern int pObjCels[40];
 extern char ObjFileList[40];
 extern int objectactive[127];
 extern int nobjects; // idb
-extern int leverid; // idb
+extern int leverid;  // idb
 extern int objectavail[127];
 extern ObjectStruct object[127];
 extern int InitObjFlag; // weak
@@ -22,7 +22,8 @@ void __fastcall InitRndLocObj5x5(int min, int max, int objtype);
 void __cdecl ClrAllObjects();
 void __cdecl AddTortures();
 void __cdecl AddCandles();
-void __fastcall AddBookLever(int lx1, int ly1, int lx2, int ly2, int x1, int y1, int x2, int y2, int msg);
+void __fastcall AddBookLever(int lx1, int ly1, int lx2, int ly2, int x1, int y1,
+                             int x2, int y2, int msg);
 void __cdecl InitRndBarrels();
 void __fastcall AddL1Objs(int x1, int y1, int x2, int y2);
 void __fastcall AddL2Objs(int x1, int y1, int x2, int y2);
@@ -32,7 +33,8 @@ void __cdecl AddL2Torches();
 bool __fastcall TorchLocOK(int xp, int yp);
 void __cdecl AddObjTraps();
 void __cdecl AddChestTraps();
-void __fastcall LoadMapObjects(unsigned char *pMap, int startx, int starty, int x1, int y1, int w, int h, int leveridx);
+void __fastcall LoadMapObjects(unsigned char *pMap, int startx, int starty,
+                               int x1, int y1, int w, int h, int leveridx);
 void __fastcall LoadMapObjs(unsigned char *pMap, int startx, int starty);
 void __cdecl AddDiabObjs();
 void __cdecl AddStoryBooks();
@@ -132,7 +134,8 @@ void __fastcall SyncOpL2Door(int pnum, int cmd, int i);
 void __fastcall SyncOpL3Door(int pnum, int cmd, int i);
 void __fastcall SyncOpObject(int pnum, int cmd, int i);
 void __fastcall BreakCrux(int i);
-void __fastcall BreakBarrel(int pnum, int i, int dam, unsigned char forcebreak, int sendmsg);
+void __fastcall BreakBarrel(int pnum, int i, int dam, unsigned char forcebreak,
+                            int sendmsg);
 void __fastcall BreakObject(int pnum, int oi);
 void __fastcall SyncBreakObj(int pnum, int oi);
 void __fastcall SyncL1Doors(int i);

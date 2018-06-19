@@ -1,11 +1,11 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//dthread
+// dthread
 extern int dthread_cpp_init_value; // weak
-extern unsigned int glpDThreadId; // idb
-extern TMegaPkt *sgpInfoHead; /* may not be right struct */
-extern char byte_52A508; // weak
-extern HANDLE sghWorkToDoEvent; // idb
+extern unsigned int glpDThreadId;  // idb
+extern TMegaPkt *sgpInfoHead;      /* may not be right struct */
+extern char byte_52A508;           // weak
+extern HANDLE sghWorkToDoEvent;    // idb
 
 void __cdecl dthread_cpp_init_1();
 void __cdecl dthread_cpp_init_2();

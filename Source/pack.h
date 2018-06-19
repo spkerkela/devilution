@@ -1,6 +1,6 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//pack
+// pack
 extern int pack_cpp_init_value; // weak
 
 void __cdecl pack_cpp_init();

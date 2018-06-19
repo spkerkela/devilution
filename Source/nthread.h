@@ -1,22 +1,22 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//nthread
+// nthread
 extern int nthread_cpp_init_value; // weak
-extern char byte_679704; // weak
+extern char byte_679704;           // weak
 extern int gdwMsgLenTbl[4];
-extern int gdwDeltaBytesSec; // weak
-extern char byte_679734; // weak
+extern int gdwDeltaBytesSec;  // weak
+extern char byte_679734;      // weak
 extern int gdwTurnsInTransit; // weak
 extern int glpMsgTbl[4];
 extern unsigned int glpNThreadId;
-extern char sgbSyncCountdown; // weak
-extern int dword_679754; // weak
-extern char byte_679758; // weak
+extern char sgbSyncCountdown;   // weak
+extern int dword_679754;        // weak
+extern char byte_679758;        // weak
 extern char sgbPacketCountdown; // weak
 extern char sgbThreadIsRunning; // weak
-extern int gdwLargestMsgSize; // weak
-extern int gdwNormalMsgSize; // weak
-extern int dword_679764; // weak
+extern int gdwLargestMsgSize;   // weak
+extern int gdwNormalMsgSize;    // weak
+extern int dword_679764;        // weak
 
 void __cdecl nthread_cpp_init_1();
 void __cdecl nthread_cpp_init_2();

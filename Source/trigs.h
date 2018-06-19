@@ -1,6 +1,6 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//trigs
+// trigs
 extern int trigflag[5];
 extern TriggerStruct trigs[5];
 extern int TWarpFrom; // weak

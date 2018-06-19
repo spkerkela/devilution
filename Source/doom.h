@@ -1,10 +1,10 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//doom
-extern int doom_quest_time; // weak
+// doom
+extern int doom_quest_time;  // weak
 extern int doom_stars_drawn; // weak
 extern void *pDoomCel;
-extern int doomflag; // weak
+extern int doomflag;       // weak
 extern int DoomQuestState; // idb
 
 int __cdecl doom_get_frame_from_time();

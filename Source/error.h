@@ -1,10 +1,10 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//error
+// error
 extern char msgtable[80];
 extern char msgdelay; // weak
-extern char msgflag; // weak
-extern char msgcnt; // weak
+extern char msgflag;  // weak
+extern char msgcnt;   // weak
 
 void __fastcall InitDiabloMsg(char e);
 void __cdecl ClrDiabloMsg();

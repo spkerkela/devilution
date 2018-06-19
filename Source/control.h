@@ -1,11 +1,11 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//control
+// control
 extern char sgbNextTalkSave; // weak
-extern char sgbTalkSavePos; // weak
+extern char sgbTalkSavePos;  // weak
 extern void *pDurIcons;
 extern void *pChrButtons;
-extern int drawhpflag; // idb
+extern int drawhpflag;   // idb
 extern int dropGoldFlag; // weak
 extern int panbtn[8];
 extern int chrbtn[4];
@@ -15,8 +15,8 @@ extern void *pChrPanel;
 extern int lvlbtndown; // weak
 extern char sgszTalkSave[8][80];
 extern int dropGoldValue; // idb
-extern int drawmanaflag; // idb
-extern int chrbtnactive; // weak
+extern int drawmanaflag;  // idb
+extern int chrbtnactive;  // weak
 extern char sgszTalkMsg[80];
 extern void *pPanelText;
 extern int frame_4B8800; // idb
@@ -29,16 +29,16 @@ extern int pinfoflag; // weak
 extern int talkbtndown[3];
 extern int pSpell; // weak
 extern void *pManaBuff;
-extern int infoclr; // weak
+extern int infoclr;       // weak
 extern int sgbPlrTalkTbl; // weak // should be char [4]
 extern void *pGBoxBuff;
 extern void *pSBkBtnCel;
 extern char tempstr[260];
-extern int sbooktab; // weak
-extern int pSplType; // weak
-extern int frame; // idb
+extern int sbooktab;             // weak
+extern int pSplType;             // weak
+extern int frame;                // idb
 extern int initialDropGoldIndex; // idb
-extern int talkflag; // weak
+extern int talkflag;             // weak
 extern void *pSBkIconCels;
 extern int sbookflag; // weak
 extern int chrflag;
@@ -52,9 +52,9 @@ extern int panelflag; // weak
 extern char byte_4B8B88[256];
 extern int initialDropGoldValue; // idb
 extern void *pSpellCels;
-extern int panbtndown; // weak
+extern int panbtndown;   // weak
 extern void *pTalkPanel; // idb
-extern int spselflag; // weak
+extern int spselflag;    // weak
 
 void __fastcall DrawSpellCel(int xp, int yp, char *Trans, int nCel, int w);
 void __fastcall SetSpellTrans(char t);
@@ -88,11 +88,14 @@ void __cdecl CheckBtnUp();
 void __cdecl FreeControlPan();
 int __fastcall control_WriteStringToBuffer(char *str);
 void __cdecl DrawInfoBox();
-void __fastcall control_print_info_str(int y, char *str, bool center, int lines);
+void __fastcall control_print_info_str(int y, char *str, bool center,
+                                       int lines);
 void __fastcall PrintGameStr(int x, int y, char *str, int color);
 void __cdecl DrawChr();
-void __fastcall ADD_PlrStringXY(int x, int y, int width, char *pszStr, char col);
-void __fastcall MY_PlrStringXY(int x, int y, int width, char *pszStr, char col, int base);
+void __fastcall ADD_PlrStringXY(int x, int y, int width, char *pszStr,
+                                char col);
+void __fastcall MY_PlrStringXY(int x, int y, int width, char *pszStr, char col,
+                               int base);
 void __cdecl CheckLvlBtn();
 void __cdecl ReleaseLvlBtn();
 void __cdecl DrawLevelUpIcon();
@@ -103,7 +106,8 @@ int __fastcall DrawDurIcon4Item(ItemStruct *pItem, int x, int c);
 void __cdecl RedBack();
 int __fastcall GetSBookTrans(int ii, unsigned char townok);
 void __cdecl DrawSpellBook();
-void __fastcall PrintSBookStr(int x, int y, bool cjustflag, char *pszStr, int bright);
+void __fastcall PrintSBookStr(int x, int y, bool cjustflag, char *pszStr,
+                              int bright);
 void __cdecl CheckSBook();
 char *__fastcall get_pieces_str(int nGold);
 void __fastcall DrawGoldSplit(int amount);
@@ -111,7 +115,8 @@ void __fastcall control_drop_gold(int vkey);
 void __fastcall control_remove_gold(int pnum, int gold_index);
 void __fastcall control_set_gold_curs(int pnum);
 void __cdecl DrawTalkPan();
-char *__fastcall control_print_talk_msg(char *msg, int x, int y, int *a4, int just);
+char *__fastcall control_print_talk_msg(char *msg, int x, int y, int *a4,
+                                        int just);
 int __cdecl control_check_talk_btn();
 void __cdecl control_release_talk_btn();
 void __cdecl control_reset_talk_msg();

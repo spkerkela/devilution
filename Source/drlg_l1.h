@@ -1,6 +1,6 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//drlg_l1
+// drlg_l1
 extern char L5dungeon[80][80];
 extern char mydflags[40][40];
 extern int setloadflag; // weak
@@ -24,7 +24,9 @@ void __cdecl DRLG_FreeL1SP();
 void __fastcall DRLG_L5(int entry);
 void __fastcall DRLG_PlaceDoor(int x, int y);
 void __cdecl DRLG_L1Shadows();
-int __fastcall DRLG_PlaceMiniSet(unsigned char *miniset, int tmin, int tmax, int cx, int cy, bool setview, int noquad, int ldir);
+int __fastcall DRLG_PlaceMiniSet(unsigned char *miniset, int tmin, int tmax,
+                                 int cx, int cy, bool setview, int noquad,
+                                 int ldir);
 void __cdecl InitL5Dungeon();
 void __cdecl L5ClearFlags();
 void __cdecl L5firstRoom();
@@ -42,7 +44,8 @@ void __fastcall L5VertWall(int i, int j, char p, int dy);
 void __cdecl L5tileFix();
 void __cdecl DRLG_L5Subs();
 void __cdecl L5FillChambers();
-void __fastcall DRLG_L5GChamber(int sx, int sy, bool topflag, bool bottomflag, bool leftflag, bool rightflag);
+void __fastcall DRLG_L5GChamber(int sx, int sy, bool topflag, bool bottomflag,
+                                bool leftflag, bool rightflag);
 void __fastcall DRLG_L5GHall(int x1, int y1, int x2, int y2);
 void __fastcall DRLG_L5SetRoom(int rx1, int ry1);
 void __cdecl DRLG_L5FloodTVal();

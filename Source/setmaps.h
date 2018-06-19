@@ -1,4 +1,4 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
 int __fastcall ObjIndex(int x, int y);
 void __cdecl AddSKingObjs();

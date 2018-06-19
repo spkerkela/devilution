@@ -1,6 +1,6 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//loadsave
+// loadsave
 extern void *tbuff;
 
 void __fastcall LoadGame(bool firstflag);

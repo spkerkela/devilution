@@ -1,7 +1,7 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//plrmsg
-extern int plrmsg_ticks; // weak
+// plrmsg
+extern int plrmsg_ticks;  // weak
 extern char plr_msg_slot; // weak
 extern _plrmsg plr_msgs[8];
 

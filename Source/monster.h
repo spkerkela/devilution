@@ -1,7 +1,7 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//monster
-extern int MissileFileFlag; // weak
+// monster
+extern int MissileFileFlag;        // weak
 extern int monster_cpp_init_value; // weak
 extern int monstkills[200];
 extern int monstactive[200];
@@ -26,9 +26,11 @@ void __fastcall InitMonster(int i, int rd, int mtype, int x, int y);
 void __cdecl ClrAllMonsters();
 bool __fastcall MonstPlace(int xp, int yp);
 void __fastcall PlaceMonster(int i, int mtype, int x, int y);
-void __fastcall PlaceUniqueMonst(int uniqindex, int miniontype, int unpackfilesize);
+void __fastcall PlaceUniqueMonst(int uniqindex, int miniontype,
+                                 int unpackfilesize);
 void __cdecl PlaceQuestMonsters();
-void __fastcall PlaceGroup(int mtype, int num, unsigned char leaderf, int leader);
+void __fastcall PlaceGroup(int mtype, int num, unsigned char leaderf,
+                           int leader);
 void __cdecl LoadDiabMonsts();
 void __cdecl InitMonsters();
 void __cdecl PlaceUniques();
@@ -44,9 +46,12 @@ void __fastcall M_CheckEFlag(int i);
 void __fastcall M_StartStand(int i, int md);
 void __fastcall M_StartDelay(int i, int len);
 void __fastcall M_StartSpStand(int i, int md);
-void __fastcall M_StartWalk(int i, int xvel, int yvel, int xadd, int yadd, int EndDir);
-void __fastcall M_StartWalk2(int i, int xvel, int yvel, int a4, int a5, int a6, int a7, int EndDir);
-void __fastcall M_StartWalk3(int i, int xvel, int yvel, int a4, int a5, int a6, int a7, int a8, int a9, int EndDir);
+void __fastcall M_StartWalk(int i, int xvel, int yvel, int xadd, int yadd,
+                            int EndDir);
+void __fastcall M_StartWalk2(int i, int xvel, int yvel, int a4, int a5, int a6,
+                             int a7, int EndDir);
+void __fastcall M_StartWalk3(int i, int xvel, int yvel, int a4, int a5, int a6,
+                             int a7, int a8, int a9, int EndDir);
 void __fastcall M_StartAttack(int i);
 void __fastcall M_StartRAttack(int i, int missile_type, int dam);
 void __fastcall M_StartRSpAttack(int i, int missile_type, int dam);
@@ -114,7 +119,9 @@ void __fastcall MAI_Succ(int i);
 void __fastcall MAI_AcidUniq(int i);
 void __fastcall MAI_Scav(int i);
 void __fastcall MAI_Garg(int i);
-void __fastcall MAI_RoundRanged(int i, int missile_type, unsigned char checkdoors, int dam, int lessmissiles);
+void __fastcall MAI_RoundRanged(int i, int missile_type,
+                                unsigned char checkdoors, int dam,
+                                int lessmissiles);
 void __fastcall MAI_Magma(int i);
 void __fastcall MAI_Storm(int i);
 void __fastcall MAI_Acid(int i);
@@ -138,9 +145,11 @@ void __cdecl FreeMonsters();
 bool __fastcall DirOK(int i, int mdir);
 bool __fastcall PosOkMissile(int x, int y);
 bool __fastcall CheckNoSolid(int x, int y);
-bool __fastcall LineClearF(bool (__fastcall *Clear)(int, int), int x1, int y1, int x2, int y2);
+bool __fastcall LineClearF(bool(__fastcall *Clear)(int, int), int x1, int y1,
+                           int x2, int y2);
 bool __fastcall LineClear(int x1, int y1, int x2, int y2);
-bool __fastcall LineClearF1(bool (__fastcall *Clear)(int, int, int), int monst, int x1, int y1, int x2, int y2);
+bool __fastcall LineClearF1(bool(__fastcall *Clear)(int, int, int), int monst,
+                            int x1, int y1, int x2, int y2);
 void __fastcall SyncMonsterAnim(int i);
 void __fastcall M_FallenFear(int x, int y);
 void __fastcall PrintMonstHistory(int mt);
@@ -189,4 +198,4 @@ extern int rnd20[4];
 extern int rnd60[4];
 //
 
-extern void (__fastcall *AiProc[])(int i);
+extern void(__fastcall *AiProc[])(int i);

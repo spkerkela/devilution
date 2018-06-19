@@ -1,9 +1,9 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//appfat
+// appfat
 extern int appfat_terminated; // weak
 extern char sz_error_buf[256];
-extern int terminating; // weak
+extern int terminating;       // weak
 extern int cleanup_thread_id; // weak
 extern char empty_string;
 
@@ -18,10 +18,12 @@ void DrawDlg(char *pszFmt, ...);
 void __fastcall DDErrDlg(int error_code, int log_line_nr, char *log_file_path);
 void __fastcall DSErrDlg(int error_code, int log_line_nr, char *log_file_path);
 void __fastcall CenterDlg(HWND hDlg);
-void __fastcall TermDlg(int template_id, int error_code, char *log_file_path, int log_line_nr);
+void __fastcall TermDlg(int template_id, int error_code, char *log_file_path,
+                        int log_line_nr);
 bool __stdcall FuncDlg(HWND hDlg, UINT uMsg, WPARAM wParam, char *text);
 void __fastcall TextDlg(HWND hDlg, char *text);
-void __fastcall ErrDlg(template_id template_id, int error_code, char *log_file_path, int log_line_nr);
+void __fastcall ErrDlg(template_id template_id, int error_code,
+                       char *log_file_path, int log_line_nr);
 void __fastcall FileErrDlg(char *error);
 void __fastcall DiskFreeDlg(char *error);
 bool __cdecl InsertCDDlg();

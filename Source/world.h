@@ -1,4 +1,4 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
 void __fastcall drawTopArchesUpperScreen(void *a1);
 void __fastcall drawBottomArchesUpperScreen(void *a1, int a2);

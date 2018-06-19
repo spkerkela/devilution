@@ -1,6 +1,6 @@
-//HEADER_GOES_HERE
+// HEADER_GOES_HERE
 
-//dead
+// dead
 extern int spurtndx; // weak
 extern DeadStruct dead[31];
 extern int stonendx;
