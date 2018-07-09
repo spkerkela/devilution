@@ -75,7 +75,7 @@ void __cdecl FillSolidBlockTbls()
   unsigned char *file_data;     // eax
   char *level_to_load;          // ecx
   unsigned char *file_data_ptr; // esi
-  int v3;                       // edx
+  int read;                     // edx
   unsigned char current_char;   // bl
   int size;                     // [esp+8h] [ebp-4h]
 
@@ -115,22 +115,22 @@ LABEL_13:
   file_data_ptr = file_data;
   if ((unsigned int)size >= 1)
   {
-    v3 = 0;
+    read = 0;
     do
     {
       current_char = *file_data_ptr++;
       if (current_char & 1)
-        nSolidTable[v3 + 1] = 1;
+        nSolidTable[read + 1] = 1;
       if (current_char & 2)
-        nBlockTable[v3 + 1] = 1;
+        nBlockTable[read + 1] = 1;
       if (current_char & 4)
-        nMissileTable[v3 + 1] = 1;
+        nMissileTable[read + 1] = 1;
       if (current_char & 8)
-        nTransTable[v3 + 1] = 1;
+        nTransTable[read + 1] = 1;
       if ((current_char & 0x80u) != 0)
-        nTrapTable[v3 + 1] = 1;
-      block_lvid[v3++ + 1] = (current_char >> 4) & 7;
-    } while (v3 + 1 <= (unsigned int)size);
+        nTrapTable[read + 1] = 1;
+      block_lvid[read++ + 1] = (current_char >> 4) & 7;
+    } while (read + 1 <= (unsigned int)size);
   }
   mem_free_dbg(file_data);
 }

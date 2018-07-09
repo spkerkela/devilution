@@ -12,17 +12,21 @@ unsigned char progress_bar_colours[3] = {138u, 43u, 254u};
 POINT32 progress_bar_screen_pos[3] = {{53, 37}, {53, 421}, {53, 37}};
 
 //----- (0041B195) --------------------------------------------------------
-struct interfac_cpp_init {
+struct interfac_cpp_init
+{
   interfac_cpp_init() { interfac_cpp_init_value = interfac_inf; }
 } _interfac_cpp_init;
 // 47AE40: using guessed type int interfac_inf;
 
 //----- (0041B1A0) --------------------------------------------------------
-void __cdecl interface_msg_pump() {
+void __cdecl interface_msg_pump()
+{
   MSG Msg; // [esp+8h] [ebp-1Ch]
 
-  while (PeekMessageA(&Msg, NULL, 0, 0, PM_REMOVE)) {
-    if (Msg.message != WM_QUIT) {
+  while (PeekMessageA(&Msg, NULL, 0, 0, PM_REMOVE))
+  {
+    if (Msg.message != WM_QUIT)
+    {
       TranslateMessage(&Msg);
       DispatchMessageA(&Msg);
     }
@@ -30,7 +34,8 @@ void __cdecl interface_msg_pump() {
 }
 
 //----- (0041B1DF) --------------------------------------------------------
-bool __cdecl IncProgress() {
+bool __cdecl IncProgress()
+{
   interface_msg_pump();
   sgdwProgress += 15;
   if ((unsigned int)sgdwProgress > 0x216)
@@ -41,13 +46,15 @@ bool __cdecl IncProgress() {
 }
 
 //----- (0041B218) --------------------------------------------------------
-void __cdecl DrawCutscene() {
+void __cdecl DrawCutscene()
+{
   unsigned int v0; // esi
 
   dx_lock_mutex();
   CelDecodeOnly(64, 639, sgpBackCel, 1, 640);
   v0 = 0;
-  if (sgdwProgress) {
+  if (sgdwProgress)
+  {
     do
       DrawProgress(progress_bar_screen_pos[progress_id].x + v0++ + 64,
                    progress_bar_screen_pos[progress_id].y + 160, progress_id);
@@ -60,13 +67,15 @@ void __cdecl DrawCutscene() {
 // 52571C: using guessed type int drawpanflag;
 
 //----- (0041B28D) --------------------------------------------------------
-void __fastcall DrawProgress(int screen_x, int screen_y, int progress_id) {
+void __fastcall DrawProgress(int screen_x, int screen_y, int progress_id)
+{
   _BYTE *v3;     // eax
   signed int v4; // ecx
 
   v3 = (unsigned char *)gpBuffer + screen_y_times_768[screen_y] + screen_x;
   v4 = 22;
-  do {
+  do
+  {
     *v3 = progress_bar_colours[progress_id];
     v3 += 768;
     --v4;
@@ -74,12 +83,14 @@ void __fastcall DrawProgress(int screen_x, int screen_y, int progress_id) {
 }
 
 //----- (0041B2B6) --------------------------------------------------------
-void __fastcall ShowProgress(int uMsg) {
-  LRESULT(__stdcall * saveProc)(HWND, UINT, WPARAM, LPARAM); // edi
-  bool v3;                                                   // cl
-  int v4;                                                    // eax
-  int v5;                                                    // edx
-  signed int v7; // [esp-4h] [ebp-10h]
+void __fastcall ShowProgress(int uMsg)
+{
+  LRESULT(__stdcall * saveProc)
+  (HWND, UINT, WPARAM, LPARAM); // edi
+  bool new_game;                // cl
+  int next_level;               // eax
+  int entry_type;               // edx
+  signed int entry_style;       // [esp-4h] [ebp-10h]
 
   gbSomebodyWonGameKludge = 0;
   plrmsg_delay(1);
@@ -94,7 +105,8 @@ void __fastcall ShowProgress(int uMsg) {
   IncProgress();
   stream_update();
   IncProgress();
-  switch (uMsg) {
+  switch (uMsg)
+  {
   case WM_DIABNEXTLVL:
     IncProgress();
     if (gbMaxPlayers == 1)
@@ -102,8 +114,8 @@ void __fastcall ShowProgress(int uMsg) {
     else
       DeltaSaveLevel();
     FreeGameMem();
-    v4 = ++currlevel;
-    goto LABEL_38;
+    next_level = ++currlevel;
+    goto UPDATE_LEVEL_TYPE;
   case WM_DIABPREVLVL:
     IncProgress();
     if (gbMaxPlayers == 1)
@@ -114,8 +126,8 @@ void __fastcall ShowProgress(int uMsg) {
     FreeGameMem();
     leveltype = gnLevelTypeTbl[--currlevel];
     IncProgress();
-    v5 = 1;
-    goto LABEL_33;
+    entry_type = 1;
+    goto SET_NEW_GAME_TO_0;
   case WM_DIABRTNLVL:
     if (gbMaxPlayers == 1)
       SaveLevel();
@@ -125,8 +137,8 @@ void __fastcall ShowProgress(int uMsg) {
     FreeGameMem();
     IncProgress();
     GetReturnLvlPos();
-    v7 = 3;
-    goto LABEL_32;
+    entry_style = 3;
+    goto CONTINUE_WITH_ENTRY_STYLE;
   case WM_DIABSETLVL:
     SetReturnLvlPos();
     if (gbMaxPlayers == 1)
@@ -137,8 +149,8 @@ void __fastcall ShowProgress(int uMsg) {
     leveltype = setlvltype;
     FreeGameMem();
     IncProgress();
-    v7 = 2;
-    goto LABEL_32;
+    entry_style = 2;
+    goto CONTINUE_WITH_ENTRY_STYLE;
   case WM_DIABWARPLVL:
     IncProgress();
     if (gbMaxPlayers == 1)
@@ -148,8 +160,8 @@ void __fastcall ShowProgress(int uMsg) {
     FreeGameMem();
     GetPortalLevel();
     IncProgress();
-    v7 = 5;
-    goto LABEL_32;
+    entry_style = 5;
+    goto CONTINUE_WITH_ENTRY_STYLE;
   case WM_DIABTOWNWARP:
     IncProgress();
     if (gbMaxPlayers == 1)
@@ -160,8 +172,8 @@ void __fastcall ShowProgress(int uMsg) {
     currlevel = plr[myplr].plrlevel;
     leveltype = gnLevelTypeTbl[currlevel];
     IncProgress();
-    v7 = 6;
-    goto LABEL_32;
+    entry_style = 6;
+    goto CONTINUE_WITH_ENTRY_STYLE;
   case WM_DIABTWARPUP:
     IncProgress();
     if (gbMaxPlayers == 1)
@@ -172,12 +184,12 @@ void __fastcall ShowProgress(int uMsg) {
     currlevel = plr[myplr].plrlevel;
     leveltype = gnLevelTypeTbl[currlevel];
     IncProgress();
-    v7 = 7;
-  LABEL_32:
-    v5 = v7;
-  LABEL_33:
-    v3 = 0;
-    goto LABEL_40;
+    entry_style = 7;
+  CONTINUE_WITH_ENTRY_STYLE:
+    entry_type = entry_style;
+  SET_NEW_GAME_TO_0:
+    new_game = 0;
+    goto LOAD_GAME_LEVEL;
   case WM_DIABRETOWN:
     IncProgress();
     if (gbMaxPlayers == 1)
@@ -186,27 +198,27 @@ void __fastcall ShowProgress(int uMsg) {
       DeltaSaveLevel();
     FreeGameMem();
     currlevel = plr[myplr].plrlevel;
-    v4 = currlevel;
-  LABEL_38:
-    leveltype = gnLevelTypeTbl[v4];
+    next_level = currlevel;
+  UPDATE_LEVEL_TYPE:
+    leveltype = gnLevelTypeTbl[next_level];
     IncProgress();
-    v3 = 0;
-    goto LABEL_39;
+    new_game = 0;
+    goto SET_ENTRY_TO_0;
   case WM_DIABNEWGAME:
     IncProgress();
     FreeGameMem();
     IncProgress();
     pfile_remove_temp_files();
-    v3 = 1;
-  LABEL_39:
-    v5 = 0;
-  LABEL_40:
-    LoadGameLevel(v3, v5);
-    goto LABEL_41;
+    new_game = 1;
+  SET_ENTRY_TO_0:
+    entry_type = 0;
+  LOAD_GAME_LEVEL:
+    LoadGameLevel(new_game, entry_type);
+    goto INCREMENT_PROGRESS;
   case WM_DIABLOADGAME:
     IncProgress();
     LoadGame(1);
-  LABEL_41:
+  INCREMENT_PROGRESS:
     IncProgress();
     break;
   default:
@@ -230,7 +242,8 @@ void __fastcall ShowProgress(int uMsg) {
 // 679660: using guessed type char gbMaxPlayers;
 
 //----- (0041B5F5) --------------------------------------------------------
-void __cdecl FreeInterface() {
+void __cdecl FreeInterface()
+{
   void *v0; // ecx
 
   v0 = sgpBackCel;
@@ -239,7 +252,8 @@ void __cdecl FreeInterface() {
 }
 
 //----- (0041B607) --------------------------------------------------------
-void __fastcall InitCutscene(int interface_mode) {
+void __fastcall InitCutscene(int interface_mode)
+{
   int v1;            // eax
   int v2;            // eax
   int v3;            // eax
@@ -255,7 +269,8 @@ void __fastcall InitCutscene(int interface_mode) {
   int v13;           // eax
   int v14;           // eax
 
-  switch (interface_mode) {
+  switch (interface_mode)
+  {
   case WM_DIABNEXTLVL:
     v1 = gnLevelTypeTbl[currlevel];
     if (!v1)
@@ -287,12 +302,13 @@ void __fastcall InitCutscene(int interface_mode) {
     if (!v9)
       goto LABEL_10;
     v10 = v9 - 1;
-    if (!v10) {
+    if (!v10)
+    {
     LABEL_9:
       sgpBackCel = LoadFileInMem("Gendata\\Cut2.CEL", 0);
       LoadPalette("Gendata\\Cut2.pal");
       progress_id = 2;
-      goto LABEL_33;
+      goto SET_NEW_GAME_TO_0;
     }
     v11 = v10 - 1;
     if (!v11)
@@ -303,7 +319,7 @@ void __fastcall InitCutscene(int interface_mode) {
     sgpBackCel = LoadFileInMem("Gendata\\Cutl1d.CEL", 0);
     LoadPalette("Gendata\\Cutl1d.pal");
     progress_id = 0;
-    goto LABEL_33;
+    goto SET_NEW_GAME_TO_0;
   case WM_DIABRTNLVL:
   case WM_DIABSETLVL:
     if (setlvlnum == SL_BONECHAMB)
@@ -323,21 +339,25 @@ void __fastcall InitCutscene(int interface_mode) {
     if (!v12)
       goto LABEL_31;
     v13 = v12 - 2;
-    if (!v13) {
+    if (!v13)
+    {
     LABEL_21:
       sgpBackCel = LoadFileInMem("Gendata\\Cut2.CEL", 0);
       LoadPalette("Gendata\\Cut2.pal");
       progress_id = SL_BONECHAMB;
-      goto LABEL_33;
+      goto SET_NEW_GAME_TO_0;
     }
     v14 = v13 - 1;
-    if (v14) {
+    if (v14)
+    {
       if (v14 != 1)
-        goto LABEL_33;
+        goto SET_NEW_GAME_TO_0;
     LABEL_28:
       v5 = LoadFileInMem("Gendata\\Cut4.CEL", 0);
       v6 = "Gendata\\Cut4.pal";
-    } else {
+    }
+    else
+    {
     LABEL_29:
       v5 = LoadFileInMem("Gendata\\Cut3.CEL", 0);
       v6 = "Gendata\\Cut3.pal";
@@ -346,7 +366,7 @@ void __fastcall InitCutscene(int interface_mode) {
     sgpBackCel = v5;
     LoadPalette(v6);
     progress_id = 1;
-  LABEL_33:
+  SET_NEW_GAME_TO_0:
     sgdwProgress = 0;
     return;
   case WM_DIABRETOWN:
@@ -361,7 +381,7 @@ void __fastcall InitCutscene(int interface_mode) {
     goto LABEL_30;
   default:
     TermMsg("Unknown progress mode");
-    goto LABEL_33;
+    goto SET_NEW_GAME_TO_0;
   }
 }
 // 5CCB10: using guessed type char setlvlnum;
