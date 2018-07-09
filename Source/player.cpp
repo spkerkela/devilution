@@ -43,28 +43,30 @@ int ToBlkTbl[3] = {30, 20, 10};
 char *ClassStrTblOld[3] = {"Warrior", "Rogue", "Sorceror"}; // unused
 int MaxStats[3][4] = {{250, 50, 60, 100}, {55, 70, 250, 80}, {45, 250, 85, 80}};
 int ExpLvlsTbl[51] = {
-    0,          2000,       4620,      8040,      12489,     18258,
-    25712,      35309,      47622,     63364,     83419,     108879,
-    141086,     181683,     231075,    313656,    424067,    571190,
-    766569,     1025154,    1366227,   1814568,   2401895,   3168651,
-    4166200,    5459523,    7130496,   9281874,   12042092,  15571031,
-    20066900,   25774405,   32994399,  42095202,  53525811,  67831218,
-    85670061,   107834823,  135274799, 169122009, 210720231, 261657253,
-    323800420,  399335440,  490808349, 601170414, 733825617, 892680222,
+    0, 2000, 4620, 8040, 12489, 18258,
+    25712, 35309, 47622, 63364, 83419, 108879,
+    141086, 181683, 231075, 313656, 424067, 571190,
+    766569, 1025154, 1366227, 1814568, 2401895, 3168651,
+    4166200, 5459523, 7130496, 9281874, 12042092, 15571031,
+    20066900, 25774405, 32994399, 42095202, 53525811, 67831218,
+    85670061, 107834823, 135274799, 169122009, 210720231, 261657253,
+    323800420, 399335440, 490808349, 601170414, 733825617, 892680222,
     1082908612, 1310707109, 1583495809};
 char *ClassStrTbl[3] = {"Warrior", "Rogue", "Sorceror"};
 unsigned char fix[9] = {0u, 0u, 3u, 3u, 3u,
                         6u, 6u, 6u, 8u}; /* PM_ChangeLightOff local type */
 
 //----- (0044A8EB) --------------------------------------------------------
-struct player_cpp_init {
+struct player_cpp_init
+{
   player_cpp_init() { player_cpp_init_value = player_inf; }
 } _player_cpp_init;
 // 47F204: using guessed type int player_inf;
 // 68643C: using guessed type int player_cpp_init_value;
 
 //----- (0044A8F6) --------------------------------------------------------
-void __fastcall player_init_cl2_hdrs(char *src, char *dst) {
+void __fastcall player_init_cl2_hdrs(char *src, char *dst)
+{
   char *v2;      // eax
   int v3;        // esi
   signed int v4; // edx
@@ -72,7 +74,8 @@ void __fastcall player_init_cl2_hdrs(char *src, char *dst) {
   v2 = dst;
   v3 = src - dst;
   v4 = 8;
-  do {
+  do
+  {
     *(_DWORD *)v2 = (unsigned int)&src[*(_DWORD *)&v2[v3]];
     v2 += 4;
     --v4;
@@ -80,7 +83,8 @@ void __fastcall player_init_cl2_hdrs(char *src, char *dst) {
 }
 
 //----- (0044A911) --------------------------------------------------------
-void __fastcall LoadPlrGFX(int pnum, int gfxflag) {
+void __fastcall LoadPlrGFX(int pnum, int gfxflag)
+{
   int v2;            // esi
   PlayerStruct *v3;  // esi
   unsigned int v4;   // ecx
@@ -113,48 +117,65 @@ void __fastcall LoadPlrGFX(int pnum, int gfxflag) {
   v6 = v17;
   v7 = v17;
   v18 = 1;
-  do {
+  do
+  {
     if (!(v4 & v16))
       goto LABEL_38;
-    if (v4 <= 0x10) {
-      if (v4 == 16) {
+    if (v4 <= 0x10)
+    {
+      if (v4 == 16)
+      {
         if (!v5)
           goto LABEL_38;
         v6 = v3->_pLData;
         v19 = "LM";
         v7 = (char *)v3->_pLAnim;
-      } else {
+      }
+      else
+      {
         v8 = v4 - 1;
-        if (v8) {
+        if (v8)
+        {
           v9 = v8 - 1;
-          if (v9) {
+          if (v9)
+          {
             v10 = v9 - 2;
-            if (v10) {
-              if (v10 == 4) {
+            if (v10)
+            {
+              if (v10 == 4)
+              {
                 if (!v5)
                   goto LABEL_38;
                 v6 = v3->_pHData;
                 v19 = "HT";
                 v7 = (char *)v3->_pHAnim;
-              } else {
+              }
+              else
+              {
               LABEL_27:
                 TermMsg("PLR:2");
               }
-            } else {
+            }
+            else
+            {
               if (!v5)
                 goto LABEL_38;
               v6 = v3->_pAData;
               v19 = "AT";
               v7 = (char *)v3->_pAAnim;
             }
-          } else {
+          }
+          else
+          {
             v19 = "AW";
             if (!v5)
               v19 = "WL";
             v6 = v3->_pWData;
             v7 = (char *)v3->_pWAnim;
           }
-        } else {
+        }
+        else
+        {
           v19 = "AS";
           if (!v5)
             v19 = "ST";
@@ -171,7 +192,8 @@ void __fastcall LoadPlrGFX(int pnum, int gfxflag) {
       goto LABEL_38;
     }
     v11 = v4 - 32;
-    if (!v11) {
+    if (!v11)
+    {
       if (!v5)
         goto LABEL_38;
       v6 = v3->_pFData;
@@ -180,7 +202,8 @@ void __fastcall LoadPlrGFX(int pnum, int gfxflag) {
       goto LABEL_37;
     }
     v12 = v11 - 32;
-    if (!v12) {
+    if (!v12)
+    {
       if (!v5)
         goto LABEL_38;
       v6 = v3->_pTData;
@@ -189,7 +212,8 @@ void __fastcall LoadPlrGFX(int pnum, int gfxflag) {
       goto LABEL_37;
     }
     v13 = v12 - 64;
-    if (!v13) {
+    if (!v13)
+    {
       if (v3->_pgfxnum & 0xF)
         goto LABEL_38;
       v6 = v3->_pDData;
@@ -199,7 +223,8 @@ void __fastcall LoadPlrGFX(int pnum, int gfxflag) {
     }
     if (v13 != 128)
       goto LABEL_27;
-    if (v5 && v3->_pBlockFlag) {
+    if (v5 && v3->_pBlockFlag)
+    {
       v6 = v3->_pBData;
       v19 = "BL";
       v7 = (char *)v3->_pBAnim;
@@ -213,16 +238,20 @@ void __fastcall LoadPlrGFX(int pnum, int gfxflag) {
 // 5BB1ED: using guessed type char leveltype;
 
 //----- (0044AB70) --------------------------------------------------------
-void __fastcall InitPlayerGFX(int pnum) {
+void __fastcall InitPlayerGFX(int pnum)
+{
   int v1; // esi
   int v2; // edx
 
   v1 = pnum;
   if ((unsigned int)pnum >= 4)
     TermMsg("InitPlayerGFX: illegal player %d", pnum);
-  if (plr[v1]._pHitPoints & 0xFFFFFFC0) {
+  if (plr[v1]._pHitPoints & 0xFFFFFFC0)
+  {
     v2 = 0x17F;
-  } else {
+  }
+  else
+  {
     plr[v1]._pgfxnum = 0;
     v2 = 0x80;
   }
@@ -230,7 +259,8 @@ void __fastcall InitPlayerGFX(int pnum) {
 }
 
 //----- (0044ABB4) --------------------------------------------------------
-void __fastcall InitPlrGFXMem(int pnum) {
+void __fastcall InitPlrGFXMem(int pnum)
+{
   int v1;          // esi
   unsigned int v2; // ebp
   unsigned int v3; // eax
@@ -253,7 +283,8 @@ void __fastcall InitPlrGFXMem(int pnum) {
   v1 = pnum;
   if ((unsigned int)pnum >= 4)
     TermMsg("InitPlrGFXMem: illegal player %d", pnum);
-  if (!(plr_gfx_flag & 1)) {
+  if (!(plr_gfx_flag & 1))
+  {
     plr_gfx_flag |= 1u;
     v2 = GetPlrGFXSize("ST");
     v3 = GetPlrGFXSize("AS");
@@ -266,7 +297,8 @@ void __fastcall InitPlrGFXMem(int pnum) {
   v6 = DiabloAllocPtr(plr_sframe_size);
   v7 = (plr_gfx_flag & 2) == 0;
   plr[v5]._pNData = v6;
-  if (v7) {
+  if (v7)
+  {
     plr_gfx_flag |= 2u;
     v8 = GetPlrGFXSize("WL");
     v9 = GetPlrGFXSize("AW");
@@ -278,49 +310,56 @@ void __fastcall InitPlrGFXMem(int pnum) {
   v11 = DiabloAllocPtr(plr_wframe_size);
   v7 = (plr_gfx_flag & 4) == 0;
   plr[v5]._pWData = v11;
-  if (v7) {
+  if (v7)
+  {
     plr_gfx_flag |= 4u;
     plr_aframe_size = GetPlrGFXSize("AT");
   }
   v12 = DiabloAllocPtr(plr_aframe_size);
   v7 = (plr_gfx_flag & 8) == 0;
   plr[v5]._pAData = v12;
-  if (v7) {
+  if (v7)
+  {
     plr_gfx_flag |= 8u;
     plr_hframe_size = GetPlrGFXSize("HT");
   }
   v13 = DiabloAllocPtr(plr_hframe_size);
   v7 = (plr_gfx_flag & 0x10) == 0;
   plr[v5]._pHData = v13;
-  if (v7) {
+  if (v7)
+  {
     plr_gfx_flag |= 0x10u;
     plr_lframe_size = GetPlrGFXSize("LM");
   }
   v14 = DiabloAllocPtr(plr_lframe_size);
   v7 = (plr_gfx_flag & 0x20) == 0;
   plr[v5]._pLData = v14;
-  if (v7) {
+  if (v7)
+  {
     plr_gfx_flag |= 0x20u;
     plr_fframe_size = GetPlrGFXSize("FM");
   }
   v15 = DiabloAllocPtr(plr_fframe_size);
   v7 = (plr_gfx_flag & 0x40) == 0;
   plr[v5]._pFData = v15;
-  if (v7) {
+  if (v7)
+  {
     plr_gfx_flag |= 0x40u;
     plr_qframe_size = GetPlrGFXSize("QM");
   }
   v16 = DiabloAllocPtr(plr_qframe_size);
   v7 = plr_gfx_flag >= 0;
   plr[v5]._pTData = v16;
-  if (v7) {
+  if (v7)
+  {
     plr_gfx_flag |= 0x80u;
     plr_dframe_size = GetPlrGFXSize("DT");
   }
   v17 = DiabloAllocPtr(plr_dframe_size);
   v7 = (plr_gfx_bflag & 1) == 0;
   plr[v5]._pDData = v17;
-  if (v7) {
+  if (v7)
+  {
     plr_gfx_bflag |= 1u;
     plr_bframe_size = GetPlrGFXSize("BL");
   }
@@ -332,7 +371,8 @@ void __fastcall InitPlrGFXMem(int pnum) {
 // 69B7BC: using guessed type char plr_gfx_bflag;
 
 //----- (0044ADC8) --------------------------------------------------------
-int __fastcall GetPlrGFXSize(char *szCel) {
+int __fastcall GetPlrGFXSize(char *szCel)
+{
   unsigned int v1;       // ebx
   char *v2;              // edi
   char *v3;              // esi
@@ -348,14 +388,18 @@ int __fastcall GetPlrGFXSize(char *szCel) {
   v8 = szCel;
   v11 = 0;
   v10 = ClassStrTbl;
-  do {
+  do
+  {
     v2 = ArmourChar;
-    do {
+    do
+    {
       v3 = WepChar;
-      do {
+      do
+      {
         sprintf(v6, "%c%c%c", CharChar[v1], *v2, *v3);
         sprintf(dwInitParam, "PlrGFX\\%s\\%s\\%s%s.CL2", *v10, v6, v6, v8);
-        if (WOpenFile(dwInitParam, &a1, 1)) {
+        if (WOpenFile(dwInitParam, &a1, 1))
+        {
           v7 = WGetFileSize(a1, 0);
           WCloseFile(a1);
           if (v11 <= v7)
@@ -372,7 +416,8 @@ int __fastcall GetPlrGFXSize(char *szCel) {
 }
 
 //----- (0044AE89) --------------------------------------------------------
-void __fastcall FreePlayerGFX(int pnum) {
+void __fastcall FreePlayerGFX(int pnum)
+{
   int v1;    // esi
   int v2;    // esi
   void *v3;  // ecx
@@ -421,7 +466,8 @@ void __fastcall FreePlayerGFX(int pnum) {
 
 //----- (0044AF37) --------------------------------------------------------
 void __fastcall NewPlrAnim(int pnum, int Peq, int numFrames, int Delay,
-                           int width) {
+                           int width)
+{
   int v5; // edi
   int v6; // esi
   int v7; // eax
@@ -441,7 +487,8 @@ void __fastcall NewPlrAnim(int pnum, int Peq, int numFrames, int Delay,
 }
 
 //----- (0044AF9C) --------------------------------------------------------
-void __fastcall ClearPlrPVars(int pnum) {
+void __fastcall ClearPlrPVars(int pnum)
+{
   int v1; // esi
   int v2; // eax
 
@@ -460,7 +507,8 @@ void __fastcall ClearPlrPVars(int pnum) {
 }
 
 //----- (0044AFED) --------------------------------------------------------
-void __fastcall SetPlrAnims(int pnum) {
+void __fastcall SetPlrAnims(int pnum)
+{
   int v1;  // esi
   char v2; // bl
   int v3;  // eax
@@ -484,12 +532,15 @@ void __fastcall SetPlrAnims(int pnum) {
   plr[v3]._pSWidth = 96;
   plr[v3]._pDWidth = 128;
   plr[v3]._pBWidth = 96;
-  if (v6) {
+  if (v6)
+  {
     plr[v3]._pNFrames = PlrGFXAnimLens[v5][7];
     plr[v3]._pWFrames = PlrGFXAnimLens[v5][8];
     plr[v3]._pDFrames = PlrGFXAnimLens[v5][4];
     plr[v3]._pSFrames = PlrGFXAnimLens[v5][5];
-  } else {
+  }
+  else
+  {
     plr[v3]._pNFrames = PlrGFXAnimLens[v5][0];
     plr[v3]._pWFrames = PlrGFXAnimLens[v5][2];
     plr[v3]._pAFrames = PlrGFXAnimLens[v5][1];
@@ -501,20 +552,24 @@ void __fastcall SetPlrAnims(int pnum) {
   }
   plr[v3]._pSFNum = PlrGFXAnimLens[v5][10];
   v7 = plr[v3]._pgfxnum & 0xF;
-  if (!v4) {
-    if (v7 == 4) {
+  if (!v4)
+  {
+    if (v7 == 4)
+    {
       if (v2)
         plr[v3]._pNFrames = 8;
       plr[v3]._pAWidth = 96;
       goto LABEL_11;
     }
-    if (v7 == 5) {
+    if (v7 == 5)
+    {
       plr[v3]._pAFrames = 20;
       plr[v3]._pAFNum = 10;
       return;
     }
   LABEL_19:
-    if (v7 == 8) {
+    if (v7 == 8)
+    {
       plr[v3]._pAFrames = 16;
     LABEL_11:
       plr[v3]._pAFNum = 11;
@@ -522,13 +577,16 @@ void __fastcall SetPlrAnims(int pnum) {
     }
     return;
   }
-  if (v4 == 1) {
-    if (v7 == 5) {
+  if (v4 == 1)
+  {
+    if (v7 == 5)
+    {
       plr[v3]._pAFrames = 22;
       plr[v3]._pAFNum = 13;
       return;
     }
-    if (v7 == 4) {
+    if (v7 == 4)
+    {
       plr[v3]._pAFrames = 12;
       plr[v3]._pAFNum = 7;
       return;
@@ -538,7 +596,8 @@ void __fastcall SetPlrAnims(int pnum) {
   if (v4 != 2)
     return;
   plr[v3]._pSWidth = 128;
-  switch (v7) {
+  switch (v7)
+  {
   case 0:
     plr[v3]._pAFrames = 20;
     return;
@@ -559,7 +618,8 @@ void __fastcall SetPlrAnims(int pnum) {
 // 5BB1ED: using guessed type char leveltype;
 
 //----- (0044B1FD) --------------------------------------------------------
-void __fastcall ClearPlrRVars(PlayerStruct *pPlayer) {
+void __fastcall ClearPlrRVars(PlayerStruct *pPlayer)
+{
   pPlayer->bReserved[0] = 0;
   pPlayer->bReserved[1] = 0;
   pPlayer->bReserved[2] = 0;
@@ -581,7 +641,8 @@ void __fastcall ClearPlrRVars(PlayerStruct *pPlayer) {
 }
 
 //----- (0044B274) --------------------------------------------------------
-void __fastcall CreatePlayer(int pnum, char c) {
+void __fastcall CreatePlayer(int pnum, char c)
+{
   unsigned int v2; // edi
   char v3;         // bl
   int v4;          // esi
@@ -640,10 +701,13 @@ void __fastcall CreatePlayer(int pnum, char c) {
   plr[v4].pDungMsgs = 0;
   plr[v4].pLvlLoad = 0;
   plr[v4].pDiabloKillLevel = 0;
-  if (v19 == 1) {
+  if (v19 == 1)
+  {
     v12 = 200;
     v13 = plr[v4]._pLevel * (plr[v4]._pStrength + plr[v4]._pDexterity);
-  } else {
+  }
+  else
+  {
     v13 = plr[v4]._pStrength * plr[v4]._pLevel;
     v12 = 100;
   }
@@ -680,7 +744,8 @@ void __fastcall CreatePlayer(int pnum, char c) {
   plr[v4]._pLghtResist = 0;
   plr[v4]._pLightRad = 10;
   plr[v4]._pInfraFlag = 0;
-  if (!v19) {
+  if (!v19)
+  {
     plr[v4]._pAblSpells[0] = 0x2000000;
   LABEL_26:
     plr[v4]._pAblSpells[1] = 0;
@@ -688,7 +753,8 @@ void __fastcall CreatePlayer(int pnum, char c) {
     plr[v4]._pMemSpells[0] = 0;
     goto LABEL_28;
   }
-  if (v19 == 1) {
+  if (v19 == 1)
+  {
     plr[v4]._pAblSpells[0] = 0x8000000;
     goto LABEL_26;
   }
@@ -707,13 +773,19 @@ LABEL_28:
   plr[v4]._pSplHotKey[0] = -1;
   plr[v4]._pSplHotKey[1] = -1;
   plr[v4]._pSplHotKey[2] = -1;
-  if (v19) {
-    if (v19 == 1) {
+  if (v19)
+  {
+    if (v19 == 1)
+    {
       plr[v4]._pgfxnum = 4;
-    } else if (v19 == 2) {
+    }
+    else if (v19 == 2)
+    {
       plr[v4]._pgfxnum = 8;
     }
-  } else {
+  }
+  else
+  {
     plr[v4]._pgfxnum = 3;
   }
   *(_DWORD *)plr[v4]._pLvlVisited = 0;
@@ -735,7 +807,8 @@ LABEL_28:
 }
 
 //----- (0044B582) --------------------------------------------------------
-int __fastcall CalcStatDiff(int pnum) {
+int __fastcall CalcStatDiff(int pnum)
+{
   int v1; // ecx
   int v2; // edx
 
@@ -747,7 +820,8 @@ int __fastcall CalcStatDiff(int pnum) {
 }
 
 //----- (0044B5C3) --------------------------------------------------------
-void __fastcall NextPlrLevel(int pnum) {
+void __fastcall NextPlrLevel(int pnum)
+{
   int v1;         // edi
   int v2;         // esi
   char *v3;       // eax
@@ -791,7 +865,8 @@ void __fastcall NextPlrLevel(int pnum) {
   plr[v2]._pMaxMana += v10;
   plr[v2]._pMaxManaBase += v10;
   v11 = plr[v2]._pMaxManaBase;
-  if (!(plr[v1]._pIFlags & 0x8000000)) {
+  if (!(plr[v1]._pIFlags & 0x8000000))
+  {
     plr[v2]._pMana = plr[v2]._pMaxMana;
     plr[v2]._pManaBase = v11;
   }
@@ -801,7 +876,8 @@ void __fastcall NextPlrLevel(int pnum) {
 // 679660: using guessed type char gbMaxPlayers;
 
 //----- (0044B6C8) --------------------------------------------------------
-void __fastcall AddPlrExperience(int pnum, int lvl, int exp) {
+void __fastcall AddPlrExperience(int pnum, int lvl, int exp)
+{
   int v3;        // eax
   int v4;        // esi
   int v5;        // esi
@@ -821,24 +897,31 @@ void __fastcall AddPlrExperience(int pnum, int lvl, int exp) {
   v4 = pnum;
   v16 = lvl;
   arglist = pnum;
-  if (pnum == myplr) {
-    if ((unsigned int)myplr >= 4) {
+  if (pnum == myplr)
+  {
+    if ((unsigned int)myplr >= 4)
+    {
       TermMsg("AddPlrExperience: illegal player %d", myplr);
       v3 = myplr;
     }
-    if (plr[v3]._pHitPoints > 0) {
+    if (plr[v3]._pHitPoints > 0)
+    {
       v5 = v4;
       v6 = plr[v5]._pLevel;
       v7 = (signed __int64)((((double)v16 - (double)v6) * 0.1 + 1.0) *
                             (double)exp);
       if (v7 < 0)
         v7 = 0;
-      if ((unsigned char)gbMaxPlayers > 1u) {
-        if (v6 >= 0) {
+      if ((unsigned char)gbMaxPlayers > 1u)
+      {
+        if (v6 >= 0)
+        {
           v8 = v6;
           if (v6 >= 50)
             v8 = 50;
-        } else {
+        }
+        else
+        {
           v8 = 0;
         }
         if (v7 >= ExpLvlsTbl[v8] / 20)
@@ -852,25 +935,32 @@ void __fastcall AddPlrExperience(int pnum, int lvl, int exp) {
       if (plr[v5]._pExperience > 2000000000u)
         *v10 = 2000000000;
       v11 = *v10;
-      if (v11 < ExpLvlsTbl[49]) {
+      if (v11 < ExpLvlsTbl[49])
+      {
         v12 = 0;
-        if (v11 >= ExpLvlsTbl[0]) {
+        if (v11 >= ExpLvlsTbl[0])
+        {
           do
             ++v12;
           while (v11 >= ExpLvlsTbl[v12]);
         }
-        if (v12 != v6) {
+        if (v12 != v6)
+        {
           v13 = v12 - v6;
-          if (v13 > 0) {
+          if (v13 > 0)
+          {
             v14 = v13;
-            do {
+            do
+            {
               NextPlrLevel(arglist);
               --v14;
             } while (v14);
           }
         }
         NetSendCmdParam1(0, CMD_PLRLEVEL, plr[myplr]._pLevel);
-      } else {
+      }
+      else
+      {
         plr[v5]._pLevel = 50;
       }
     }
@@ -879,7 +969,8 @@ void __fastcall AddPlrExperience(int pnum, int lvl, int exp) {
 // 679660: using guessed type char gbMaxPlayers;
 
 //----- (0044B7F8) --------------------------------------------------------
-void __fastcall AddPlrMonstExper(int lvl, int exp, char pmask) {
+void __fastcall AddPlrMonstExper(int lvl, int exp, char pmask)
+{
   int v3;        // ebx
   int v4;        // edi
   signed int v5; // ecx
@@ -887,19 +978,22 @@ void __fastcall AddPlrMonstExper(int lvl, int exp, char pmask) {
   v3 = lvl;
   v4 = 0;
   v5 = 0;
-  do {
+  do
+  {
     if ((1 << v5) & pmask)
       ++v4;
     ++v5;
   } while (v5 < 4);
-  if (v4) {
+  if (v4)
+  {
     if ((1 << myplr) & pmask)
       AddPlrExperience(myplr, v3, exp / v4);
   }
 }
 
 //----- (0044B83C) --------------------------------------------------------
-void __fastcall InitPlayer(int pnum, bool FirstTime) {
+void __fastcall InitPlayer(int pnum, bool FirstTime)
+{
   int v2;           // ebx
   int v3;           // esi
   PlayerStruct *v4; // edi
@@ -927,7 +1021,8 @@ void __fastcall InitPlayer(int pnum, bool FirstTime) {
   v3 = v2;
   v4 = &plr[v2];
   ClearPlrRVars(&plr[v2]);
-  if (v20) {
+  if (v20)
+  {
     v5 = plr[v3]._pgfxnum;
     plr[v3]._pRSpell = -1;
     plr[v3]._pSBkSpell = -1;
@@ -937,14 +1032,16 @@ void __fastcall InitPlayer(int pnum, bool FirstTime) {
     plr[v3]._pwtype = (v5 & 0xF) == 4;
     plr[v3].pManaShield = 0;
   }
-  if (plr[v3].plrlevel == currlevel || leveldebug) {
+  if (plr[v3].plrlevel == currlevel || leveldebug)
+  {
     SetPlrAnims(v2);
     plr[v3]._pxoff = 0;
     plr[v3]._pyoff = 0;
     plr[v3]._pxvel = 0;
     plr[v3]._pyvel = 0;
     ClearPlrPVars(v2);
-    if ((signed int)(plr[v3]._pHitPoints & 0xFFFFFFC0) <= 0) {
+    if ((signed int)(plr[v3]._pHitPoints & 0xFFFFFFC0) <= 0)
+    {
       v10 = plr[v3]._pDWidth;
       v11 = plr[v3]._pDAnim[0];
       v4->_pmode = 8;
@@ -952,7 +1049,9 @@ void __fastcall InitPlayer(int pnum, bool FirstTime) {
       v12 = plr[v3]._pAnimLen;
       plr[v3]._pAnimFrame = v12 - 1;
       plr[v3]._pVar8 = 2 * v12;
-    } else {
+    }
+    else
+    {
       v6 = plr[v3]._pNWidth;
       v4->_pmode = 0;
       NewPlrAnim(v2, plr[v3]._pNAnim[0], plr[v3]._pNFrames, 3, v6);
@@ -966,17 +1065,22 @@ void __fastcall InitPlayer(int pnum, bool FirstTime) {
     v14 = v2 == myplr;
     plr[v3]._pdir = 0;
     plr[v3]._peflag = 0;
-    if (v14) {
-      if (!v20 || currlevel) {
+    if (v14)
+    {
+      if (!v20 || currlevel)
+      {
         plr[v3].WorldX = ViewX;
         plr[v3].WorldY = ViewY;
       }
       plr[v3]._ptargx = plr[v3].WorldX;
       plr[v3]._ptargy = plr[v3].WorldY;
-    } else {
+    }
+    else
+    {
       plr[v3]._ptargx = plr[v3].WorldX;
       plr[v3]._ptargy = plr[v3].WorldY;
-      do {
+      do
+      {
         if (PosOkPlayer(v2, plr[v3].WorldX + plrxoff2[v13],
                         plr[v3].WorldY + plryoff2[v13]))
           break;
@@ -1001,15 +1105,21 @@ void __fastcall InitPlayer(int pnum, bool FirstTime) {
                               plr[v3]._pLightRad, v2 == myplr);
   }
   v18 = plr[v3]._pClass;
-  if (v18) {
-    if (v18 == 1) {
+  if (v18)
+  {
+    if (v18 == 1)
+    {
       plr[v3]._pAblSpells[0] = 0x8000000;
-    } else {
+    }
+    else
+    {
       if (v18 != 2)
         goto LABEL_33;
       plr[v3]._pAblSpells[0] = 0x4000000;
     }
-  } else {
+  }
+  else
+  {
     plr[v3]._pAblSpells[0] = 0x2000000;
   }
   plr[v3]._pAblSpells[1] = 0;
@@ -1018,19 +1128,22 @@ LABEL_33:
   plr[v3]._pInvincible = 0;
   v14 = v2 == myplr;
 #ifdef _DEBUG
-  if (debug_mode_dollar_sign && FirstTime) {
+  if (debug_mode_dollar_sign && FirstTime)
+  {
     plr[pnum]._pMemSpells[0] |= 0x800000;
     plr[pnum]._pMemSpells[1] |= 0;
     if (!plr[myplr]._pSplLvl[SPL_TELEPORT])
       plr[myplr]._pSplLvl[SPL_TELEPORT] = 1;
   }
-  if (debug_mode_key_inverted_v && FirstTime) {
+  if (debug_mode_key_inverted_v && FirstTime)
+  {
     plr[pnum]._pMemSpells[0] = -1;
     plr[pnum]._pMemSpells[1] = 0xFFFFFFF;
   }
 #endif
   plr[v3]._pNextExper = ExpLvlsTbl[v19];
-  if (v14) {
+  if (v14)
+  {
     deathdelay = 0;
     deathflag = 0;
     ScrollInfo._sxoff = 0;
@@ -1043,7 +1156,8 @@ LABEL_33:
 // 69B7C4: using guessed type int deathdelay;
 
 //----- (0044BB33) --------------------------------------------------------
-void __cdecl InitMultiView() {
+void __cdecl InitMultiView()
+{
   int v0; // eax
 
   if ((unsigned int)myplr >= 4)
@@ -1054,7 +1168,8 @@ void __cdecl InitMultiView() {
 }
 
 //----- (0044BB6D) --------------------------------------------------------
-void __fastcall InitPlayerLoc(int pnum, bool flag) {
+void __fastcall InitPlayerLoc(int pnum, bool flag)
+{
   int v2;         // esi
   int v3;         // esi
   int v4;         // edi
@@ -1093,7 +1208,8 @@ void __fastcall InitPlayerLoc(int pnum, bool flag) {
     plr[v3]._peflag = 1;
   else
     plr[v3]._peflag = 0;
-  if (v13 == 1 && plr[v3]._peflag == 1) {
+  if (v13 == 1 && plr[v3]._peflag == 1)
+  {
     v7 = plr[v3].WorldX;
     v15 = 0;
     v8 = plr[v3].WorldY + 2;
@@ -1103,7 +1219,8 @@ void __fastcall InitPlayerLoc(int pnum, bool flag) {
     do
       v15 |= *(unsigned short *)&v9[2 * v18++];
     while (v18 < 10);
-    if (!(v15 | dArch[v7][v8])) {
+    if (!(v15 | dArch[v7][v8]))
+    {
       v16 = 0;
       v10 = plr[v3].WorldX - 2;
       v11 = plr[v3].WorldY + 1;
@@ -1120,7 +1237,8 @@ void __fastcall InitPlayerLoc(int pnum, bool flag) {
 }
 
 //----- (0044BCC2) --------------------------------------------------------
-bool __fastcall SolidLoc(int x, int y) {
+bool __fastcall SolidLoc(int x, int y)
+{
   bool result; // eax
 
   if (x < 0 || y < 0 || x >= 112 || y >= 112)
@@ -1131,7 +1249,8 @@ bool __fastcall SolidLoc(int x, int y) {
 }
 
 //----- (0044BCEB) --------------------------------------------------------
-bool __fastcall PlrDirOK(int pnum, int dir) {
+bool __fastcall PlrDirOK(int pnum, int dir)
+{
   int v2;      // esi
   int v3;      // ebx
   int v4;      // eax
@@ -1156,11 +1275,14 @@ bool __fastcall PlrDirOK(int pnum, int dir) {
   if (!dPiece[0][v7] || !PosOkPlayer(p, v5, v6))
     return 0;
   result = 1;
-  if (v3 == 6) {
+  if (v3 == 6)
+  {
     if (SolidLoc(v5, v6 + 1))
       return 0;
     v9 = (dFlags[0][v7 + 1] & 0x20) == 0;
-  } else {
+  }
+  else
+  {
     if (v3 != 2)
       return result;
     if (SolidLoc(v5 + 1, v6))
@@ -1173,7 +1295,8 @@ bool __fastcall PlrDirOK(int pnum, int dir) {
 }
 
 //----- (0044BD9A) --------------------------------------------------------
-void __fastcall PlrClrTrans(int x, int y) {
+void __fastcall PlrClrTrans(int x, int y)
+{
   int v2;   // esi
   int v3;   // ebx
   int v4;   // edx
@@ -1184,14 +1307,18 @@ void __fastcall PlrClrTrans(int x, int y) {
 
   v2 = y - 1;
   v3 = y + 1;
-  if ((unsigned char)(__OFSUB__(y - 1, y + 1) ^ 1) | (y - 1 == y + 1)) {
+  if ((unsigned char)(__OFSUB__(y - 1, y + 1) ^ 1) | (y - 1 == y + 1))
+  {
     v4 = x - 1;
     v5 = x + 1;
-    do {
-      if (v4 <= v5) {
+    do
+    {
+      if (v4 <= v5)
+      {
         v6 = &dung_map[v4][v2];
         v7 = v5 - v4 + 1;
-        do {
+        do
+        {
           v8 = *v6;
           v6 += 112;
           TransList[v8] = 0;
@@ -1204,7 +1331,8 @@ void __fastcall PlrClrTrans(int x, int y) {
 }
 
 //----- (0044BDDD) --------------------------------------------------------
-void __fastcall PlrDoTrans(int x, int y) {
+void __fastcall PlrDoTrans(int x, int y)
+{
   int v2;     // edi
   int v3;     // ebx
   int v4;     // eax
@@ -1213,19 +1341,25 @@ void __fastcall PlrDoTrans(int x, int y) {
   int v7;     // eax
   int v8;     // [esp+8h] [ebp-4h]
 
-  if (leveltype == 1 || leveltype == 2) {
+  if (leveltype == 1 || leveltype == 2)
+  {
     v2 = y - 1;
-    if (y - 1 <= y + 1) {
+    if (y - 1 <= y + 1)
+    {
       v3 = x - 1;
       v8 = x + 1;
-      do {
-        if (v3 <= v8) {
+      do
+      {
+        if (v3 <= v8)
+        {
           v4 = v2 + 112 * v3;
           v5 = (unsigned char *)dung_map + v4;
           v6 = (_DWORD *)((char *)dPiece + 4 * v4);
           v7 = v8 - v3 + 1;
-          do {
-            if (!nSolidTable[*v6]) {
+          do
+          {
+            if (!nSolidTable[*v6])
+            {
               if (*v5)
                 TransList[(char)*v5] = 1;
             }
@@ -1237,14 +1371,17 @@ void __fastcall PlrDoTrans(int x, int y) {
         ++v2;
       } while (v2 <= y + 1);
     }
-  } else {
+  }
+  else
+  {
     TransList[1] = 1;
   }
 }
 // 5BB1ED: using guessed type char leveltype;
 
 //----- (0044BE5E) --------------------------------------------------------
-void __fastcall SetPlayerOld(int pnum) {
+void __fastcall SetPlayerOld(int pnum)
+{
   int v1; // esi
   int v2; // eax
 
@@ -1257,7 +1394,8 @@ void __fastcall SetPlayerOld(int pnum) {
 }
 
 //----- (0044BE95) --------------------------------------------------------
-void __fastcall FixPlayerLocation(int pnum, int dir) {
+void __fastcall FixPlayerLocation(int pnum, int dir)
+{
   int v2;  // edi
   int v3;  // ebx
   int v4;  // esi
@@ -1283,7 +1421,8 @@ void __fastcall FixPlayerLocation(int pnum, int dir) {
   InitPlayerLoc(v2, 0);
   v7 = v2 == myplr;
   plr[v4]._pdir = v3;
-  if (v7) {
+  if (v7)
+  {
     v8 = plr[v4].WorldX;
     ScrollInfo._sxoff = 0;
     ViewX = v8;
@@ -1295,7 +1434,8 @@ void __fastcall FixPlayerLocation(int pnum, int dir) {
 }
 
 //----- (0044BF2D) --------------------------------------------------------
-void __fastcall StartStand(int pnum, int dir) {
+void __fastcall StartStand(int pnum, int dir)
+{
   int v2; // ebx
   int v3; // edi
   int v4; // esi
@@ -1305,7 +1445,8 @@ void __fastcall StartStand(int pnum, int dir) {
   if ((unsigned int)pnum >= 4)
     TermMsg("StartStand: illegal player %d", pnum);
   v4 = v2;
-  if (!plr[v2]._pInvincible || plr[v4]._pHitPoints || v2 != myplr) {
+  if (!plr[v2]._pInvincible || plr[v4]._pHitPoints || v2 != myplr)
+  {
     if (!(plr[v4]._pGFXLoad & 1))
       LoadPlrGFX(v2, 1);
     NewPlrAnim(v2, plr[0]._pNAnim[v3 + 5430 * v2], plr[v4]._pNFrames, 3,
@@ -1315,13 +1456,16 @@ void __fastcall StartStand(int pnum, int dir) {
     FixPlrWalkTags(v2);
     dPlayer[plr[v4].WorldX][plr[v4].WorldY] = v2 + 1;
     SetPlayerOld(v2);
-  } else {
+  }
+  else
+  {
     SyncPlrKill(v2, -1);
   }
 }
 
 //----- (0044BFE8) --------------------------------------------------------
-void __fastcall StartWalkStand(int pnum) {
+void __fastcall StartWalkStand(int pnum)
+{
   int v1; // edi
   int v2; // esi
   int v3; // eax
@@ -1339,7 +1483,8 @@ void __fastcall StartWalkStand(int pnum) {
   plr[v2]._pxoff = 0;
   plr[v2]._pyoff = 0;
   InitPlayerLoc(v1, 0);
-  if (v1 == myplr) {
+  if (v1 == myplr)
+  {
     v4 = plr[v2].WorldX;
     ScrollInfo._sxoff = 0;
     ViewX = v4;
@@ -1351,7 +1496,8 @@ void __fastcall StartWalkStand(int pnum) {
 }
 
 //----- (0044C070) --------------------------------------------------------
-void __fastcall PM_ChangeLightOff(int pnum) {
+void __fastcall PM_ChangeLightOff(int pnum)
+{
   int v1;              // esi
   int v2;              // esi
   signed int v3;       // ebx
@@ -1378,9 +1524,12 @@ void __fastcall PM_ChangeLightOff(int pnum) {
   v6 = &LightList[plr[v2]._plid];
   v7 = v4 + v5;
   v8 = v5 - v4;
-  if (v7 >= 0) {
+  if (v7 >= 0)
+  {
     v9 = 1;
-  } else {
+  }
+  else
+  {
     v9 = -1;
     v7 = -v7;
   }
@@ -1399,7 +1548,8 @@ void __fastcall PM_ChangeLightOff(int pnum) {
 }
 
 //----- (0044C13D) --------------------------------------------------------
-void __fastcall PM_ChangeOffset(int pnum) {
+void __fastcall PM_ChangeOffset(int pnum)
+{
   int v1;      // esi
   int v2;      // eax
   int v3;      // edi
@@ -1440,7 +1590,8 @@ void __fastcall PM_ChangeOffset(int pnum) {
   plr[v2]._pyoff = v12;
   v13 = v5 >> 8;
   v14 = v9 >> 8;
-  if (arglist == myplr && ScrollInfo._sdir) {
+  if (arglist == myplr && ScrollInfo._sdir)
+  {
     ScrollInfo._sxoff += v13 - (v16 >> 8);
     ScrollInfo._syoff += v14 - v12;
   }
@@ -1449,7 +1600,8 @@ void __fastcall PM_ChangeOffset(int pnum) {
 
 //----- (0044C1E2) --------------------------------------------------------
 void __fastcall StartWalk(int pnum, int xvel, int yvel, int xadd, int yadd,
-                          int EndDir, int sdir) {
+                          int EndDir, int sdir)
+{
   int v7;            // edi
   int v8;            // esi
   int v9;            // edi
@@ -1470,19 +1622,22 @@ void __fastcall StartWalk(int pnum, int xvel, int yvel, int xadd, int yadd,
   if ((unsigned int)pnum >= 4)
     TermMsg("StartWalk: illegal player %d", pnum);
   v8 = v7;
-  if (plr[v7]._pInvincible && !plr[v8]._pHitPoints && v7 == myplr) {
+  if (plr[v7]._pInvincible && !plr[v8]._pHitPoints && v7 == myplr)
+  {
     SyncPlrKill(v7, -1);
     return;
   }
   SetPlayerOld(v7);
   v9 = xadd + plr[v8].WorldX;
   v10 = yadd + plr[v8].WorldY;
-  if (PlrDirOK(arglist, EndDir)) {
+  if (PlrDirOK(arglist, EndDir))
+  {
     v11 = arglist;
     plr[v8]._px = v9;
     v12 = arglist == myplr;
     plr[v8]._py = v10;
-    if (v12) {
+    if (v12)
+    {
       ScrollInfo._sdx = plr[v8].WorldX - ViewX;
       ScrollInfo._sdy = plr[v8].WorldY - ViewY;
     }
@@ -1496,7 +1651,8 @@ void __fastcall StartWalk(int pnum, int xvel, int yvel, int xadd, int yadd,
     plr[v8]._pyoff = 0;
     plr[v8]._pVar2 = yadd;
     plr[v8]._pVar3 = EndDir;
-    if (v12) {
+    if (v12)
+    {
       LoadPlrGFX(arglist, 2);
       v11 = arglist;
     }
@@ -1508,20 +1664,26 @@ void __fastcall StartWalk(int pnum, int xvel, int yvel, int xadd, int yadd,
     plr[v8]._pVar7 = 0;
     plr[v8]._pVar8 = 0;
     InitPlayerLoc(arglist, 0);
-    if (arglist == myplr) {
-      if (zoomflag) {
-        if (abs(ScrollInfo._sdx) < 3) {
+    if (arglist == myplr)
+    {
+      if (zoomflag)
+      {
+        if (abs(ScrollInfo._sdx) < 3)
+        {
           v14 = abs(ScrollInfo._sdy);
           v16 = __OFSUB__(v14, 3);
           v15 = v14 - 3 < 0;
           goto LABEL_18;
         }
-      } else if (abs(ScrollInfo._sdx) < 2) {
+      }
+      else if (abs(ScrollInfo._sdx) < 2)
+      {
         v17 = abs(ScrollInfo._sdy);
         v16 = __OFSUB__(v17, 2);
         v15 = v17 - 2 < 0;
       LABEL_18:
-        if (v15 ^ v16) {
+        if (v15 ^ v16)
+        {
           ScrollInfo._sdir = sdir;
           return;
         }
@@ -1537,7 +1699,8 @@ void __fastcall StartWalk(int pnum, int xvel, int yvel, int xadd, int yadd,
 
 //----- (0044C3AC) --------------------------------------------------------
 void __fastcall StartWalk2(int pnum, int xvel, int yvel, int xoff, int yoff,
-                           int xadd, int yadd, int EndDir, int sdir) {
+                           int xadd, int yadd, int EndDir, int sdir)
+{
   int v9;            // edi
   int v10;           // esi
   int v11;           // ebx
@@ -1563,7 +1726,8 @@ void __fastcall StartWalk2(int pnum, int xvel, int yvel, int xoff, int yoff,
   if ((unsigned int)pnum >= 4)
     TermMsg("StartWalk2: illegal player %d", pnum);
   v10 = v9;
-  if (plr[v9]._pInvincible && !plr[v10]._pHitPoints && v9 == myplr) {
+  if (plr[v9]._pInvincible && !plr[v10]._pHitPoints && v9 == myplr)
+  {
     SyncPlrKill(v9, -1);
     return;
   }
@@ -1571,11 +1735,13 @@ void __fastcall StartWalk2(int pnum, int xvel, int yvel, int xoff, int yoff,
   v11 = xadd + plr[v10].WorldX;
   v12 = yadd + plr[v10].WorldY;
   x = xadd + plr[v10].WorldX;
-  if (PlrDirOK(arglist, EndDir)) {
+  if (PlrDirOK(arglist, EndDir))
+  {
     plr[v10]._px = v11;
     v13 = arglist == myplr;
     plr[v10]._py = v12;
-    if (v13) {
+    if (v13)
+    {
       ScrollInfo._sdx = plr[v10].WorldX - ViewX;
       ScrollInfo._sdy = plr[v10].WorldY - ViewY;
     }
@@ -1611,20 +1777,26 @@ void __fastcall StartWalk2(int pnum, int xvel, int yvel, int xoff, int yoff,
     if (EndDir == 7)
       v19 = 1;
     InitPlayerLoc(arglist, v19);
-    if (arglist == myplr) {
-      if (zoomflag) {
-        if (abs(ScrollInfo._sdx) < 3) {
+    if (arglist == myplr)
+    {
+      if (zoomflag)
+      {
+        if (abs(ScrollInfo._sdx) < 3)
+        {
           v20 = abs(ScrollInfo._sdy);
           v22 = __OFSUB__(v20, 3);
           v21 = v20 - 3 < 0;
           goto LABEL_20;
         }
-      } else if (abs(ScrollInfo._sdx) < PM_WALK2) {
+      }
+      else if (abs(ScrollInfo._sdx) < PM_WALK2)
+      {
         v23 = abs(ScrollInfo._sdy);
         v22 = __OFSUB__(v23, 2);
         v21 = v23 - PM_WALK2 < 0;
       LABEL_20:
-        if (v21 ^ v22) {
+        if (v21 ^ v22)
+        {
           ScrollInfo._sdir = sdir;
           return;
         }
@@ -1641,7 +1813,8 @@ void __fastcall StartWalk2(int pnum, int xvel, int yvel, int xoff, int yoff,
 //----- (0044C5CF) --------------------------------------------------------
 void __fastcall StartWalk3(int pnum, int xvel, int yvel, int xoff, int yoff,
                            int xadd, int yadd, int mapx, int mapy, int EndDir,
-                           int sdir) {
+                           int sdir)
+{
   int v11;           // edi
   int v12;           // esi
   int v13;           // eax
@@ -1668,7 +1841,8 @@ void __fastcall StartWalk3(int pnum, int xvel, int yvel, int xoff, int yoff,
   if ((unsigned int)pnum >= 4)
     TermMsg("StartWalk3: illegal player %d", pnum);
   v12 = v11;
-  if (plr[v11]._pInvincible && !plr[v12]._pHitPoints && v11 == myplr) {
+  if (plr[v11]._pInvincible && !plr[v12]._pHitPoints && v11 == myplr)
+  {
     SyncPlrKill(v11, -1);
     return;
   }
@@ -1680,11 +1854,13 @@ void __fastcall StartWalk3(int pnum, int xvel, int yvel, int xoff, int yoff,
   x = mapx + v13;
   v16 = v14 + mapy;
   y = v14 + mapy;
-  if (PlrDirOK(arglist, EndDir)) {
+  if (PlrDirOK(arglist, EndDir))
+  {
     v17 = arglist == myplr;
     plr[v12]._px = a6;
     plr[v12]._py = v15;
-    if (v17) {
+    if (v17)
+    {
       ScrollInfo._sdx = plr[v12].WorldX - ViewX;
       ScrollInfo._sdy = plr[v12].WorldY - ViewY;
     }
@@ -1698,7 +1874,8 @@ void __fastcall StartWalk3(int pnum, int xvel, int yvel, int xoff, int yoff,
     dFlags[x][v16] |= 0x20u;
     v17 = leveltype == 0;
     plr[v12]._pxoff = xoff;
-    if (!v17) {
+    if (!v17)
+    {
       ChangeLightXY(plr[v12]._plid, x, y);
       PM_ChangeLightOff(arglist);
     }
@@ -1719,20 +1896,26 @@ void __fastcall StartWalk3(int pnum, int xvel, int yvel, int xoff, int yoff,
     plr[v12]._pdir = EndDir;
     plr[v12]._pVar8 = 0;
     InitPlayerLoc(arglist, 0);
-    if (arglist == myplr) {
-      if (zoomflag) {
-        if (abs(ScrollInfo._sdx) < 3) {
+    if (arglist == myplr)
+    {
+      if (zoomflag)
+      {
+        if (abs(ScrollInfo._sdx) < 3)
+        {
           v21 = abs(ScrollInfo._sdy);
           v23 = __OFSUB__(v21, 3);
           v22 = v21 - 3 < 0;
           goto LABEL_20;
         }
-      } else if (abs(ScrollInfo._sdx) < 2) {
+      }
+      else if (abs(ScrollInfo._sdx) < 2)
+      {
         v24 = abs(ScrollInfo._sdy);
         v23 = __OFSUB__(v24, 2);
         v22 = v24 - 2 < 0;
       LABEL_20:
-        if (v22 ^ v23) {
+        if (v22 ^ v23)
+        {
           ScrollInfo._sdir = sdir;
           return;
         }
@@ -1748,7 +1931,8 @@ void __fastcall StartWalk3(int pnum, int xvel, int yvel, int xoff, int yoff,
 // 5BB1ED: using guessed type char leveltype;
 
 //----- (0044C81E) --------------------------------------------------------
-void __fastcall StartAttack(int pnum, int d) {
+void __fastcall StartAttack(int pnum, int d)
+{
   int v2; // edi
   int v3; // ebp
   int v4; // esi
@@ -1759,7 +1943,8 @@ void __fastcall StartAttack(int pnum, int d) {
   if ((unsigned int)pnum >= 4)
     TermMsg("StartAttack: illegal player %d", pnum);
   v4 = v2;
-  if (!plr[v2]._pInvincible || plr[v4]._pHitPoints || v2 != myplr) {
+  if (!plr[v2]._pInvincible || plr[v4]._pHitPoints || v2 != myplr)
+  {
     if (!(plr[v4]._pGFXLoad & 4))
       LoadPlrGFX(v2, 4);
     v5 = plr[v4]._pAWidth;
@@ -1767,13 +1952,16 @@ void __fastcall StartAttack(int pnum, int d) {
     plr[v4]._pmode = 4;
     FixPlayerLocation(v2, v3);
     SetPlayerOld(v2);
-  } else {
+  }
+  else
+  {
     SyncPlrKill(v2, -1);
   }
 }
 
 //----- (0044C8BB) --------------------------------------------------------
-void __fastcall StartRangeAttack(int pnum, int d, int cx, int cy) {
+void __fastcall StartRangeAttack(int pnum, int d, int cx, int cy)
+{
   int v4;  // edi
   int v5;  // esi
   int v6;  // ST08_4
@@ -1784,7 +1972,8 @@ void __fastcall StartRangeAttack(int pnum, int d, int cx, int cy) {
   if ((unsigned int)pnum >= 4)
     TermMsg("StartRangeAttack: illegal player %d", pnum);
   v5 = v4;
-  if (!plr[v4]._pInvincible || plr[v5]._pHitPoints || v4 != myplr) {
+  if (!plr[v4]._pInvincible || plr[v5]._pHitPoints || v4 != myplr)
+  {
     if (!(plr[v5]._pGFXLoad & 4))
       LoadPlrGFX(v4, 4);
     v6 = plr[v5]._pAWidth;
@@ -1794,13 +1983,16 @@ void __fastcall StartRangeAttack(int pnum, int d, int cx, int cy) {
     SetPlayerOld(v4);
     plr[v5]._pVar1 = cx;
     plr[v5]._pVar2 = cy;
-  } else {
+  }
+  else
+  {
     SyncPlrKill(v4, -1);
   }
 }
 
 //----- (0044C973) --------------------------------------------------------
-void __fastcall StartPlrBlock(int pnum, int dir) {
+void __fastcall StartPlrBlock(int pnum, int dir)
+{
   int v2; // edi
   int v3; // ebx
   int v4; // esi
@@ -1811,7 +2003,8 @@ void __fastcall StartPlrBlock(int pnum, int dir) {
   if ((unsigned int)pnum >= 4)
     TermMsg("StartPlrBlock: illegal player %d", pnum);
   v4 = v2;
-  if (!plr[v2]._pInvincible || plr[v4]._pHitPoints || v2 != myplr) {
+  if (!plr[v2]._pInvincible || plr[v4]._pHitPoints || v2 != myplr)
+  {
     PlaySfxLoc(IS_ISWORD, plr[v4].WorldX, plr[v4].WorldY);
     if (!(plr[v4]._pGFXLoad & 0x100))
       LoadPlrGFX(v2, 256);
@@ -1820,13 +2013,16 @@ void __fastcall StartPlrBlock(int pnum, int dir) {
     plr[v4]._pmode = PM_BLOCK;
     FixPlayerLocation(v2, v3);
     SetPlayerOld(v2);
-  } else {
+  }
+  else
+  {
     SyncPlrKill(v2, -1);
   }
 }
 
 //----- (0044CA26) --------------------------------------------------------
-void __fastcall StartSpell(int pnum, int d, int cx, int cy) {
+void __fastcall StartSpell(int pnum, int d, int cx, int cy)
+{
   int v4; // edi
   int v5; // esi
   int v6; // edx
@@ -1839,12 +2035,15 @@ void __fastcall StartSpell(int pnum, int d, int cx, int cy) {
   if ((unsigned int)pnum >= 4)
     TermMsg("StartSpell: illegal player %d", pnum);
   v5 = v4;
-  if (plr[v4]._pInvincible && !plr[v5]._pHitPoints && v4 == myplr) {
+  if (plr[v4]._pInvincible && !plr[v5]._pHitPoints && v4 == myplr)
+  {
     SyncPlrKill(v4, -1);
     return;
   }
-  if (leveltype) {
-    switch (spelldata[plr[v5]._pSpell].sType) {
+  if (leveltype)
+  {
+    switch (spelldata[plr[v5]._pSpell].sType)
+    {
     case STYPE_FIRE:
       if (!(plr[v5]._pGFXLoad & 0x20))
         LoadPlrGFX(v4, 32);
@@ -1879,7 +2078,8 @@ void __fastcall StartSpell(int pnum, int d, int cx, int cy) {
 // 5BB1ED: using guessed type char leveltype;
 
 //----- (0044CB95) --------------------------------------------------------
-void __fastcall FixPlrWalkTags(int pnum) {
+void __fastcall FixPlrWalkTags(int pnum)
+{
   int v1;            // esi
   int v2;            // edx
   int v3;            // ecx
@@ -1904,15 +2104,20 @@ void __fastcall FixPlrWalkTags(int pnum) {
   v3 = plr[v1]._poldx;
   v4 = plr[v1]._poldy;
   v5 = v4 - 1;
-  if ((unsigned char)(__OFSUB__(v4 - 1, v4 + 1) ^ 1) | (v4 - 1 == v4 + 1)) {
+  if ((unsigned char)(__OFSUB__(v4 - 1, v4 + 1) ^ 1) | (v4 - 1 == v4 + 1))
+  {
     v6 = v3 + 1;
-    do {
+    do
+    {
       v7 = v3 - 1;
       v14 = v3 - 1;
-      if (v3 - 1 <= v6) {
+      if (v3 - 1 <= v6)
+      {
         v15 = &dPlayer[v7][v5];
-        do {
-          if (v7 >= 0 && v7 < 112 && v5 >= 0 && v5 < 112) {
+        do
+        {
+          if (v7 >= 0 && v7 < 112 && v5 >= 0 && v5 < 112)
+          {
             v8 = *v15;
             if (v8 == v13 || v8 == v2)
               *v15 = 0;
@@ -1928,7 +2133,8 @@ void __fastcall FixPlrWalkTags(int pnum) {
       ++v5;
     } while (v5 <= v4 + 1);
   }
-  if (v3 >= 0 && v3 < 111 && v4 >= 0 && v4 < 111) {
+  if (v3 >= 0 && v3 < 111 && v4 >= 0 && v4 < 111)
+  {
     v12 = 112 * v3 + v4;
     dFlags[1][v12] &= 0xDFu;
     dFlags[0][v12 + 1] &= 0xDFu;
@@ -1936,7 +2142,8 @@ void __fastcall FixPlrWalkTags(int pnum) {
 }
 
 //----- (0044CC62) --------------------------------------------------------
-void __fastcall RemovePlrFromMap(int pnum) {
+void __fastcall RemovePlrFromMap(int pnum)
+{
   int v1;        // esi
   signed int v2; // edi
   signed int v3; // edx
@@ -1951,11 +2158,14 @@ void __fastcall RemovePlrFromMap(int pnum) {
   v1 = -1 - pnum;
   v10 = pnum + 1;
   v2 = 1;
-  do {
+  do
+  {
     v3 = v2;
     v4 = 111;
-    do {
-      if (dPlayer[0][v3 + 111] == v1 || dPlayer[0][v3] == v1) {
+    do
+    {
+      if (dPlayer[0][v3 + 111] == v1 || dPlayer[0][v3] == v1)
+      {
         v5 = dFlags[1][v3];
         if (v5 & 0x20)
           dFlags[1][v3] = v5 & 0xDF;
@@ -1966,10 +2176,12 @@ void __fastcall RemovePlrFromMap(int pnum) {
     ++v2;
   } while (v2 < 112);
   v6 = 0;
-  do {
+  do
+  {
     v7 = (unsigned char *)dPlayer + v6;
     v8 = 112;
-    do {
+    do
+    {
       v9 = (char)*v7;
       if (v9 == v10 || v9 == v1)
         *v7 = 0;
@@ -1981,7 +2193,8 @@ void __fastcall RemovePlrFromMap(int pnum) {
 }
 
 //----- (0044CCD8) --------------------------------------------------------
-void __fastcall StartPlrHit(int pnum, int dam, unsigned char forcehit) {
+void __fastcall StartPlrHit(int pnum, int dam, unsigned char forcehit)
+{
   int v3;  // ebx
   int v4;  // edi
   int v5;  // esi
@@ -1996,12 +2209,14 @@ void __fastcall StartPlrHit(int pnum, int dam, unsigned char forcehit) {
   if ((unsigned int)pnum >= 4)
     TermMsg("StartPlrHit: illegal player %d", pnum);
   v5 = v3;
-  if (plr[v3]._pInvincible && !plr[v5]._pHitPoints && v3 == myplr) {
+  if (plr[v3]._pInvincible && !plr[v5]._pHitPoints && v3 == myplr)
+  {
     SyncPlrKill(v3, -1);
     return;
   }
   v6 = plr[v5]._pClass;
-  switch (v6) {
+  switch (v6)
+  {
   case UI_WARRIOR:
     v7 = PS_WARR69;
   LABEL_13:
@@ -2016,7 +2231,8 @@ void __fastcall StartPlrHit(int pnum, int dam, unsigned char forcehit) {
   }
   v8 = plr[v5]._pLevel;
   drawhpflag = 1;
-  if (v4 >> 6 >= v8 || forcehit) {
+  if (v4 >> 6 >= v8 || forcehit)
+  {
     v9 = plr[v5]._pdir;
     if (!(plr[v5]._pGFXLoad & 8))
       LoadPlrGFX(v3, 8);
@@ -2032,15 +2248,18 @@ void __fastcall StartPlrHit(int pnum, int dam, unsigned char forcehit) {
 }
 
 //----- (0044CDFD) --------------------------------------------------------
-void __fastcall RespawnDeadItem(ItemStruct *itm, int x, int y) {
+void __fastcall RespawnDeadItem(ItemStruct *itm, int x, int y)
+{
   ItemStruct *v3; // ebx
   int v4;         // eax
   int i;          // ST10_4
   // unsigned int v6; // ecx
 
   v3 = itm;
-  if (numitems < 127) {
-    if (FindGetItem(itm->IDidx, itm->_iCreateInfo, itm->_iSeed) >= 0) {
+  if (numitems < 127)
+  {
+    if (FindGetItem(itm->IDidx, itm->_iCreateInfo, itm->_iSeed) >= 0)
+    {
       DrawInvMsg(
           "A duplicate item has been detected.  Destroying duplicate...");
       SyncGetItem(x, y, v3->IDidx, v3->_iCreateInfo, v3->_iSeed);
@@ -2062,7 +2281,8 @@ void __fastcall RespawnDeadItem(ItemStruct *itm, int x, int y) {
 }
 
 //----- (0044CEC9) --------------------------------------------------------
-void __fastcall StartPlayerKill(int pnum, int earflag) {
+void __fastcall StartPlayerKill(int pnum, int earflag)
+{
   unsigned int v2;        // edi
   unsigned int v3;        // esi
   char v4;                // al
@@ -2094,10 +2314,14 @@ void __fastcall StartPlayerKill(int pnum, int earflag) {
   if (v2 >= 4)
     TermMsg("StartPlayerKill: illegal player %d", v2);
   v4 = plr[v3 / 0x54D8]._pClass;
-  if (v4) {
-    if (v4 == 1) {
+  if (v4)
+  {
+    if (v4 == 1)
+    {
       v5 = PS_ROGUE71;
-    } else {
+    }
+    else
+    {
       if (v4 != 2)
         goto LABEL_18;
       v5 = PS_MAGE71;
@@ -2109,7 +2333,8 @@ void __fastcall StartPlayerKill(int pnum, int earflag) {
              plr[v3 / 0x54D8]
                  .WorldY); /* BUG_FIX: uses wrong sound, should use PS_WARR71 */
 LABEL_18:
-  if (plr[v3 / 0x54D8]._pgfxnum) {
+  if (plr[v3 / 0x54D8]._pgfxnum)
+  {
     plr[v3 / 0x54D8]._pgfxnum = 0;
     plr[v3 / 0x54D8]._pGFXLoad = 0;
     SetPlrAnims(v2);
@@ -2125,42 +2350,55 @@ LABEL_18:
   SetPlayerHitPoints(v2, 0);
   v7 = v2 == myplr;
   plr[v3 / 0x54D8]._pVar8 = 1;
-  if (!v7 && !itm && !v20) {
+  if (!v7 && !itm && !v20)
+  {
     v8 = &plr[v3 / 0x54D8].InvBody[0]._itype;
     v9 = 7;
-    do {
+    do
+    {
       *v8 = -1;
       v8 += 92;
       --v9;
     } while (v9);
     CalcPlrInv(v2, 0);
   }
-  if (plr[v3 / 0x54D8].plrlevel == currlevel) {
+  if (plr[v3 / 0x54D8].plrlevel == currlevel)
+  {
     FixPlayerLocation(v2, plr[v3 / 0x54D8]._pdir);
     RemovePlrFromMap(v2);
     v10 = &dFlags[plr[v3 / 0x54D8].WorldX][plr[v3 / 0x54D8].WorldY];
     *v10 |= 4u;
     SetPlayerOld(v2);
-    if (v2 == myplr) {
+    if (v2 == myplr)
+    {
       drawhpflag = 1;
       deathdelay = 30;
-      if (pcurs >= CURSOR_FIRSTITEM) {
+      if (pcurs >= CURSOR_FIRSTITEM)
+      {
         PlrDeadItem(v2, &plr[v3 / 0x54D8].HoldItem, 0, 0);
         SetCursor(CURSOR_HAND);
       }
-      if (!v20) {
+      if (!v20)
+      {
         DropHalfPlayersGold(v2);
-        if (itm != (struct ItemStruct *)-1) {
-          if (itm) {
+        if (itm != (struct ItemStruct *)-1)
+        {
+          if (itm)
+          {
             SetPlrHandItem(&ear, IDI_EAR);
             sprintf(ear._iName, "Ear of %s", plr[v3 / 0x54D8]._pName);
             v11 = plr[v3 / 0x54D8]._pClass;
-            if (v11 == 2) {
+            if (v11 == 2)
+            {
               ear._iCurs = 19;
-            } else if (v11) {
+            }
+            else if (v11)
+            {
               if (v11 == 1)
                 ear._iCurs = 21;
-            } else {
+            }
+            else
+            {
               ear._iCurs = 20;
             }
             _LOBYTE(v12) = 0;
@@ -2176,10 +2414,13 @@ LABEL_18:
             ear._iSeed = v15;
             if (FindGetItem(IDI_EAR, *(int *)&ear._iCreateInfo, v15) == -1)
               PlrDeadItem(v2, &ear, 0, 0);
-          } else {
+          }
+          else
+          {
             itm = plr[v3 / 0x54D8].InvBody;
             v17 = 7;
-            do {
+            do
+            {
               v18 = ((_BYTE)--v17 + (unsigned char)plr[v3 / 0x54D8]._pdir) & 7;
               PlrDeadItem(v2, itm, offset_x[v18], offset_y[v18]);
               ++itm;
@@ -2196,7 +2437,8 @@ LABEL_18:
 // 69B7C4: using guessed type int deathdelay;
 
 //----- (0044D1F4) --------------------------------------------------------
-void __fastcall PlrDeadItem(int pnum, struct ItemStruct *itm, int xx, int yy) {
+void __fastcall PlrDeadItem(int pnum, struct ItemStruct *itm, int xx, int yy)
+{
   int v4;          // edi
   int v5;          // edi
   int v6;          // esi
@@ -2221,23 +2463,28 @@ void __fastcall PlrDeadItem(int pnum, struct ItemStruct *itm, int xx, int yy) {
 
   pItem = itm;
   v4 = pnum;
-  if (itm->_itype != -1) {
+  if (itm->_itype != -1)
+  {
     if ((unsigned int)pnum >= 4)
       TermMsg("PlrDeadItem: illegal player %d", pnum);
     v5 = v4;
     v6 = yy + plr[v5].WorldY;
     v7 = xx + plr[v5].WorldX;
     v20 = yy + plr[v5].WorldY;
-    if ((xx || yy) && (v8 = ItemSpaceOk(v7, v6), v8)) {
+    if ((xx || yy) && (v8 = ItemSpaceOk(v7, v6), v8))
+    {
       v9 = v6;
       v10 = pItem;
       RespawnDeadItem(pItem, v7, v9);
       v17 = v20;
       v16 = v7;
-    } else {
+    }
+    else
+    {
       yya = -1;
       xxa = 1;
-      while (1) {
+      while (1)
+      {
         v11 = yya;
         v21 = yya;
       LABEL_14:
@@ -2249,13 +2496,15 @@ void __fastcall PlrDeadItem(int pnum, struct ItemStruct *itm, int xx, int yy) {
       }
       v12 = v21 + plr[v5].WorldY;
       v22 = yya;
-      while (1) {
+      while (1)
+      {
         v13 = v22 + plr[v5].WorldX;
         x = v22 + plr[v5].WorldX;
         //_LOBYTE(v14) = ItemSpaceOk(v13, v12);
         if (ItemSpaceOk(v13, v12))
           break;
-        if (++v22 > xxa) {
+        if (++v22 > xxa)
+        {
           v11 = ++v21;
           goto LABEL_14;
         }
@@ -2272,7 +2521,8 @@ void __fastcall PlrDeadItem(int pnum, struct ItemStruct *itm, int xx, int yy) {
 }
 
 //----- (0044D2F3) --------------------------------------------------------
-void __fastcall DropHalfPlayersGold(int pnum) {
+void __fastcall DropHalfPlayersGold(int pnum)
+{
   int v1;        // ebx
   int v2;        // esi
   int v3;        // edi
@@ -2301,13 +2551,17 @@ void __fastcall DropHalfPlayersGold(int pnum) {
   v2 = v1;
   v3 = plr[v1]._pGold >> 1;
   i = 0;
-  while (v3 > 0) {
+  while (v3 > 0)
+  {
     v4 = 368 * i + v2 * 21720;
     v14 = v4;
-    if (*(int *)((char *)&plr[0].SpdList[0]._itype + v4) == ITYPE_GOLD) {
+    if (*(int *)((char *)&plr[0].SpdList[0]._itype + v4) == ITYPE_GOLD)
+    {
       v5 = *(int *)((char *)&plr[0].SpdList[0]._ivalue + v4);
-      if (v5 != 5000) {
-        if (v3 >= v5) {
+      if (v5 != 5000)
+      {
+        if (v3 >= v5)
+        {
           v3 -= v5;
           RemoveSpdBarItem(v1, i);
           SetPlrHandItem(&plr[v2].HoldItem, IDI_GOLD);
@@ -2317,7 +2571,9 @@ void __fastcall DropHalfPlayersGold(int pnum) {
               *(int *)((char *)&plr[0].SpdList[0]._ivalue + v14);
           PlrDeadItem(v1, &plr[v2].HoldItem, 0, 0);
           i = -1;
-        } else {
+        }
+        else
+        {
           *(int *)((char *)&plr[0].SpdList[0]._ivalue + v4) = v5 - v3;
           SetSpdbarGoldCurs(v1, i);
           SetPlrHandItem(&plr[v2].HoldItem, IDI_GOLD);
@@ -2329,17 +2585,22 @@ void __fastcall DropHalfPlayersGold(int pnum) {
         }
       }
     }
-    if (++i >= 8) {
-      if (v3 > 0) {
+    if (++i >= 8)
+    {
+      if (v3 > 0)
+      {
         ia = 0;
-        do {
+        do
+        {
           if (v3 <= 0)
             break;
           v6 = 368 * ia + v2 * 21720;
           v15 = v6;
-          if (*(int *)((char *)&plr[0].SpdList[0]._itype + v6) == ITYPE_GOLD) {
+          if (*(int *)((char *)&plr[0].SpdList[0]._itype + v6) == ITYPE_GOLD)
+          {
             v7 = *(int *)((char *)&plr[0].SpdList[0]._ivalue + v6);
-            if (v3 >= v7) {
+            if (v3 >= v7)
+            {
               v3 -= v7;
               RemoveSpdBarItem(v1, ia);
               SetPlrHandItem(&plr[v2].HoldItem, IDI_GOLD);
@@ -2349,7 +2610,9 @@ void __fastcall DropHalfPlayersGold(int pnum) {
                   *(int *)((char *)&plr[0].SpdList[0]._ivalue + v15);
               PlrDeadItem(v1, &plr[v2].HoldItem, 0, 0);
               ia = -1;
-            } else {
+            }
+            else
+            {
               *(int *)((char *)&plr[0].SpdList[0]._ivalue + v6) = v7 - v3;
               SetSpdbarGoldCurs(v1, ia);
               SetPlrHandItem(&plr[v2].HoldItem, IDI_GOLD);
@@ -2368,20 +2631,26 @@ void __fastcall DropHalfPlayersGold(int pnum) {
   }
   v8 = 0;
   drawpanflag = 255;
-  if (v3 > 0) {
+  if (v3 > 0)
+  {
     ib = 0;
-    if (plr[v2]._pNumInv <= 0) {
+    if (plr[v2]._pNumInv <= 0)
+    {
     LABEL_28:
-      if (v3 > 0) {
+      if (v3 > 0)
+      {
         v11 = 0;
-        for (ic = 0; ic < plr[v2]._pNumInv; v11 = ic++ + 1) {
+        for (ic = 0; ic < plr[v2]._pNumInv; v11 = ic++ + 1)
+        {
           if (v3 <= 0)
             break;
           v12 = 368 * v11 + v2 * 21720;
           v17 = v12;
-          if (*(int *)((char *)&plr[0].InvList[0]._itype + v12) == ITYPE_GOLD) {
+          if (*(int *)((char *)&plr[0].InvList[0]._itype + v12) == ITYPE_GOLD)
+          {
             v13 = *(int *)((char *)&plr[0].InvList[0]._ivalue + v12);
-            if (v3 >= v13) {
+            if (v3 >= v13)
+            {
               v3 -= v13;
               RemoveInvItem(v1, v11);
               SetPlrHandItem(&plr[v2].HoldItem, IDI_GOLD);
@@ -2391,7 +2660,9 @@ void __fastcall DropHalfPlayersGold(int pnum) {
                   *(int *)((char *)&plr[0].InvList[0]._ivalue + v17);
               PlrDeadItem(v1, &plr[v2].HoldItem, 0, 0);
               ic = -1;
-            } else {
+            }
+            else
+            {
               *(int *)((char *)&plr[0].InvList[0]._ivalue + v12) = v13 - v3;
               SetGoldCurs(v1, v11);
               SetPlrHandItem(&plr[v2].HoldItem, IDI_GOLD);
@@ -2404,14 +2675,20 @@ void __fastcall DropHalfPlayersGold(int pnum) {
           }
         }
       }
-    } else {
-      while (v3 > 0) {
+    }
+    else
+    {
+      while (v3 > 0)
+      {
         v9 = 368 * v8 + v2 * 21720;
         v16 = v9;
-        if (*(int *)((char *)&plr[0].InvList[0]._itype + v9) == ITYPE_GOLD) {
+        if (*(int *)((char *)&plr[0].InvList[0]._itype + v9) == ITYPE_GOLD)
+        {
           v10 = *(int *)((char *)&plr[0].InvList[0]._ivalue + v9);
-          if (v10 != 5000) {
-            if (v3 >= v10) {
+          if (v10 != 5000)
+          {
+            if (v3 >= v10)
+            {
               v3 -= v10;
               RemoveInvItem(v1, v8);
               SetPlrHandItem(&plr[v2].HoldItem, IDI_GOLD);
@@ -2421,7 +2698,9 @@ void __fastcall DropHalfPlayersGold(int pnum) {
                   *(int *)((char *)&plr[0].InvList[0]._ivalue + v16);
               PlrDeadItem(v1, &plr[v2].HoldItem, 0, 0);
               ib = -1;
-            } else {
+            }
+            else
+            {
               *(int *)((char *)&plr[0].InvList[0]._ivalue + v9) = v10 - v3;
               SetGoldCurs(v1, v8);
               SetPlrHandItem(&plr[v2].HoldItem, IDI_GOLD);
@@ -2444,7 +2723,8 @@ void __fastcall DropHalfPlayersGold(int pnum) {
 // 52571C: using guessed type int drawpanflag;
 
 //----- (0044D70B) --------------------------------------------------------
-void __fastcall SyncPlrKill(int pnum, int earflag) {
+void __fastcall SyncPlrKill(int pnum, int earflag)
+{
   int v2; // esi
   int v3; // ebx
   int v4; // edx
@@ -2452,14 +2732,19 @@ void __fastcall SyncPlrKill(int pnum, int earflag) {
 
   v2 = pnum;
   v3 = earflag;
-  if (plr[pnum]._pHitPoints || currlevel) {
+  if (plr[pnum]._pHitPoints || currlevel)
+  {
     v4 = 0;
-    if (nummissiles <= 0) {
+    if (nummissiles <= 0)
+    {
     LABEL_9:
       SetPlayerHitPoints(pnum, 0);
       StartPlayerKill(v2, v3);
-    } else {
-      while (1) {
+    }
+    else
+    {
+      while (1)
+      {
         v5 = missileactive[v4];
         if (missile[v5]._mitype == 13 && missile[v5]._misource == pnum &&
             !missile[v5]._miDelFlag)
@@ -2470,13 +2755,16 @@ void __fastcall SyncPlrKill(int pnum, int earflag) {
       if (v3 != -1)
         missile[missileactive[v4]]._miVar8 = v3;
     }
-  } else {
+  }
+  else
+  {
     SetPlayerHitPoints(pnum, 64);
   }
 }
 
 //----- (0044D7A0) --------------------------------------------------------
-void __fastcall RemovePlrMissiles(int pnum) {
+void __fastcall RemovePlrMissiles(int pnum)
+{
   int v1; // ebx
   int v2; // ebp
   int v3; // ecx
@@ -2487,7 +2775,8 @@ void __fastcall RemovePlrMissiles(int pnum) {
   v1 = 0;
   v2 = pnum;
   if (currlevel && pnum == myplr &&
-      (monster[myplr]._mx != 1 || monster[myplr]._my)) {
+      (monster[myplr]._mx != 1 || monster[myplr]._my))
+  {
     M_StartKill(myplr, myplr);
     AddDead(monster[myplr]._mx, monster[myplr]._my,
             monster[myplr].MType->mdeadval, (direction)monster[myplr]._mdir);
@@ -2496,19 +2785,23 @@ void __fastcall RemovePlrMissiles(int pnum) {
     dMonster[0][v3] = 0;
     DeleteMonsterList();
   }
-  if (nummissiles > 0) {
-    do {
+  if (nummissiles > 0)
+  {
+    do
+    {
       v4 = missileactive[v1];
       v5 = missileactive[v1];
       v6 = missile[v5]._mitype;
       if (v6 == MIS_STONE && missile[v5]._misource == v2)
         monster[missile[v5]._miVar2]._mmode = missile[v5]._miVar1;
-      if (v6 == MIS_MANASHIELD && missile[v5]._misource == v2) {
+      if (v6 == MIS_MANASHIELD && missile[v5]._misource == v2)
+      {
         ClearMissileSpot(v4);
         DeleteMissile(v4, v1);
       }
       if (missile[v5]._mitype == MIS_ETHEREALIZE &&
-          missile[v5]._misource == v2) {
+          missile[v5]._misource == v2)
+      {
         ClearMissileSpot(v4);
         DeleteMissile(v4, v1);
       }
@@ -2518,14 +2811,16 @@ void __fastcall RemovePlrMissiles(int pnum) {
 }
 
 //----- (0044D8D1) --------------------------------------------------------
-void __fastcall InitLevelChange(int pnum) {
+void __fastcall InitLevelChange(int pnum)
+{
   int v1;  // esi
   int v2;  // eax
   bool v3; // zf
 
   v1 = pnum;
   RemovePlrMissiles(pnum);
-  if (v1 == myplr && qtextflag) {
+  if (v1 == myplr && qtextflag)
+  {
     qtextflag = 0;
     sfx_stop();
   }
@@ -2546,7 +2841,8 @@ void __fastcall InitLevelChange(int pnum) {
 // 646D00: using guessed type char qtextflag;
 
 //----- (0044D973) --------------------------------------------------------
-void __fastcall StartNewLvl(int pnum, int fom, int lvl) {
+void __fastcall StartNewLvl(int pnum, int fom, int lvl)
+{
   int v3;          // edi
   unsigned int v4; // esi
   unsigned int v5; // eax
@@ -2557,16 +2853,20 @@ void __fastcall StartNewLvl(int pnum, int fom, int lvl) {
   InitLevelChange(pnum);
   if (v4 >= 4)
     TermMsg("StartNewLvl: illegal player %d", v4);
-  if (v3 < WM_DIABNEXTLVL) {
+  if (v3 < WM_DIABNEXTLVL)
+  {
   LABEL_10:
     TermMsg("StartNewLvl");
     goto LABEL_11;
   }
   if (v3 <= WM_DIABPREVLVL || v3 == WM_DIABRTNLVL)
     goto LABEL_16;
-  if (v3 != WM_DIABSETLVL) {
-    if (v3 != WM_DIABTOWNWARP) {
-      if (v3 != WM_DIABTWARPUP) {
+  if (v3 != WM_DIABSETLVL)
+  {
+    if (v3 != WM_DIABTOWNWARP)
+    {
+      if (v3 != WM_DIABTWARPUP)
+      {
         if (v3 == WM_DIABRETOWN)
           goto LABEL_11;
         goto LABEL_10;
@@ -2579,7 +2879,8 @@ void __fastcall StartNewLvl(int pnum, int fom, int lvl) {
   }
   setlvlnum = lvl;
 LABEL_11:
-  if (v4 == myplr) {
+  if (v4 == myplr)
+  {
     v5 = v4;
     v6 = ghMainWnd;
     plr[v5]._pmode = PM_NEWLVL;
@@ -2594,7 +2895,8 @@ LABEL_11:
 // 679660: using guessed type char gbMaxPlayers;
 
 //----- (0044DA6F) --------------------------------------------------------
-void __fastcall RestartTownLvl(int pnum) {
+void __fastcall RestartTownLvl(int pnum)
+{
   unsigned int v1; // edi
   unsigned int v2; // esi
   int v3;          // eax
@@ -2612,7 +2914,8 @@ void __fastcall RestartTownLvl(int pnum) {
   plr[v2]._pMana = 0;
   plr[v2]._pManaBase = v3;
   CalcPlrInv(v1, 0);
-  if (v1 == myplr) {
+  if (v1 == myplr)
+  {
     plr[v2]._pmode = PM_NEWLVL;
     v4 = ghMainWnd;
     plr[v2]._pInvincible = 1;
@@ -2621,7 +2924,8 @@ void __fastcall RestartTownLvl(int pnum) {
 }
 
 //----- (0044DAFC) --------------------------------------------------------
-void __fastcall StartWarpLvl(int pnum, int pidx) {
+void __fastcall StartWarpLvl(int pnum, int pidx)
+{
   int v2;  // edi
   int v3;  // esi
   int *v4; // eax
@@ -2631,14 +2935,16 @@ void __fastcall StartWarpLvl(int pnum, int pidx) {
   v2 = pidx;
   v3 = pnum;
   InitLevelChange(pnum);
-  if (gbMaxPlayers != 1) {
+  if (gbMaxPlayers != 1)
+  {
     v4 = &plr[v3].plrlevel;
     if (*v4)
       *v4 = 0;
     else
       *v4 = portal[v2].level;
   }
-  if (v3 == myplr) {
+  if (v3 == myplr)
+  {
     SetCurrentPortal(v2);
     v5 = v3;
     plr[v5]._pmode = PM_NEWLVL;
@@ -2653,7 +2959,8 @@ void __fastcall StartWarpLvl(int pnum, int pidx) {
 int __fastcall PM_DoStand(int pnum) { return 0; }
 
 //----- (0044DB77) --------------------------------------------------------
-int __fastcall PM_DoWalk(int pnum) {
+int __fastcall PM_DoWalk(int pnum)
+{
   int v1;     // ebx
   int v2;     // esi
   int v3;     // eax
@@ -2672,7 +2979,8 @@ int __fastcall PM_DoWalk(int pnum) {
   v3 = plr[v1]._pAnimFrame;
   if (v3 == 3)
     goto LABEL_8;
-  if (plr[v2]._pWFrames != 8) {
+  if (plr[v2]._pWFrames != 8)
+  {
     if (v3 != 4)
       goto LABEL_9;
     goto LABEL_8;
@@ -2684,7 +2992,8 @@ LABEL_9:
   v4 = 8;
   if (currlevel)
     v4 = PWVel[3][SLOBYTE(plr[v2]._pClass)];
-  if (plr[v2]._pVar8 == v4) {
+  if (plr[v2]._pVar8 == v4)
+  {
     v5 = plr[v2].WorldX;
     v6 = plr[v2].WorldY;
     dPlayer[plr[v2].WorldX][v6] = 0;
@@ -2694,11 +3003,13 @@ LABEL_9:
     v9 = leveltype == 0;
     dPlayer[v7][v8] = v1 + 1;
     plr[v2].WorldY = v8;
-    if (!v9) {
+    if (!v9)
+    {
       ChangeLightXY(plr[v2]._plid, v7, v8);
       ChangeVisionXY(plr[v2]._pvid, plr[v2].WorldX, plr[v2].WorldY);
     }
-    if (v1 == myplr && ScrollInfo._sdir) {
+    if (v1 == myplr && ScrollInfo._sdir)
+    {
       ViewX = plr[v2].WorldX - ScrollInfo._sdx;
       ViewY = plr[v2].WorldY - ScrollInfo._sdy;
     }
@@ -2710,7 +3021,9 @@ LABEL_9:
     if (leveltype)
       ChangeLightOff(plr[v2]._plid, 0, 0);
     result = 1;
-  } else {
+  }
+  else
+  {
     PM_ChangeOffset(v1);
     result = 0;
   }
@@ -2719,7 +3032,8 @@ LABEL_9:
 // 5BB1ED: using guessed type char leveltype;
 
 //----- (0044DCE5) --------------------------------------------------------
-int __fastcall PM_DoWalk2(int pnum) {
+int __fastcall PM_DoWalk2(int pnum)
+{
   int v1;     // ebx
   int v2;     // esi
   int v3;     // eax
@@ -2733,7 +3047,8 @@ int __fastcall PM_DoWalk2(int pnum) {
   v3 = plr[v1]._pAnimFrame;
   if (v3 == 3)
     goto LABEL_8;
-  if (plr[v2]._pWFrames != 8) {
+  if (plr[v2]._pWFrames != 8)
+  {
     if (v3 != 4)
       goto LABEL_9;
     goto LABEL_8;
@@ -2745,13 +3060,16 @@ LABEL_9:
   v4 = 8;
   if (currlevel)
     v4 = PWVel[3][SLOBYTE(plr[v2]._pClass)];
-  if (plr[v2]._pVar8 == v4) {
+  if (plr[v2]._pVar8 == v4)
+  {
     dPlayer[plr[v2]._pVar1][plr[v2]._pVar2] = 0;
-    if (leveltype) {
+    if (leveltype)
+    {
       ChangeLightXY(plr[v2]._plid, plr[v2].WorldX, plr[v2].WorldY);
       ChangeVisionXY(plr[v2]._pvid, plr[v2].WorldX, plr[v2].WorldY);
     }
-    if (v1 == myplr && ScrollInfo._sdir) {
+    if (v1 == myplr && ScrollInfo._sdir)
+    {
       ViewX = plr[v2].WorldX - ScrollInfo._sdx;
       ViewY = plr[v2].WorldY - ScrollInfo._sdy;
     }
@@ -2763,7 +3081,9 @@ LABEL_9:
     if (leveltype)
       ChangeLightOff(plr[v2]._plid, 0, 0);
     result = 1;
-  } else {
+  }
+  else
+  {
     PM_ChangeOffset(v1);
     result = 0;
   }
@@ -2772,7 +3092,8 @@ LABEL_9:
 // 5BB1ED: using guessed type char leveltype;
 
 //----- (0044DE30) --------------------------------------------------------
-int __fastcall PM_DoWalk3(int pnum) {
+int __fastcall PM_DoWalk3(int pnum)
+{
   int v1;     // ebx
   int v2;     // esi
   int v3;     // eax
@@ -2790,7 +3111,8 @@ int __fastcall PM_DoWalk3(int pnum) {
   v3 = plr[v1]._pAnimFrame;
   if (v3 == 3)
     goto LABEL_8;
-  if (plr[v2]._pWFrames != 8) {
+  if (plr[v2]._pWFrames != 8)
+  {
     if (v3 != 4)
       goto LABEL_9;
     goto LABEL_8;
@@ -2802,7 +3124,8 @@ LABEL_9:
   v4 = 8;
   if (currlevel)
     v4 = PWVel[3][SLOBYTE(plr[v2]._pClass)];
-  if (plr[v2]._pVar8 == v4) {
+  if (plr[v2]._pVar8 == v4)
+  {
     v5 = plr[v2]._pVar1;
     dPlayer[plr[v2].WorldX][plr[v2].WorldY] = 0;
     v6 = &dFlags[plr[v2]._pVar4][plr[v2]._pVar5];
@@ -2812,11 +3135,13 @@ LABEL_9:
     v8 = leveltype == 0;
     dPlayer[v5][v7] = v1 + 1;
     plr[v2].WorldY = v7;
-    if (!v8) {
+    if (!v8)
+    {
       ChangeLightXY(plr[v2]._plid, v5, v7);
       ChangeVisionXY(plr[v2]._pvid, plr[v2].WorldX, plr[v2].WorldY);
     }
-    if (v1 == myplr && ScrollInfo._sdir) {
+    if (v1 == myplr && ScrollInfo._sdir)
+    {
       ViewX = plr[v2].WorldX - ScrollInfo._sdx;
       ViewY = plr[v2].WorldY - ScrollInfo._sdy;
     }
@@ -2828,7 +3153,9 @@ LABEL_9:
     if (leveltype)
       ChangeLightOff(plr[v2]._plid, 0, 0);
     result = 1;
-  } else {
+  }
+  else
+  {
     PM_ChangeOffset(v1);
     result = 0;
   }
@@ -2837,7 +3164,8 @@ LABEL_9:
 // 5BB1ED: using guessed type char leveltype;
 
 //----- (0044DFB1) --------------------------------------------------------
-bool __fastcall WeaponDur(int pnum, int durrnd) {
+bool __fastcall WeaponDur(int pnum, int durrnd)
+{
   unsigned int v2; // edi
   unsigned int v3; // esi
   int v4;          // ebp
@@ -2860,26 +3188,30 @@ bool __fastcall WeaponDur(int pnum, int durrnd) {
     TermMsg("WeaponDur: illegal player %d", v2);
   v3 = v2;
   v4 = plr[v2].InvBody[4]._itype;
-  if (v4 != ITYPE_NONE && plr[v3].InvBody[4]._iClass == 1) {
+  if (v4 != ITYPE_NONE && plr[v3].InvBody[4]._iClass == 1)
+  {
     v5 = plr[v3].InvBody[4]._iDurability;
     if (v5 == 255)
       return 0;
     v6 = v5 - 1;
     plr[v3].InvBody[4]._iDurability = v6;
-    if (!v6) {
+    if (!v6)
+    {
     LABEL_22:
       NetSendCmdDelItem(1u, 4u);
       plr[v3].InvBody[4]._itype = -1;
       goto LABEL_23;
     }
   }
-  if (plr[v3].InvBody[5]._itype != -1 && plr[v3].InvBody[5]._iClass == 1) {
+  if (plr[v3].InvBody[5]._itype != -1 && plr[v3].InvBody[5]._iClass == 1)
+  {
     v7 = plr[v3].InvBody[5]._iDurability;
     if (v7 == 255)
       return 0;
     v8 = v7 - 1;
     plr[v3].InvBody[5]._iDurability = v8;
-    if (!v8) {
+    if (!v8)
+    {
     LABEL_13:
       NetSendCmdDelItem(1u, 5u);
       plr[v3].InvBody[5]._itype = -1;
@@ -2888,7 +3220,8 @@ bool __fastcall WeaponDur(int pnum, int durrnd) {
       return 1;
     }
   }
-  if (v4 == -1 && plr[v3].InvBody[5]._itype == ITYPE_SHIELD) {
+  if (v4 == -1 && plr[v3].InvBody[5]._itype == ITYPE_SHIELD)
+  {
     v9 = plr[v3].InvBody[5]._iDurability;
     if (v9 == 255)
       return 0;
@@ -2897,9 +3230,11 @@ bool __fastcall WeaponDur(int pnum, int durrnd) {
     if (!v10)
       goto LABEL_13;
   }
-  if (plr[v3].InvBody[5]._itype == -1 && v4 == 5) {
+  if (plr[v3].InvBody[5]._itype == -1 && v4 == 5)
+  {
     v11 = plr[v3].InvBody[4]._iDurability;
-    if (v11 != 255) {
+    if (v11 != 255)
+    {
       v12 = v11 - 1;
       plr[v3].InvBody[4]._iDurability = v12;
       if (!v12)
@@ -2910,7 +3245,8 @@ bool __fastcall WeaponDur(int pnum, int durrnd) {
 }
 
 //----- (0044E0BC) --------------------------------------------------------
-bool __fastcall PlrHitMonst(int pnum, int m) {
+bool __fastcall PlrHitMonst(int pnum, int m)
+{
   int v2;          // ebx
   unsigned int v3; // esi
   // int v4; // ST04_4
@@ -2961,7 +3297,8 @@ bool __fastcall PlrHitMonst(int pnum, int m) {
   v3 = pnum;
   arglist = m;
   pnuma = pnum;
-  if ((unsigned int)m >= 0xC8) {
+  if ((unsigned int)m >= 0xC8)
+  {
     TermMsg("PlrHitMonst: illegal monster %d", m);
     // pnum = v4;
   }
@@ -2971,10 +3308,12 @@ bool __fastcall PlrHitMonst(int pnum, int m) {
                    0xFFFFFFC0) <= 0 ||
       **(_BYTE **)((char *)&monster[0].MType + v5) == MT_ILLWEAV &&
           *((_BYTE *)&monster[0]._mgoal + v5) == 2 ||
-      *(MON_MODE *)((char *)&monster[0]._mmode + v5) == MM_CHARGE) {
+      *(MON_MODE *)((char *)&monster[0]._mmode + v5) == MM_CHARGE)
+  {
     return 0;
   }
-  if (v3 >= 4) {
+  if (v3 >= 4)
+  {
     TermMsg("PlrHitMonst: illegal player %d", v3);
     // pnum = v7;
   }
@@ -3013,7 +3352,8 @@ bool __fastcall PlrHitMonst(int pnum, int m) {
     v18 = 100;
     v19 = plr[v9]._pIBonusDamMod + plr[v9]._pDamageMod +
           (v48 + v17) * plr[v9]._pIBonusDam / 100 + v48 + v17;
-    if (!_LOBYTE(plr[v9]._pClass)) {
+    if (!_LOBYTE(plr[v9]._pClass))
+    {
       _LOBYTE(v18) = 6;
       v48 = plr[v9]._pLevel;
       v20 = random(v18, 100);
@@ -3027,13 +3367,16 @@ bool __fastcall PlrHitMonst(int pnum, int m) {
     if (v21 == ITYPE_MACE || plr[v9].InvBody[5]._itype == ITYPE_MACE)
       v46 = ITYPE_MACE;
     v22 = (*(MonsterData **)((char *)&monster[0].MData + v5))->mMonstClass;
-    if (v22) {
+    if (v22)
+    {
       if (v22 != 2)
         goto LABEL_40;
       if (v46 == ITYPE_MACE)
         v19 -= v19 >> 1;
       v23 = v46 == 1;
-    } else {
+    }
+    else
+    {
       if (v46 == 1)
         v19 -= v19 >> 1;
       v23 = v46 == ITYPE_MACE;
@@ -3048,7 +3391,8 @@ bool __fastcall PlrHitMonst(int pnum, int m) {
     v26 = v19 << 6;
     if (pnuma == myplr)
       *(int *)((char *)&monster[0]._mhitpoints + v5) -= v26;
-    if (v24 & 2) {
+    if (v24 & 2)
+    {
       _LOBYTE(v25) = 7;
       v27 = random(v25, v26 >> 3);
       v28 = plr[v9]._pMaxHP;
@@ -3063,12 +3407,15 @@ bool __fastcall PlrHitMonst(int pnum, int m) {
         *v31 = v30;
       v5 = v43;
       drawhpflag = 1;
-    } else {
+    }
+    else
+    {
       v27 = ret;
     }
     v46 = plr[v9]._pIFlags;
     v32 = v46;
-    if (v32 & 0x6000 && !(v46 & 0x8000000)) {
+    if (v32 & 0x6000 && !(v46 & 0x8000000))
+    {
       if (v32 & 0x2000)
         v27 = 3 * v26 / 100;
       if (v32 & 0x4000)
@@ -3087,7 +3434,8 @@ bool __fastcall PlrHitMonst(int pnum, int m) {
       v32 = v46;
       drawmanaflag = 1;
     }
-    if (v32 & 0x18000) {
+    if (v32 & 0x18000)
+    {
       if ((v32 & 0x8000) != 0)
         v27 = 3 * v26 / 100;
       if (v32 & 0x10000)
@@ -3113,16 +3461,21 @@ bool __fastcall PlrHitMonst(int pnum, int m) {
       monster[m]._mhitpoints = 0; /* double check */
 #endif
     if ((signed int)(*(int *)((_BYTE *)&monster[0]._mhitpoints + v5) &
-                     0xFFFFFFC0) > 0) {
-      if (*(MON_MODE *)((char *)&monster[0]._mmode + v5) != MM_STONE) {
+                     0xFFFFFFC0) > 0)
+    {
+      if (*(MON_MODE *)((char *)&monster[0]._mmode + v5) != MM_STONE)
+      {
         if (v32 & 0x800)
           M_GetKnockback(arglist);
         M_StartHit(arglist, pnuma, v26);
         goto LABEL_85;
       }
       M_StartHit(arglist, pnuma, v26);
-    } else {
-      if (*(MON_MODE *)((char *)&monster[0]._mmode + v5) != MM_STONE) {
+    }
+    else
+    {
+      if (*(MON_MODE *)((char *)&monster[0]._mmode + v5) != MM_STONE)
+      {
         M_StartKill(arglist, pnuma);
         goto LABEL_85;
       }
@@ -3136,7 +3489,8 @@ bool __fastcall PlrHitMonst(int pnum, int m) {
 }
 
 //----- (0044E442) --------------------------------------------------------
-bool __fastcall PlrHitPlr(int pnum, char p) {
+bool __fastcall PlrHitPlr(int pnum, char p)
+{
   char v2;         // bl
   unsigned int v3; // esi
   // int v4; // ST04_4
@@ -3172,7 +3526,8 @@ bool __fastcall PlrHitPlr(int pnum, char p) {
   v3 = pnum;
   bPlr = p;
   v28 = pnum;
-  if ((unsigned char)p >= 4u) {
+  if ((unsigned char)p >= 4u)
+  {
     TermMsg("PlrHitPlr: illegal target player %d", p);
     // pnum = v4;
   }
@@ -3181,7 +3536,8 @@ bool __fastcall PlrHitPlr(int pnum, char p) {
   v30 = 0;
   if (plr[v5]._pInvincible || plr[v5]._pSpellFlags & 1)
     return 0;
-  if (v3 >= 4) {
+  if (v3 >= 4)
+  {
     TermMsg("PlrHitPlr: illegal attacking player %d", v3);
     // pnum = v7;
   }
@@ -3200,9 +3556,12 @@ bool __fastcall PlrHitPlr(int pnum, char p) {
   if (v12 > 95)
     v12 = 95;
   v13 = plr[v5]._pmode;
-  if (v13 && v13 != 4 || !plr[v5]._pBlockFlag) {
+  if (v13 && v13 != 4 || !plr[v5]._pBlockFlag)
+  {
     v14 = 100;
-  } else {
+  }
+  else
+  {
     _LOBYTE(v9) = 5;
     v14 = random(v9, 100);
   }
@@ -3212,22 +3571,26 @@ bool __fastcall PlrHitPlr(int pnum, char p) {
     v15 = 0;
   if (v15 > 100)
     v15 = 100;
-  if (v29 < v12) {
-    if (v14 >= v15) {
+  if (v29 < v12)
+  {
+    if (v14 >= v15)
+    {
       v17 = plr[v8]._pIMinDam;
       _LOBYTE(v15) = 5;
       v18 = random(v15, plr[v8]._pIMaxDam - v17 + 1);
       v19 = 100;
       v20 = plr[v8]._pIBonusDamMod + plr[v8]._pDamageMod +
             (v17 + v18) * plr[v8]._pIBonusDam / 100 + v17 + v18;
-      if (!_LOBYTE(plr[v8]._pClass)) {
+      if (!_LOBYTE(plr[v8]._pClass))
+      {
         v21 = plr[v8]._pLevel;
         _LOBYTE(v19) = 6;
         if (random(v19, 100) < v21)
           v20 *= 2;
       }
       v22 = v20 << 6;
-      if (plr[v8]._pIFlags & 2) {
+      if (plr[v8]._pIFlags & 2)
+      {
         _LOBYTE(v19) = 7;
         v23 = random(v19, v22 >> 3);
         v24 = plr[v8]._pMaxHP;
@@ -3245,7 +3608,9 @@ bool __fastcall PlrHitPlr(int pnum, char p) {
       if (v28 == myplr)
         NetSendCmdDamage(1u, bPlr, v22);
       StartPlrHit(arglist, v22, 0);
-    } else {
+    }
+    else
+    {
       v16 = GetDirection(plr[v5].WorldX, plr[v5].WorldY, plr[v8].WorldX,
                          plr[v8].WorldY);
       StartPlrBlock(arglist, v16);
@@ -3256,7 +3621,8 @@ bool __fastcall PlrHitPlr(int pnum, char p) {
 }
 
 //----- (0044E669) --------------------------------------------------------
-bool __fastcall PlrHitObj(int pnum, int mx, int my) {
+bool __fastcall PlrHitObj(int pnum, int mx, int my)
+{
   int oi; // edx
 
   if (dObject[mx][my] <= 0)
@@ -3272,7 +3638,8 @@ bool __fastcall PlrHitObj(int pnum, int mx, int my) {
 }
 
 //----- (0044E6A6) --------------------------------------------------------
-int __fastcall PM_DoAttack(int pnum) {
+int __fastcall PM_DoAttack(int pnum)
+{
   int v1;  // esi
   int v2;  // esi
   int v3;  // ecx
@@ -3318,18 +3685,22 @@ int __fastcall PM_DoAttack(int pnum) {
   v8 = v7 + 112 * v6;
   v19 = v8;
   v9 = dMonster[0][v8];
-  if (!v9) {
+  if (!v9)
+  {
   LABEL_29:
-    if (plr[v2]._pIFlags & 0x10) {
+    if (plr[v2]._pIFlags & 0x10)
+    {
       AddMissile(v6, v7, 1, 0, 0, MIS_WEAPEXP, 0, arglist, 0, 0);
       v8 = v19;
     }
-    if (plr[v2]._pIFlags & 0x20) {
+    if (plr[v2]._pIFlags & 0x20)
+    {
       AddMissile(v6, v7, 2, 0, 0, MIS_WEAPEXP, 0, arglist, 0, 0);
       v8 = v19;
     }
     v12 = dMonster[0][v8];
-    if (v12) {
+    if (v12)
+    {
       if (v12 <= 0)
         v13 = -1 - v12;
       else
@@ -3338,21 +3709,24 @@ int __fastcall PM_DoAttack(int pnum) {
       goto LABEL_46;
     }
     v15 = (unsigned char)dPlayer[0][v8];
-    if ((_BYTE)v15 && !FriendlyMode) {
+    if ((_BYTE)v15 && !FriendlyMode)
+    {
       if ((char)v15 <= 0)
         v16 = -1 - v15;
       else
         v16 = v15 - 1;
       v14 = PlrHitPlr(arglist, v16);
     LABEL_46:
-      if (v14) {
+      if (v14)
+      {
         //_LOBYTE(v17) = WeaponDur(arglist, 30);
         if (WeaponDur(arglist, 30))
           goto LABEL_48;
       }
       goto LABEL_49;
     }
-    if (dObject[0][v8] > 0) {
+    if (dObject[0][v8] > 0)
+    {
       v14 = PlrHitObj(arglist, v6, v7);
       goto LABEL_46;
     }
@@ -3369,7 +3743,8 @@ int __fastcall PM_DoAttack(int pnum) {
   else
     v10 = v9 - 1;
   //_LOBYTE(v11) = CanTalkToMonst(v10);
-  if (!CanTalkToMonst(v10)) {
+  if (!CanTalkToMonst(v10))
+  {
     v8 = v19;
     goto LABEL_29;
   }
@@ -3379,7 +3754,8 @@ int __fastcall PM_DoAttack(int pnum) {
 // 484368: using guessed type int FriendlyMode;
 
 //----- (0044E8B8) --------------------------------------------------------
-int __fastcall PM_DoRangeAttack(int pnum) {
+int __fastcall PM_DoRangeAttack(int pnum)
+{
   int v1; // edi
   int v2; // esi
   int v3; // ecx
@@ -3408,7 +3784,8 @@ int __fastcall PM_DoRangeAttack(int pnum) {
              plr[v2]._pdir, v5, 0, v1, 4, 0);
   PlaySfxLoc(PS_BFIRE, plr[v2].WorldX, plr[v2].WorldY);
   //_LOBYTE(v6) = WeaponDur(v1, 40);
-  if (!WeaponDur(v1, 40)) {
+  if (!WeaponDur(v1, 40))
+  {
   LABEL_21:
     if (plr[v2]._pAnimFrame < plr[v2]._pAFrames)
       return 0;
@@ -3419,7 +3796,8 @@ int __fastcall PM_DoRangeAttack(int pnum) {
 }
 
 //----- (0044E9AC) --------------------------------------------------------
-void __fastcall ShieldDur(int pnum) {
+void __fastcall ShieldDur(int pnum)
+{
   int v1; // edi
   int v2; // esi
   int v3; // ecx
@@ -3428,28 +3806,34 @@ void __fastcall ShieldDur(int pnum) {
   int v6; // ecx
 
   v1 = pnum;
-  if (pnum == myplr) {
+  if (pnum == myplr)
+  {
     if ((unsigned int)pnum >= 4)
       TermMsg("ShieldDur: illegal player %d", pnum);
     v2 = v1;
-    if (plr[v1].InvBody[4]._itype == ITYPE_SHIELD) {
+    if (plr[v1].InvBody[4]._itype == ITYPE_SHIELD)
+    {
       v3 = plr[v2].InvBody[4]._iDurability;
       if (v3 == 255)
         return;
       v4 = v3 - 1;
       plr[v2].InvBody[4]._iDurability = v4;
-      if (!v4) {
+      if (!v4)
+      {
         NetSendCmdDelItem(1u, 4u);
         plr[v2].InvBody[4]._itype = ITYPE_NONE;
         CalcPlrInv(v1, 1u);
       }
     }
-    if (plr[v2].InvBody[5]._itype == ITYPE_SHIELD) {
+    if (plr[v2].InvBody[5]._itype == ITYPE_SHIELD)
+    {
       v5 = plr[v2].InvBody[5]._iDurability;
-      if (v5 != 255) {
+      if (v5 != 255)
+      {
         v6 = v5 - 1;
         plr[v2].InvBody[5]._iDurability = v6;
-        if (!v6) {
+        if (!v6)
+        {
           NetSendCmdDelItem(1u, 5u);
           plr[v2].InvBody[5]._itype = ITYPE_NONE;
           CalcPlrInv(v1, 1u);
@@ -3460,7 +3844,8 @@ void __fastcall ShieldDur(int pnum) {
 }
 
 //----- (0044EA4D) --------------------------------------------------------
-int __fastcall PM_DoBlock(int pnum) {
+int __fastcall PM_DoBlock(int pnum)
+{
   int v1; // esi
   int v2; // eax
   int v3; // ecx
@@ -3482,7 +3867,8 @@ int __fastcall PM_DoBlock(int pnum) {
 }
 
 //----- (0044EAC6) --------------------------------------------------------
-int __fastcall PM_DoSpell(int pnum) {
+int __fastcall PM_DoSpell(int pnum)
+{
   int v1; // edi
   int v2; // esi
 
@@ -3490,10 +3876,12 @@ int __fastcall PM_DoSpell(int pnum) {
   if ((unsigned int)pnum >= 4)
     TermMsg("PM_DoSpell: illegal player %d", pnum);
   v2 = v1;
-  if (plr[v1]._pVar8 == plr[v1]._pSFNum) {
+  if (plr[v1]._pVar8 == plr[v1]._pSFNum)
+  {
     CastSpell(v1, plr[v2]._pSpell, plr[v2].WorldX, plr[v2].WorldY,
               plr[v2]._pVar1, plr[v2]._pVar2, 0, plr[v2]._pVar4);
-    if (!plr[v2]._pSplFrom) {
+    if (!plr[v2]._pSplFrom)
+    {
       if (_LOBYTE(plr[v2]._pRSplType) == 2 &&
           !(plr[v2]._pScrlSpells[1] &
                 ((unsigned __int64)((__int64)1
@@ -3501,7 +3889,8 @@ int __fastcall PM_DoSpell(int pnum) {
                  32) |
             plr[v2]._pScrlSpells[0] &
                 (unsigned int)((__int64)1
-                               << (_LOBYTE(plr[v2]._pRSpell) - 1)))) {
+                               << (_LOBYTE(plr[v2]._pRSpell) - 1))))
+      {
         plr[v2]._pRSpell = -1;
         _LOBYTE(plr[v2]._pRSplType) = 4;
         drawpanflag = 255;
@@ -3513,7 +3902,8 @@ int __fastcall PM_DoSpell(int pnum) {
                  32) |
             plr[v2]._pISpells[0] &
                 (unsigned int)((__int64)1
-                               << (_LOBYTE(plr[v2]._pRSpell) - 1)))) {
+                               << (_LOBYTE(plr[v2]._pRSpell) - 1))))
+      {
         plr[v2]._pRSpell = -1;
         _LOBYTE(plr[v2]._pRSplType) = 4;
         drawpanflag = 255;
@@ -3521,12 +3911,16 @@ int __fastcall PM_DoSpell(int pnum) {
     }
   }
   ++plr[v2]._pVar8;
-  if (leveltype) {
-    if (plr[v2]._pAnimFrame == plr[v2]._pSFrames) {
+  if (leveltype)
+  {
+    if (plr[v2]._pAnimFrame == plr[v2]._pSFrames)
+    {
       StartStand(v1, plr[v2]._pdir);
       goto LABEL_16;
     }
-  } else if (plr[v2]._pVar8 > plr[v2]._pSFrames) {
+  }
+  else if (plr[v2]._pVar8 > plr[v2]._pSFrames)
+  {
     StartWalkStand(v1);
   LABEL_16:
     ClearPlrPVars(v1);
@@ -3538,7 +3932,8 @@ int __fastcall PM_DoSpell(int pnum) {
 // 5BB1ED: using guessed type char leveltype;
 
 //----- (0044EC06) --------------------------------------------------------
-int __fastcall PM_DoGotHit(int pnum) {
+int __fastcall PM_DoGotHit(int pnum)
+{
   int v1; // esi
   int v2; // eax
   int v3; // edx
@@ -3568,7 +3963,8 @@ int __fastcall PM_DoGotHit(int pnum) {
 }
 
 //----- (0044ECBC) --------------------------------------------------------
-void __fastcall ArmorDur(int pnum) {
+void __fastcall ArmorDur(int pnum)
+{
   int v1; // ebp
   // int v2; // ST04_4
   PlayerStruct *v3; // esi
@@ -3580,13 +3976,16 @@ void __fastcall ArmorDur(int pnum) {
   unsigned char v9; // dl
 
   v1 = pnum;
-  if (pnum == myplr) {
-    if ((unsigned int)pnum >= 4) {
+  if (pnum == myplr)
+  {
+    if ((unsigned int)pnum >= 4)
+    {
       TermMsg("ArmorDur: illegal player %d", pnum);
       // pnum = v2;
     }
     v3 = &plr[v1];
-    if (v3->InvBody[6]._itype != -1 || v3->InvBody[0]._itype != -1) {
+    if (v3->InvBody[6]._itype != -1 || v3->InvBody[0]._itype != -1)
+    {
       _LOBYTE(pnum) = 8;
       v4 = random(pnum, 3);
       v5 = v3->InvBody[6]._itype;
@@ -3594,7 +3993,8 @@ void __fastcall ArmorDur(int pnum) {
         goto LABEL_23;
       if (v3->InvBody[0]._itype == -1)
         v4 = 1;
-      if (v5 == -1) {
+      if (v5 == -1)
+      {
       LABEL_23:
         if (v3->InvBody[0]._itype != -1)
           v4 = 0;
@@ -3604,10 +4004,12 @@ void __fastcall ArmorDur(int pnum) {
       else
         v6 = (int)v3->InvBody;
       v7 = *(_DWORD *)(v6 + 236);
-      if (v7 != 255) {
+      if (v7 != 255)
+      {
         v8 = v7 - 1;
         *(_DWORD *)(v6 + 236) = v8;
-        if (!v8) {
+        if (!v8)
+        {
           if (v4)
             v9 = 6;
           else
@@ -3622,7 +4024,8 @@ void __fastcall ArmorDur(int pnum) {
 }
 
 //----- (0044ED7B) --------------------------------------------------------
-int __fastcall PM_DoDeath(int pnum) {
+int __fastcall PM_DoDeath(int pnum)
+{
   int v1; // edi
   int v2; // esi
   int v3; // ecx
@@ -3633,8 +4036,10 @@ int __fastcall PM_DoDeath(int pnum) {
   if ((unsigned int)pnum >= 4)
     TermMsg("PM_DoDeath: illegal player %d", pnum);
   v2 = v1;
-  if (plr[v1]._pVar8 >= 2 * plr[v1]._pDFrames) {
-    if (deathdelay > 1 && v1 == myplr && --deathdelay == 1) {
+  if (plr[v1]._pVar8 >= 2 * plr[v1]._pDFrames)
+  {
+    if (deathdelay > 1 && v1 == myplr && --deathdelay == 1)
+    {
       deathflag = 1;
       if (gbMaxPlayers == 1)
         gamemenu_previous();
@@ -3654,7 +4059,8 @@ int __fastcall PM_DoDeath(int pnum) {
 // 69B7C4: using guessed type int deathdelay;
 
 //----- (0044EE22) --------------------------------------------------------
-void __fastcall CheckNewPath(int pnum) {
+void __fastcall CheckNewPath(int pnum)
+{
   int v1;         // edi
   int v2;         // ebx
   int v3;         // eax
@@ -3772,13 +4178,16 @@ void __fastcall CheckNewPath(int pnum) {
   if (plr[v2].destAction == 21)
     MakePlrPath(v1, plr[plr[v2].destParam1]._px, plr[plr[v2].destParam1]._py,
                 0);
-  if (plr[v2].walkpath[0] == -1) {
+  if (plr[v2].walkpath[0] == -1)
+  {
     v18 = plr[v2].destAction;
     if (v18 == -1)
       return;
     v19 = plr[v2]._pmode;
-    if (v19 == PM_STAND) {
-      switch (v18) {
+    if (v19 == PM_STAND)
+    {
+      switch (v18)
+      {
       case 9:
         v20 = GetDirection(plr[v2].WorldX, plr[v2].WorldY, plr[v2].destParam1,
                            plr[v2].destParam2);
@@ -3801,7 +4210,8 @@ void __fastcall CheckNewPath(int pnum) {
         v47 = v46;
         v102 = abs(plr[v2].WorldX - object[v47]._ox);
         v48 = abs(plr[v2].WorldY - object[v47]._oy);
-        if (v48 > 1) {
+        if (v48 > 1)
+        {
           v49 = object[v47]._oy;
           if (dObject[object[v47]._ox - 1][v49 - 1] ==
               -1 - arglista) /* dungeon[39][112 * object[v47]._ox + 39 + v49]
@@ -3819,7 +4229,8 @@ void __fastcall CheckNewPath(int pnum) {
         v47 = v50;
         v103 = abs(plr[v2].WorldX - object[v47]._ox);
         v51 = abs(plr[v2].WorldY - object[v47]._oy);
-        if (v51 > 1) {
+        if (v51 > 1)
+        {
           v52 = object[v47]._oy;
           if (dObject[object[v47]._ox - 1][v52 - 1] ==
               -1 - arglista) /* dungeon[39][112 * object[v47]._ox + 39 + v52]
@@ -3828,7 +4239,8 @@ void __fastcall CheckNewPath(int pnum) {
         }
         if (v103 > 1 || v51 > 1)
           break;
-        if (_LOBYTE(object[v47]._oBreak) == 1) {
+        if (_LOBYTE(object[v47]._oBreak) == 1)
+        {
         LABEL_80:
           v20 = GetDirection(plr[v2].WorldX, plr[v2].WorldY, object[v47]._ox,
                              object[v47]._oy);
@@ -3836,26 +4248,31 @@ void __fastcall CheckNewPath(int pnum) {
           v29 = p;
         LABEL_82:
           StartAttack(v29, v20);
-        } else {
+        }
+        else
+        {
           TryDisarm(p, arglista);
         LABEL_73:
           OperateObject(p, arglista, 0);
         }
         break;
       case 15:
-        if (v1 == myplr) {
+        if (v1 == myplr)
+        {
           v53 = plr[v2].destParam1;
           v54 = plr[v2].destParam1;
           v55 = abs(plr[v2].WorldX - item[v54]._ix);
           v56 = abs(plr[v2].WorldY - item[v54]._iy);
-          if (v55 <= 1 && v56 <= 1 && pcurs == 1 && !item[v54]._iRequest) {
+          if (v55 <= 1 && v56 <= 1 && pcurs == 1 && !item[v54]._iRequest)
+          {
             NetSendCmdGItem(1u, CMD_REQUESTGITEM, myplr, myplr, v53);
             item[v54]._iRequest = 1;
           }
         }
         break;
       case 16:
-        if (v1 == myplr) {
+        if (v1 == myplr)
+        {
           v57 = plr[v2].destParam1;
           v58 = plr[v2].destParam1;
           v59 = abs(plr[v2].WorldX - item[v58]._ix);
@@ -3946,8 +4363,10 @@ void __fastcall CheckNewPath(int pnum) {
       FixPlayerLocation(p, plr[v2]._pdir);
       goto LABEL_143;
     }
-    if (v19 == 4 && plr[v2]._pAnimFrame > plr[myplr]._pAFNum) {
-      switch (v18) {
+    if (v19 == 4 && plr[v2]._pAnimFrame > plr[myplr]._pAFNum)
+    {
+      switch (v18)
+      {
       case 9:
         v61 = GetDirection(plr[v2]._px, plr[v2]._py, plr[v2].destParam1,
                            plr[v2].destParam2);
@@ -3983,19 +4402,24 @@ void __fastcall CheckNewPath(int pnum) {
         v70 = v69;
         v104 = abs(plr[v2].WorldX - object[v70]._ox);
         v71 = abs(plr[v2].WorldY - object[v70]._oy);
-        if (v71 > 1) {
+        if (v71 > 1)
+        {
           v72 = object[v70]._oy;
           if (dObject[object[v70]._ox - 1][v72 - 1] ==
               -1 - arglistb) /* dungeon[39][112 * object[v70]._ox + 39 + v72]
                                 check */
             v71 = abs(plr[v2].WorldY - v72 + 1);
         }
-        if (v104 <= 1 && v71 <= 1) {
-          if (_LOBYTE(object[v70]._oBreak) == 1) {
+        if (v104 <= 1 && v71 <= 1)
+        {
+          if (_LOBYTE(object[v70]._oBreak) == 1)
+          {
             v73 = GetDirection(plr[v2].WorldX, plr[v2].WorldY, object[v70]._ox,
                                object[v70]._oy);
             StartAttack(p, v73);
-          } else {
+          }
+          else
+          {
             OperateObject(p, arglistb, 0);
           }
         }
@@ -4003,9 +4427,11 @@ void __fastcall CheckNewPath(int pnum) {
       }
     }
     if (plr[v2]._pmode == PM_RATTACK &&
-        plr[v2]._pAnimFrame > plr[myplr]._pAFNum) {
+        plr[v2]._pAnimFrame > plr[myplr]._pAFNum)
+    {
       v74 = plr[v2].destAction;
-      switch (v74) {
+      switch (v74)
+      {
       case 10:
         v75 = &plr[v2].destParam2;
         v76 = &plr[v2].destParam1;
@@ -4026,9 +4452,11 @@ void __fastcall CheckNewPath(int pnum) {
         goto LABEL_133;
       }
     }
-    if (plr[v2]._pmode == PM_SPELL && plr[v2]._pAnimFrame > plr[v2]._pSFNum) {
+    if (plr[v2]._pmode == PM_SPELL && plr[v2]._pAnimFrame > plr[v2]._pSFNum)
+    {
       v80 = plr[v2].destAction;
-      switch (v80) {
+      switch (v80)
+      {
       case 12:
         v81 = &plr[v2].destParam2;
         v82 = &plr[v2].destParam1;
@@ -4052,22 +4480,28 @@ void __fastcall CheckNewPath(int pnum) {
     }
     return;
   }
-  if (plr[v2]._pmode == PM_STAND) {
-    if (v1 == myplr) {
+  if (plr[v2]._pmode == PM_STAND)
+  {
+    if (v1 == myplr)
+    {
       v3 = plr[v2].destAction;
-      if (v3 == 20 || v3 == 21) {
+      if (v3 == 20 || v3 == 21)
+      {
         v4 = plr[v2].destParam1;
         v5 = v3 == 20;
         v6 = plr[v2]._px;
         arglist = plr[v2].destParam1;
-        if (v5) {
+        if (v5)
+        {
           v7 = v4;
           v101 = abs(v6 - monster[v4]._mfutx);
           v8 = abs(plr[v2]._py - monster[v7]._mfuty);
           v9 = plr[v2]._py;
           v94 = monster[v7]._mfuty;
           v91 = monster[v7]._mfutx;
-        } else {
+        }
+        else
+        {
           v10 = v4;
           v101 = abs(v6 - plr[v4]._px);
           v8 = abs(plr[v2]._py - plr[v10]._py);
@@ -4077,7 +4511,8 @@ void __fastcall CheckNewPath(int pnum) {
         }
         v97 = v8;
         v11 = GetDirection(plr[v2]._px, v9, v91, v94);
-        if (v101 < 2 && v97 < 2) {
+        if (v101 < 2 && v97 < 2)
+        {
           ClrPlrPath(p);
           v12 = monster[arglist].mtalkmsg;
           if (v12 && v12 != QUEST_VILE14)
@@ -4088,17 +4523,21 @@ void __fastcall CheckNewPath(int pnum) {
         }
       }
     }
-    if (currlevel) {
+    if (currlevel)
+    {
       v13 = SLOBYTE(plr[v2]._pClass);
       v14 = PWVel[v13][0];
       v15 = PWVel[v13][1];
       v16 = PWVel[v13][2];
-    } else {
+    }
+    else
+    {
       v14 = 2048;
       v15 = 1024;
       v16 = 512;
     }
-    switch (plr[v2].walkpath[0]) {
+    switch (plr[v2].walkpath[0])
+    {
     case WALK_NE:
       v95 = 2;
       v92 = DIR_NE;
@@ -4150,7 +4589,8 @@ void __fastcall CheckNewPath(int pnum) {
     }
     qmemcpy(plr[v2].walkpath, &plr[v2].walkpath[1], 0x18u);
     plr[v2].walkpath[24] = -1;
-    if (plr[v2]._pmode == PM_STAND) {
+    if (plr[v2]._pmode == PM_STAND)
+    {
       StartStand(p, plr[v2]._pdir);
     LABEL_143:
       plr[v2].destAction = -1;
@@ -4160,7 +4600,8 @@ void __fastcall CheckNewPath(int pnum) {
 }
 
 //----- (0044F9BA) --------------------------------------------------------
-bool __fastcall PlrDeathModeOK(int pnum) {
+bool __fastcall PlrDeathModeOK(int pnum)
+{
   int v1;      // esi
   bool result; // al
   int v3;      // esi
@@ -4180,7 +4621,8 @@ bool __fastcall PlrDeathModeOK(int pnum) {
 }
 
 //----- (0044F9FC) --------------------------------------------------------
-void __cdecl ValidatePlayer() {
+void __cdecl ValidatePlayer()
+{
   int v0;         // edi
   int v1;         // esi
   char *v2;       // eax
@@ -4209,10 +4651,13 @@ void __cdecl ValidatePlayer() {
   if (plr[v1]._pExperience > v3)
     plr[v1]._pExperience = v3;
   v4 = 0;
-  if (plr[v1]._pNumInv > 0) {
+  if (plr[v1]._pNumInv > 0)
+  {
     v5 = &plr[v1].InvList[0]._ivalue;
-    do {
-      if (*(v5 - 47) == 11) {
+    do
+    {
+      if (*(v5 - 47) == 11)
+      {
         if (*v5 > 5000)
           *v5 = 5000;
         v4 += *v5;
@@ -4238,8 +4683,10 @@ void __cdecl ValidatePlayer() {
     plr[v1]._pBaseVit = v10;
   v11 = &spelldata[1].sBookLvl;
   v12 = 1;
-  do {
-    if (*v11 != -1) {
+  do
+  {
+    if (*v11 != -1)
+    {
       v14 |= (__int64)1 << ((unsigned char)v12 - 1);
       v13 = &plr[v1]._pSplLvl[v12];
       if (*v13 > 15)
@@ -4252,14 +4699,14 @@ void __cdecl ValidatePlayer() {
 }
 
 //----- (0044FB32) --------------------------------------------------------
-void __cdecl ProcessPlayers() {
-  int v0;            // eax
-  int v1;            // eax
-  unsigned char *v2; // ecx
-  char v3;           // al
-  int v4;            // ebp
-  int *v5;           // esi
-  int v6;            // eax
+void __cdecl ProcessPlayers()
+{
+  int player_id;
+  unsigned char *player_level_load; // ecx
+  char player_level_char;           // al
+  int player_index;                 // ebp
+  int *v5;                          // esi
+  int v6;                           // eax
   // int v7; // eax
   int v8;    // eax
   int v9;    // eax
@@ -4269,41 +4716,47 @@ void __cdecl ProcessPlayers() {
   char *v13; // eax
   char *v14; // eax
 
-  v0 = myplr;
-  if ((unsigned int)myplr >= 4) {
+  player_id = myplr;
+  if ((unsigned int)myplr >= 4)
+  {
     TermMsg("ProcessPlayers: illegal player %d", myplr);
-    v0 = myplr;
+    player_id = myplr;
   }
-  v1 = v0;
-  v2 = &plr[v1].pLvlLoad;
-  v3 = plr[v1].pLvlLoad;
-  if (v3)
-    *v2 = v3 - 1;
-  v4 = 0;
+  player_level_load = &plr[player_id].pLvlLoad;
+  player_level_char = plr[player_id].pLvlLoad;
+  if (player_level_char)
+    *player_level_load = player_level_char - 1;
+  player_index = 0;
   if (sfxdelay > 0 && !--sfxdelay)
     PlaySFX(sfxdnum);
   ValidatePlayer();
   v5 = &plr[0]._pHitPoints;
-  do {
+  do
+  {
     v6 = (int)(v5 - 89);
     if (*((_BYTE *)v5 - 379) && currlevel == *(_DWORD *)v6 &&
-        (v4 == myplr || !*(_BYTE *)(v6 + 267))) {
-      CheckCheatStats(v4);
+        (player_index == myplr || !*(_BYTE *)(v6 + 267)))
+    {
+      CheckCheatStats(player_index);
       //_LOBYTE(v7) = PlrDeathModeOK(v4);
-      if (!PlrDeathModeOK(v4) && (signed int)(*v5 & 0xFFFFFFC0) <= 0)
-        SyncPlrKill(v4, -1);
-      if (v4 == myplr) {
-        if (v5[5294] & 0x40 && currlevel) {
+      if (!PlrDeathModeOK(player_index) && (signed int)(*v5 & 0xFFFFFFC0) <= 0)
+        SyncPlrKill(player_index, -1);
+      if (player_index == myplr)
+      {
+        if (v5[5294] & 0x40 && currlevel)
+        {
           *v5 -= 4;
           v8 = *v5;
           *(v5 - 2) -= 4;
           if ((signed int)(v8 & 0xFFFFFFC0) <= 0)
-            SyncPlrKill(v4, 0);
+            SyncPlrKill(player_index, 0);
           drawhpflag = 1;
         }
-        if (*((_BYTE *)v5 + 21179) & 8) {
+        if (*((_BYTE *)v5 + 21179) & 8)
+        {
           v9 = v5[3];
-          if (v9 > 0) {
+          if (v9 > 0)
+          {
             v10 = v9 - v5[5];
             v5[5] = 0;
             drawmanaflag = 1;
@@ -4312,51 +4765,54 @@ void __cdecl ProcessPlayers() {
         }
       }
       v11 = 0;
-      do {
-        switch (*(v5 - 102)) {
+      do
+      {
+        switch (*(v5 - 102))
+        {
         case PM_STAND:
-          v12 = PM_DoStand(v4);
+          v12 = PM_DoStand(player_index);
           goto LABEL_38;
         case PM_WALK:
-          v12 = PM_DoWalk(v4);
+          v12 = PM_DoWalk(player_index);
           goto LABEL_38;
         case PM_WALK2:
-          v12 = PM_DoWalk2(v4);
+          v12 = PM_DoWalk2(player_index);
           goto LABEL_38;
         case PM_WALK3:
-          v12 = PM_DoWalk3(v4);
+          v12 = PM_DoWalk3(player_index);
           goto LABEL_38;
         case PM_ATTACK:
-          v12 = PM_DoAttack(v4);
+          v12 = PM_DoAttack(player_index);
           goto LABEL_38;
         case PM_RATTACK:
-          v12 = PM_DoRangeAttack(v4);
+          v12 = PM_DoRangeAttack(player_index);
           goto LABEL_38;
         case PM_BLOCK:
-          v12 = PM_DoBlock(v4);
+          v12 = PM_DoBlock(player_index);
           goto LABEL_38;
         case PM_GOTHIT:
-          v12 = PM_DoGotHit(v4);
+          v12 = PM_DoGotHit(player_index);
           goto LABEL_38;
         case PM_DEATH:
-          v12 = PM_DoDeath(v4);
+          v12 = PM_DoDeath(player_index);
           goto LABEL_38;
         case PM_SPELL:
-          v12 = PM_DoSpell(v4);
+          v12 = PM_DoSpell(player_index);
           goto LABEL_38;
         case PM_NEWLVL:
-          v12 = PM_DoStand(v4);
+          v12 = PM_DoStand(player_index);
         LABEL_38:
           v11 = v12;
           break;
         default:
           break;
         }
-        CheckNewPath(v4);
+        CheckNewPath(player_index);
       } while (v11);
       v13 = (char *)(v5 - 69);
       ++*(_DWORD *)v13;
-      if (*(v5 - 69) > *(v5 - 70)) {
+      if (*(v5 - 69) > *(v5 - 70))
+      {
         *(_DWORD *)v13 = 0;
         v14 = (char *)(v5 - 67);
         ++*(_DWORD *)v14;
@@ -4365,13 +4821,14 @@ void __cdecl ProcessPlayers() {
       }
     }
     v5 += 5430;
-    ++v4;
+    ++player_index;
   } while ((signed int)v5 < (signed int)&plr[4]._pHitPoints);
 }
 // 52A554: using guessed type int sfxdelay;
 
 //----- (0044FD31) --------------------------------------------------------
-void __fastcall CheckCheatStats(int pnum) {
+void __fastcall CheckCheatStats(int pnum)
+{
   int v1;  // ecx
   int *v2; // ecx
 
@@ -4392,7 +4849,8 @@ void __fastcall CheckCheatStats(int pnum) {
 }
 
 //----- (0044FD8A) --------------------------------------------------------
-void __fastcall ClrPlrPath(int pnum) {
+void __fastcall ClrPlrPath(int pnum)
+{
   int v1; // esi
 
   v1 = pnum;
@@ -4402,7 +4860,8 @@ void __fastcall ClrPlrPath(int pnum) {
 }
 
 //----- (0044FDBA) --------------------------------------------------------
-bool __fastcall PosOkPlayer(int pnum, int px, int py) {
+bool __fastcall PosOkPlayer(int pnum, int px, int py)
+{
   char v8;         // cl
   unsigned int v9; // ecx
   int v10;         // esi
@@ -4411,11 +4870,14 @@ bool __fastcall PosOkPlayer(int pnum, int px, int py) {
   bool result;     // eax
 
   result = 0;
-  if (px >= 0 && px < 112 && py >= 0 && py < 112 && !SolidLoc(px, py)) {
-    if (dPiece[px][py]) {
+  if (px >= 0 && px < 112 && py >= 0 && py < 112 && !SolidLoc(px, py))
+  {
+    if (dPiece[px][py])
+    {
       v8 = dPlayer[px][py];
       if (!v8 || (v8 <= 0 ? (v9 = -1 - v8) : (v9 = v8 - 1),
-                  v9 == pnum || v9 >= 4 || !plr[v9]._pHitPoints)) {
+                  v9 == pnum || v9 >= 4 || !plr[v9]._pHitPoints))
+      {
         v10 = dMonster[px][py];
         if (!v10 || currlevel && v10 > 0 &&
                         (signed int)(monster[v10 - 1]._mhitpoints &
@@ -4433,7 +4895,8 @@ bool __fastcall PosOkPlayer(int pnum, int px, int py) {
 }
 
 //----- (0044FE9E) --------------------------------------------------------
-void __fastcall MakePlrPath(int pnum, int xx, int yy, unsigned char endspace) {
+void __fastcall MakePlrPath(int pnum, int xx, int yy, unsigned char endspace)
+{
   int v4;  // esi
   int v5;  // ebx
   int v6;  // esi
@@ -4453,12 +4916,16 @@ void __fastcall MakePlrPath(int pnum, int xx, int yy, unsigned char endspace) {
   v8 = plr[v6]._px;
   plr[v6]._ptargx = v5;
   plr[v6]._ptargy = yy;
-  if (v8 != v5 || plr[v6]._py != yy) {
+  if (v8 != v5 || plr[v6]._py != yy)
+  {
     v9 = FindPath(PosOkPlayer, a2, v8, plr[v6]._py, v5, yy, plr[v6].walkpath);
-    if (v9) {
-      if (!endspace) {
+    if (v9)
+    {
+      if (!endspace)
+      {
         v10 = *((char *)&plr[v6]._pmode + v9-- + 3);
-        switch (v10) {
+        switch (v10)
+        {
         case PM_WALK:
           goto LABEL_12;
         case PM_WALK2:
@@ -4497,7 +4964,8 @@ void __fastcall MakePlrPath(int pnum, int xx, int yy, unsigned char endspace) {
 }
 
 //----- (0044FF6F) --------------------------------------------------------
-void __fastcall CheckPlrSpell() {
+void __fastcall CheckPlrSpell()
+{
   int v0;   // ecx
   int v1;   // eax
   int v2;   // edx
@@ -4516,16 +4984,20 @@ void __fastcall CheckPlrSpell() {
   char v15; // al
 
   v0 = myplr;
-  if ((unsigned int)myplr >= 4) {
+  if ((unsigned int)myplr >= 4)
+  {
     TermMsg("CheckPlrSpell: illegal player %d", myplr);
     v0 = myplr;
   }
   v1 = 21720 * v0;
   v2 = plr[v0]._pRSpell;
-  if (v2 != -1) {
-    if (!leveltype && !*(_DWORD *)&spelldata[v2].sTownSpell) {
+  if (v2 != -1)
+  {
+    if (!leveltype && !*(_DWORD *)&spelldata[v2].sTownSpell)
+    {
       v5 = *((_BYTE *)&plr[0]._pClass + v1);
-      switch (v5) {
+      switch (v5)
+      {
       case UI_WARRIOR:
         v4 = PS_WARR27;
         goto LABEL_53;
@@ -4540,24 +5012,32 @@ void __fastcall CheckPlrSpell() {
     }
     if (pcurs != CURSOR_HAND || MouseY >= 352 ||
         (chrflag && MouseX < 320 || invflag && MouseX > 320) && v2 != 2 &&
-            v2 != 5 && v2 != 26 && v2 != 9 && v2 != 27) {
+            v2 != 5 && v2 != 26 && v2 != 9 && v2 != 27)
+    {
       return;
     }
     _LOBYTE(v1) = *((_BYTE *)&plr[0]._pRSplType + v1);
     if ((v1 & 0x80u) != 0)
       goto LABEL_46;
-    if ((char)v1 <= 1) {
+    if ((char)v1 <= 1)
+    {
       v6 = CheckSpell(v0, v2, v1, 0);
-    } else {
-      if ((_BYTE)v1 != 2) {
-        if ((_BYTE)v1 == 3) {
+    }
+    else
+    {
+      if ((_BYTE)v1 != 2)
+      {
+        if ((_BYTE)v1 == 3)
+        {
           v6 = UseStaff();
           goto LABEL_36;
         }
       LABEL_46:
-        if (_LOBYTE(plr[v0]._pRSplType) == 1) {
+        if (_LOBYTE(plr[v0]._pRSplType) == 1)
+        {
           v15 = plr[v0]._pClass;
-          switch (v15) {
+          switch (v15)
+          {
           case UI_WARRIOR:
             v4 = PS_WARR35;
             goto LABEL_53;
@@ -4575,26 +5055,35 @@ void __fastcall CheckPlrSpell() {
     }
   LABEL_36:
     v0 = myplr;
-    if (v6) {
+    if (v6)
+    {
       v7 = plr[myplr]._pRSpell;
-      if (v7 == 6) {
+      if (v7 == 6)
+      {
         v8 = GetDirection(plr[myplr].WorldX, plr[myplr].WorldY, cursmx, cursmy);
         v9 = GetSpellLevel(myplr, plr[myplr]._pRSpell);
         v10 = 21720 * myplr;
         _LOWORD(v10) = plr[myplr]._pRSpell;
         NetSendCmdLocParam3(1u, CMD_SPELLXYD, cursmx, cursmy, v10, v8, v9);
-      } else if (pcursmonst == -1) {
-        if (pcursplr == -1) {
+      }
+      else if (pcursmonst == -1)
+      {
+        if (pcursplr == -1)
+        {
           v13 = GetSpellLevel(myplr, v7);
           v14 = 21720 * myplr;
           _LOWORD(v14) = plr[myplr]._pRSpell;
           NetSendCmdLocParam2(1u, CMD_SPELLXY, cursmx, cursmy, v14, v13);
-        } else {
+        }
+        else
+        {
           v12 = GetSpellLevel(myplr, v7);
           NetSendCmdParam3(1u, CMD_SPELLPID, pcursplr, plr[myplr]._pRSpell,
                            v12);
         }
-      } else {
+      }
+      else
+      {
         v11 = GetSpellLevel(myplr, v7);
         NetSendCmdParam3(1u, CMD_SPELLID, pcursmonst, plr[myplr]._pRSpell, v11);
       }
@@ -4603,7 +5092,8 @@ void __fastcall CheckPlrSpell() {
     goto LABEL_46;
   }
   v3 = *((_BYTE *)&plr[0]._pClass + v1);
-  switch (v3) {
+  switch (v3)
+  {
   case UI_WARRIOR:
     v4 = PS_WARR34;
   LABEL_53:
@@ -4621,7 +5111,8 @@ void __fastcall CheckPlrSpell() {
 // 5BB1ED: using guessed type char leveltype;
 
 //----- (00450217) --------------------------------------------------------
-void __fastcall SyncPlrAnim(int pnum) {
+void __fastcall SyncPlrAnim(int pnum)
+{
   int v1; // esi
   int v2; // eax
   int v3; // ecx
@@ -4633,7 +5124,8 @@ void __fastcall SyncPlrAnim(int pnum) {
     TermMsg("SyncPlrAnim: illegal player %d", pnum);
   v2 = v1;
   v3 = plr[v1]._pdir;
-  switch (plr[v1]._pmode) {
+  switch (plr[v1]._pmode)
+  {
   case PM_STAND:
   case PM_NEWLVL:
   case PM_QUIT:
@@ -4666,7 +5158,8 @@ void __fastcall SyncPlrAnim(int pnum) {
       plr[v2]._pAnimData = plr[0]._pFAnim[v3 + 5430 * v1];
     if (v5 == STYPE_LIGHTNING)
       plr[v2]._pAnimData = plr[0]._pLAnim[v3 + 5430 * v1];
-    if (v5 == STYPE_MAGIC) {
+    if (v5 == STYPE_MAGIC)
+    {
       v4 = plr[0]._pTAnim[v3 + 5430 * v1];
     LABEL_19:
       plr[v2]._pAnimData = v4;
@@ -4679,7 +5172,8 @@ void __fastcall SyncPlrAnim(int pnum) {
 }
 
 //----- (0045036D) --------------------------------------------------------
-void __fastcall SyncInitPlrPos(int pnum) {
+void __fastcall SyncInitPlrPos(int pnum)
+{
   int v1;          // esi
   bool v2;         // zf
   unsigned int v3; // eax
@@ -4699,9 +5193,11 @@ void __fastcall SyncInitPlrPos(int pnum) {
   v2 = gbMaxPlayers == 1;
   plr[v1]._ptargx = plr[pnum].WorldX;
   plr[v1]._ptargy = plr[pnum].WorldY;
-  if (!v2 && plr[v1].plrlevel == currlevel) {
+  if (!v2 && plr[v1].plrlevel == currlevel)
+  {
     v3 = 0;
-    for (i = 0;; v3 = i) {
+    for (i = 0;; v3 = i)
+    {
       v4 = plr[v1].WorldX + *(int *)((char *)plrxoff2 + v3);
       v5 = plr[v1].WorldY + *(int *)((char *)plryoff2 + v3);
       if (PosOkPlayer(p, v4, v5))
@@ -4710,19 +5206,23 @@ void __fastcall SyncInitPlrPos(int pnum) {
       if (i >= 0x20)
         break;
     }
-    if (!PosOkPlayer(p, v4, v5)) {
+    if (!PosOkPlayer(p, v4, v5))
+    {
       v11 = 0;
       v6 = -1;
       v13 = 1;
       v7 = -1;
-      do {
+      do
+      {
         if (v11)
           break;
         v9 = v6;
-        while (v6 <= v13 && !v11) {
+        while (v6 <= v13 && !v11)
+        {
           v5 = v9 + plr[v1].WorldY;
           v10 = v7;
-          do {
+          do
+          {
             if (v11)
               break;
             v4 = v10 + plr[v1].WorldX;
@@ -4741,7 +5241,8 @@ void __fastcall SyncInitPlrPos(int pnum) {
     v2 = p == myplr;
     plr[v1].WorldY = v5;
     dPlayer[v4][v5] = p + 1;
-    if (v2) {
+    if (v2)
+    {
       plr[v1]._px = v4;
       plr[v1]._py = v5;
       plr[v1]._ptargx = v4;
@@ -4754,7 +5255,8 @@ void __fastcall SyncInitPlrPos(int pnum) {
 // 679660: using guessed type char gbMaxPlayers;
 
 //----- (004504E4) --------------------------------------------------------
-void __fastcall SyncInitPlr(int pnum) {
+void __fastcall SyncInitPlr(int pnum)
+{
   int v1; // esi
 
   v1 = pnum;
@@ -4765,7 +5267,8 @@ void __fastcall SyncInitPlr(int pnum) {
 }
 
 //----- (00450508) --------------------------------------------------------
-void __fastcall CheckStats(int pnum) {
+void __fastcall CheckStats(int pnum)
+{
   int v1;        // esi
   int v2;        // eax
   char v3;       // cl
@@ -4786,61 +5289,84 @@ void __fastcall CheckStats(int pnum) {
     TermMsg("CheckStats: illegal player %d", pnum);
   v2 = v1;
   v3 = plr[v1]._pClass;
-  if (v3) {
-    if (v3 == 1) {
+  if (v3)
+  {
+    if (v3 == 1)
+    {
       v4 = 1;
-    } else if (v3 == 2) {
+    }
+    else if (v3 == 2)
+    {
       v4 = 2;
     }
     /*else
     {
             v4 = v14;
     }*/
-  } else {
+  }
+  else
+  {
     v4 = 0;
   }
   v5 = 0;
-  do {
-    if (v5) {
-      switch (v5) {
+  do
+  {
+    if (v5)
+    {
+      switch (v5)
+      {
       case ATTRIB_MAG:
         v10 = plr[v2]._pBaseMag;
         v11 = MaxStats[v4][1];
-        if (v10 <= v11) {
+        if (v10 <= v11)
+        {
           if (v10 < 0)
             plr[v2]._pBaseMag = 0;
-        } else {
+        }
+        else
+        {
           plr[v2]._pBaseMag = v11;
         }
         break;
       case ATTRIB_DEX:
         v8 = plr[v2]._pBaseDex;
         v9 = MaxStats[v4][2];
-        if (v8 <= v9) {
+        if (v8 <= v9)
+        {
           if (v8 < 0)
             plr[v2]._pBaseDex = 0;
-        } else {
+        }
+        else
+        {
           plr[v2]._pBaseDex = v9;
         }
         break;
       case ATTRIB_VIT:
         v6 = plr[v2]._pBaseVit;
         v7 = MaxStats[v4][3];
-        if (v6 <= v7) {
+        if (v6 <= v7)
+        {
           if (v6 < 0)
             plr[v2]._pBaseVit = 0;
-        } else {
+        }
+        else
+        {
           plr[v2]._pBaseVit = v7;
         }
         break;
       }
-    } else {
+    }
+    else
+    {
       v12 = plr[v2]._pBaseStr;
       v13 = MaxStats[v4][0];
-      if (v12 <= v13) {
+      if (v12 <= v13)
+      {
         if (v12 < 0)
           plr[v2]._pBaseStr = 0;
-      } else {
+      }
+      else
+      {
         plr[v2]._pBaseStr = v13;
       }
     }
@@ -4849,7 +5375,8 @@ void __fastcall CheckStats(int pnum) {
 }
 
 //----- (00450621) --------------------------------------------------------
-void __fastcall ModifyPlrStr(int pnum, int l) {
+void __fastcall ModifyPlrStr(int pnum, int l)
+{
   int v2;         // esi
   int v3;         // edi
   int v4;         // esi
@@ -4875,10 +5402,13 @@ void __fastcall ModifyPlrStr(int pnum, int l) {
   plr[v4]._pBaseStr = v3 + v6;
   plr[v4]._pStrength += v3;
   v8 = plr[v4]._pStrength;
-  if (v5 == 1) {
+  if (v5 == 1)
+  {
     v9 = plr[v4]._pLevel * (v8 + plr[v4]._pDexterity);
     v10 = 200;
-  } else {
+  }
+  else
+  {
     v9 = v8 * plr[v4]._pLevel;
     v10 = 100;
   }
@@ -4889,7 +5419,8 @@ void __fastcall ModifyPlrStr(int pnum, int l) {
 }
 
 //----- (004506DB) --------------------------------------------------------
-void __fastcall ModifyPlrMag(int pnum, int l) {
+void __fastcall ModifyPlrMag(int pnum, int l)
+{
   int v2;  // esi
   int v3;  // edi
   int v4;  // esi
@@ -4919,7 +5450,8 @@ void __fastcall ModifyPlrMag(int pnum, int l) {
     v9 *= 2;
   plr[v4]._pMaxManaBase += v9;
   plr[v4]._pMaxMana += v9;
-  if (!(plr[v4]._pIFlags & 0x8000000)) {
+  if (!(plr[v4]._pIFlags & 0x8000000))
+  {
     plr[v4]._pManaBase += v9;
     plr[v4]._pMana += v9;
   }
@@ -4929,7 +5461,8 @@ void __fastcall ModifyPlrMag(int pnum, int l) {
 }
 
 //----- (00450788) --------------------------------------------------------
-void __fastcall ModifyPlrDex(int pnum, int l) {
+void __fastcall ModifyPlrDex(int pnum, int l)
+{
   int v2; // ebx
   int v3; // edi
   int v4; // esi
@@ -4956,7 +5489,8 @@ void __fastcall ModifyPlrDex(int pnum, int l) {
 }
 
 //----- (0045082C) --------------------------------------------------------
-void __fastcall ModifyPlrVit(int pnum, int l) {
+void __fastcall ModifyPlrVit(int pnum, int l)
+{
   int v2;  // esi
   int v3;  // edi
   int v4;  // esi
@@ -4994,28 +5528,25 @@ void __fastcall ModifyPlrVit(int pnum, int l) {
 }
 
 //----- (004508CF) --------------------------------------------------------
-void __fastcall SetPlayerHitPoints(int pnum, int newhp) {
-  int v2;  // esi
-  int v3;  // edi
-  int v4;  // eax
-  int v5;  // ecx
-  bool v6; // zf
+void __fastcall SetPlayerHitPoints(int player_id, int newhp)
+{
+  int max_base_hp;      // ecx
+  bool is_local_player; // zf
 
-  v2 = pnum;
-  v3 = newhp;
-  if ((unsigned int)pnum >= 4)
-    TermMsg("SetPlayerHitPoints: illegal player %d", pnum);
-  v4 = v2;
-  v5 = plr[v2]._pMaxHPBase;
-  plr[v4]._pHitPoints = v3;
-  v6 = v2 == myplr;
-  plr[v4]._pHPBase = v3 + v5 - plr[v2]._pMaxHP;
-  if (v6)
+  player_id = pnum;
+  if ((unsigned int)player_id >= 4)
+    TermMsg("SetPlayerHitPoints: illegal player %d", player_id);
+  max_base_hp = plr[player_id]._pMaxHPBase;
+  plr[player_id]._pHitPoints = newhp;
+  is_local_player = player_id == myplr;
+  plr[player_id]._pHPBase = newhp + max_base_hp - plr[player_id]._pMaxHP;
+  if (is_local_player)
     drawhpflag = 1;
 }
 
 //----- (0045091E) --------------------------------------------------------
-void __fastcall SetPlrStr(int pnum, int v) {
+void __fastcall SetPlrStr(int pnum, int v)
+{
   int v2;        // edi
   int v3;        // ebx
   int v4;        // esi
@@ -5029,10 +5560,13 @@ void __fastcall SetPlrStr(int pnum, int v) {
   v4 = v2;
   plr[v2]._pBaseStr = v3;
   CalcPlrInv(v2, 1u);
-  if (_LOBYTE(plr[v2]._pClass) == 1) {
+  if (_LOBYTE(plr[v2]._pClass) == 1)
+  {
     v5 = plr[v4]._pLevel * (plr[v4]._pStrength + plr[v4]._pDexterity);
     v6 = 200;
-  } else {
+  }
+  else
+  {
     v5 = plr[v4]._pStrength * plr[v4]._pLevel;
     v6 = 100;
   }
@@ -5040,7 +5574,8 @@ void __fastcall SetPlrStr(int pnum, int v) {
 }
 
 //----- (00450993) --------------------------------------------------------
-void __fastcall SetPlrMag(int pnum, int v) {
+void __fastcall SetPlrMag(int pnum, int v)
+{
   int v2; // edi
   int v3; // esi
   int v4; // eax
@@ -5061,7 +5596,8 @@ void __fastcall SetPlrMag(int pnum, int v) {
 }
 
 //----- (004509DF) --------------------------------------------------------
-void __fastcall SetPlrDex(int pnum, int v) {
+void __fastcall SetPlrDex(int pnum, int v)
+{
   int v2;        // edi
   int v3;        // ebx
   int v4;        // esi
@@ -5075,10 +5611,13 @@ void __fastcall SetPlrDex(int pnum, int v) {
   v4 = v2;
   plr[v2]._pBaseDex = v3;
   CalcPlrInv(v2, 1u);
-  if (_LOBYTE(plr[v2]._pClass) == 1) {
+  if (_LOBYTE(plr[v2]._pClass) == 1)
+  {
     v5 = plr[v4]._pLevel * (plr[v4]._pStrength + plr[v4]._pDexterity);
     v6 = 200;
-  } else {
+  }
+  else
+  {
     v5 = plr[v4]._pStrength * plr[v4]._pLevel;
     v6 = 100;
   }
@@ -5086,7 +5625,8 @@ void __fastcall SetPlrDex(int pnum, int v) {
 }
 
 //----- (00450A54) --------------------------------------------------------
-void __fastcall SetPlrVit(int pnum, int v) {
+void __fastcall SetPlrVit(int pnum, int v)
+{
   int v2; // edi
   int v3; // esi
   int v4; // eax
@@ -5107,7 +5647,8 @@ void __fastcall SetPlrVit(int pnum, int v) {
 }
 
 //----- (00450AA0) --------------------------------------------------------
-void __fastcall InitDungMsgs(int pnum) {
+void __fastcall InitDungMsgs(int pnum)
+{
   int v1; // esi
 
   v1 = pnum;
@@ -5117,7 +5658,8 @@ void __fastcall InitDungMsgs(int pnum) {
 }
 
 //----- (00450AC4) --------------------------------------------------------
-void __cdecl PlayDungMsgs() {
+void __cdecl PlayDungMsgs()
+{
   int v0;   // eax
   int v1;   // eax
   char v2;  // cl
@@ -5133,25 +5675,35 @@ void __cdecl PlayDungMsgs() {
   char v12; // dl
 
   v0 = myplr;
-  if ((unsigned int)myplr >= 4) {
+  if ((unsigned int)myplr >= 4)
+  {
     TermMsg("PlayDungMsgs: illegal player %d", myplr);
     v0 = myplr;
   }
-  switch (currlevel) {
+  switch (currlevel)
+  {
   case 1u:
     v1 = v0;
-    if (!plr[v1]._pLvlVisited[1] && gbMaxPlayers == currlevel) {
+    if (!plr[v1]._pLvlVisited[1] && gbMaxPlayers == currlevel)
+    {
       v2 = plr[v1].pDungMsgs;
-      if (!(v2 & 1)) {
+      if (!(v2 & 1))
+      {
         v3 = plr[v1]._pClass;
         sfxdelay = 40;
-        if (v3) {
-          if (v3 == 1) {
+        if (v3)
+        {
+          if (v3 == 1)
+          {
             sfxdnum = PS_ROGUE97;
-          } else if (v3 == 2) {
+          }
+          else if (v3 == 2)
+          {
             sfxdnum = PS_MAGE97;
           }
-        } else {
+        }
+        else
+        {
           sfxdnum = PS_WARR97;
         }
         v4 = v2 | 1;
@@ -5163,18 +5715,26 @@ void __cdecl PlayDungMsgs() {
     break;
   case 5u:
     v1 = v0;
-    if (!plr[v1]._pLvlVisited[5] && gbMaxPlayers == 1) {
+    if (!plr[v1]._pLvlVisited[5] && gbMaxPlayers == 1)
+    {
       v5 = plr[v1].pDungMsgs;
-      if (!(v5 & 2)) {
+      if (!(v5 & 2))
+      {
         v6 = plr[v1]._pClass;
         sfxdelay = 40;
-        if (v6) {
-          if (v6 == 1) {
+        if (v6)
+        {
+          if (v6 == 1)
+          {
             sfxdnum = PS_ROGUE96;
-          } else if (v6 == 2) {
+          }
+          else if (v6 == 2)
+          {
             sfxdnum = PS_MAGE96;
           }
-        } else {
+        }
+        else
+        {
           sfxdnum = PS_WARR96B;
         }
         v4 = v5 | 2;
@@ -5184,18 +5744,26 @@ void __cdecl PlayDungMsgs() {
     break;
   case 9u:
     v1 = v0;
-    if (!plr[v1]._pLvlVisited[9] && gbMaxPlayers == 1) {
+    if (!plr[v1]._pLvlVisited[9] && gbMaxPlayers == 1)
+    {
       v7 = plr[v1].pDungMsgs;
-      if (!(v7 & 4)) {
+      if (!(v7 & 4))
+      {
         v8 = plr[v1]._pClass;
         sfxdelay = 40;
-        if (v8) {
-          if (v8 == 1) {
+        if (v8)
+        {
+          if (v8 == 1)
+          {
             sfxdnum = PS_ROGUE98;
-          } else if (v8 == 2) {
+          }
+          else if (v8 == 2)
+          {
             sfxdnum = PS_MAGE98;
           }
-        } else {
+        }
+        else
+        {
           sfxdnum = PS_WARR98;
         }
         v4 = v7 | 4;
@@ -5205,18 +5773,26 @@ void __cdecl PlayDungMsgs() {
     break;
   case 13u:
     v1 = v0;
-    if (!plr[v1]._pLvlVisited[13] && gbMaxPlayers == 1) {
+    if (!plr[v1]._pLvlVisited[13] && gbMaxPlayers == 1)
+    {
       v9 = plr[v1].pDungMsgs;
-      if (!(v9 & 8)) {
+      if (!(v9 & 8))
+      {
         v10 = plr[v1]._pClass;
         sfxdelay = 40;
-        if (v10) {
-          if (v10 == 1) {
+        if (v10)
+        {
+          if (v10 == 1)
+          {
             sfxdnum = PS_ROGUE99;
-          } else if (v10 == 2) {
+          }
+          else if (v10 == 2)
+          {
             sfxdnum = PS_MAGE99;
           }
-        } else {
+        }
+        else
+        {
           sfxdnum = PS_WARR99;
         }
         v4 = v9 | 8;
@@ -5226,9 +5802,11 @@ void __cdecl PlayDungMsgs() {
     break;
   case 16u:
     v1 = v0;
-    if (!plr[v1]._pLvlVisited[15] && gbMaxPlayers == 1) {
+    if (!plr[v1]._pLvlVisited[15] && gbMaxPlayers == 1)
+    {
       v11 = plr[v1].pDungMsgs;
-      if (!(v11 & 0x10)) {
+      if (!(v11 & 0x10))
+      {
         v12 = plr[v1]._pClass;
         sfxdelay = 40;
         if (!v12 || v12 == 1 || v12 == 2)

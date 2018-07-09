@@ -136,12 +136,12 @@ int __cdecl mainmenu_single_player() {
 // 679660: using guessed type char gbMaxPlayers;
 
 //----- (00427FFA) --------------------------------------------------------
-int __fastcall mainmenu_init_menu(int a1) {
+int __fastcall mainmenu_init_menu(int player_count) {
   int v1; // esi
   int v3; // esi
 
-  v1 = a1;
-  if (a1 == 4)
+  v1 = player_count;
+  if (player_count == 4)
     return 1;
   music_stop();
   v3 = diablo_init_menu(v1 != 2, v1 != 3);
