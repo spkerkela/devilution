@@ -103,7 +103,7 @@ void __cdecl FillSolidBlockTbls()
     default:
       TermMsg("FillSolidBlockTbls");
       // file_data = (unsigned char *)size; /* check error */
-      goto LABEL_13;
+      goto READ_LEVEL_DATA;
     }
   }
   else
@@ -111,7 +111,7 @@ void __cdecl FillSolidBlockTbls()
     level_to_load = "Levels\\TownData\\Town.SOL";
   }
   file_data = LoadFileInMem(level_to_load, &size);
-LABEL_13:
+READ_LEVEL_DATA:
   file_data_ptr = file_data;
   if ((unsigned int)size >= 1)
   {
@@ -1062,7 +1062,7 @@ void __fastcall DRLG_CreateThemeRoom(int themeIndex)
       if (v4 == v2 && v6 >= themeLoc[v1].x && v6 <= v20)
         goto LABEL_12;
       if (v4 != v3 + v2 - 1)
-        goto LABEL_13;
+        goto READ_LEVEL_DATA;
       if (v6 >= themeLoc[v1].x)
         break;
     LABEL_16:
@@ -1135,7 +1135,7 @@ void __fastcall DRLG_CreateThemeRoom(int themeIndex)
     }
     if (v6 <= v20)
       goto LABEL_12;
-  LABEL_13:
+  READ_LEVEL_DATA:
     if (v6 == themeLoc[v1].x && v4 >= v2 && v4 <= v3 + v2)
       goto LABEL_19;
     goto LABEL_16;
