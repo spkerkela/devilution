@@ -128,13 +128,13 @@ void __cdecl CheckTown()
       v2 = missileactive[v5];
       if (missile[v2]._mitype == MIS_TOWN)
       {
-        if ((v3 = missile[v2]._mix, modified_mouse_y_offset = v3 - 1, v0 == v3 - 1) &&
+        if ((v3 = missile[v2]._mix, modified_mouse_screen_position_y = v3 - 1, v0 == v3 - 1) &&
                 v1 == missile[v2]._miy ||
             v0 == v3 && v1 == missile[v2]._miy - 1 ||
-            v0 == modified_mouse_y_offset && v1 == missile[v2]._miy - 1 ||
+            v0 == modified_mouse_screen_position_y && v1 == missile[v2]._miy - 1 ||
             v0 == v3 - 2 && (v1 == missile[v2]._miy - 1 ||
                              v0 == v3 - 2 && v1 == missile[v2]._miy - 2) ||
-            v0 == modified_mouse_y_offset && v1 == missile[v2]._miy - 2 ||
+            v0 == modified_mouse_screen_position_y && v1 == missile[v2]._miy - 2 ||
             v0 == v3 && v1 == missile[v2]._miy)
         {
           trigflag[3] = 1;
@@ -205,90 +205,90 @@ void __cdecl CheckRportal()
 //----- (00407729) --------------------------------------------------------
 void __cdecl CheckCursMove()
 {
-  int mouse_x;                 // esi
-  signed int mouse_y;          // edi
-  int mouse_x_offset;          // esi
-  int mouse_y_offset;          // edi
-  int modified_mouse_y_offset; // edx
-  int v5;                      // ebx
-  int world_x;                 // edi
-  int v7;                      // eax
-  int world_y;                 // esi
-  BOOL v9;                     // eax
-  int cursor_monster;          // ecx
-  int v11;                     // edx
-  int v12;                     // ecx
-  int v13;                     // ebx
-  int v14;                     // ebx
-  int v15;                     // eax
-  bool player_not_invinsible;  // zf
-  int v17;                     // ecx
-  int v18;                     // eax
-  int v19;                     // ecx
-  int v20;                     // eax
-  int v21;                     // ecx
-  int v22;                     // eax
-  int v23;                     // eax
-  int v24;                     // ecx
-  int v25;                     // eax
-  int v26;                     // ecx
-  int v27;                     // ebx
-  int v28;                     // edx
-  int v29;                     // eax
-  int v30;                     // ecx
-  int v31;                     // eax
-  int v32;                     // eax
-  int v33;                     // eax
-  int v34;                     // ecx
-  int v35;                     // eax
-  int v36;                     // ecx
-  int v37;                     // eax
-  int v38;                     // eax
-  int v39;                     // ecx
-  int v40;                     // eax
-  int v41;                     // ecx
-  signed int v42;              // eax
-  int v43;                     // ecx
-  int v44;                     // eax
-  int v45;                     // eax
-  int v46;                     // eax
-  int v47;                     // eax
-  char v48;                    // al
-  char v49;                    // cl
-  char v50;                    // al
-  char v51;                    // al
-  char v52;                    // cl
-  int v53;                     // ecx
-  int *v54;                    // eax
-  int v55;                     // edx
-  int *v56;                    // ecx
-  char v57;                    // al
-  char v58;                    // cl
-  signed int v59;              // edx
-  char v60;                    // al
-  char v61;                    // cl
-  char v62;                    // al
-  char v63;                    // al
-  char v64;                    // cl
-  char v65;                    // al
-  char v66;                    // al
-  char v67;                    // cl
-  char v68;                    // al
-  char v69;                    // al
-  char v70;                    // al
-  char v71;                    // al
-  char v72;                    // al
-  char v73;                    // cl
-  char v74;                    // al
-  char v75;                    // al
-  int v76;                     // [esp+Ch] [ebp-18h]
-  char *v77;                   // [esp+Ch] [ebp-18h]
-  int v78;                     // [esp+10h] [ebp-14h]
-  signed int v79;              // [esp+14h] [ebp-10h]
-  signed int v80;              // [esp+18h] [ebp-Ch]
-  int v81;                     // [esp+1Ch] [ebp-8h]
-  int v82;                     // [esp+1Ch] [ebp-8h]
-  signed int v83;              // [esp+20h] [ebp-4h]
+  int mouse_x;                          // esi
+  signed int mouse_y;                   // edi
+  int mouse_screen_position_x;          // esi
+  int mouse_screen_position_y;          // edi
+  int modified_mouse_screen_position_y; // edx
+  int tile_pixel_y;                     // ebx
+  int world_x;                          // edi
+  int tile_x_center;                    // eax
+  int world_y;                          // esi
+  BOOL v9;                              // eax
+  int cursor_monster;                   // ecx
+  int v11;                              // edx
+  int v12;                              // ecx
+  int v13;                              // ebx
+  int v14;                              // ebx
+  int v15;                              // eax
+  bool player_not_invinsible;           // zf
+  int v17;                              // ecx
+  int v18;                              // eax
+  int v19;                              // ecx
+  int v20;                              // eax
+  int v21;                              // ecx
+  int v22;                              // eax
+  int v23;                              // eax
+  int v24;                              // ecx
+  int v25;                              // eax
+  int v26;                              // ecx
+  int v27;                              // ebx
+  int v28;                              // edx
+  int v29;                              // eax
+  int v30;                              // ecx
+  int v31;                              // eax
+  int v32;                              // eax
+  int v33;                              // eax
+  int v34;                              // ecx
+  int v35;                              // eax
+  int v36;                              // ecx
+  int v37;                              // eax
+  int v38;                              // eax
+  int v39;                              // ecx
+  int v40;                              // eax
+  int v41;                              // ecx
+  signed int v42;                       // eax
+  int v43;                              // ecx
+  int v44;                              // eax
+  int v45;                              // eax
+  int v46;                              // eax
+  int v47;                              // eax
+  char v48;                             // al
+  char v49;                             // cl
+  char v50;                             // al
+  char v51;                             // al
+  char v52;                             // cl
+  int v53;                              // ecx
+  int *v54;                             // eax
+  int v55;                              // edx
+  int *v56;                             // ecx
+  char v57;                             // al
+  char v58;                             // cl
+  signed int v59;                       // edx
+  char v60;                             // al
+  char v61;                             // cl
+  char v62;                             // al
+  char v63;                             // al
+  char v64;                             // cl
+  char v65;                             // al
+  char v66;                             // al
+  char v67;                             // cl
+  char v68;                             // al
+  char v69;                             // al
+  char v70;                             // al
+  char v71;                             // al
+  char v72;                             // al
+  char v73;                             // cl
+  char v74;                             // al
+  char v75;                             // al
+  int tile_pixel_x;                     // [esp+Ch] [ebp-18h]
+  char *v77;                            // [esp+Ch] [ebp-18h]
+  int v78;                              // [esp+10h] [ebp-14h]
+  signed int v79;                       // [esp+14h] [ebp-10h]
+  signed int v80;                       // [esp+18h] [ebp-Ch]
+  int v81;                              // [esp+1Ch] [ebp-8h]
+  int v82;                              // [esp+1Ch] [ebp-8h]
+  signed int v83;                       // [esp+20h] [ebp-4h]
 
   mouse_x = MouseX;
   mouse_y = MouseY;
@@ -316,35 +316,35 @@ LABEL_10:
     mouse_y = 351;
   if (!zoomflag)
   {
-    mouse_x >>= 1;
+    mouse_x >>= 1; // if no zoom, divide by two
     mouse_y >>= 1;
   }
-  mouse_x_offset = mouse_x - ScrollInfo._sxoff;
-  mouse_y_offset = mouse_y - ScrollInfo._syoff;
+  mouse_screen_position_x = mouse_x - ScrollInfo._sxoff;
+  mouse_screen_position_y = mouse_y - ScrollInfo._syoff;
   if (ScrollInfo._sdir)
   {
-    mouse_x_offset += ((plr[myplr]._pVar6 + plr[myplr]._pxvel) >> 8) -
-                      (plr[myplr]._pVar6 >> 8);
-    mouse_y_offset += ((plr[myplr]._pVar7 + plr[myplr]._pyvel) >> 8) -
-                      (plr[myplr]._pVar7 >> 8);
+    mouse_screen_position_x += ((plr[myplr]._pVar6 + plr[myplr]._pxvel) >> 8) -
+                               (plr[myplr]._pVar6 >> 8);
+    mouse_screen_position_y += ((plr[myplr]._pVar7 + plr[myplr]._pyvel) >> 8) -
+                               (plr[myplr]._pVar7 >> 8);
   }
-  if (mouse_x_offset < 0)
-    mouse_x_offset = 0;
-  if (mouse_x_offset >= 640)
-    mouse_x_offset = 640;
-  if (mouse_y_offset < 0)
-    mouse_y_offset = 0;
-  if (mouse_y_offset >= 480)
-    mouse_y_offset = 480;
-  modified_mouse_y_offset = mouse_y_offset >> 5;
-  v5 = mouse_y_offset & 31;
-  v76 = mouse_x_offset & 63;
-  world_x = (mouse_x_offset >> 6) + (mouse_y_offset >> 5) + ViewX - (zoomflag != 0 ? 10 : 5);
-  v7 = v76 >> 1;
-  world_y = modified_mouse_y_offset + ViewY - (mouse_x_offset >> 6);
-  if (v5<v76>> 1)
+  if (mouse_screen_position_x < 0)
+    mouse_screen_position_x = 0;
+  if (mouse_screen_position_x >= 640)
+    mouse_screen_position_x = 640;
+  if (mouse_screen_position_y < 0)
+    mouse_screen_position_y = 0;
+  if (mouse_screen_position_y >= 480)
+    mouse_screen_position_y = 480;
+  modified_mouse_screen_position_y = mouse_screen_position_y >> 5; // divide by 32
+  tile_pixel_y = mouse_screen_position_y & 31;                     // rotate to between 0 and 31
+  tile_pixel_x = mouse_screen_position_x & 63;                     // rotate to between 0 and 63
+  world_x = (mouse_screen_position_x >> 6) + (mouse_screen_position_y >> 5) + ViewX - (zoomflag != 0 ? 10 : 5);
+  tile_x_center = tile_pixel_x >> 1;
+  world_y = modified_mouse_screen_position_y + ViewY - (mouse_screen_position_x >> 6);
+  if (v5<tile_pixel_x>> 1)
     --world_y;
-  v9 = v5 >= 32 - v7;
+  v9 = tile_pixel_y >= 32 - tile_x_center;
   if (v9)
     ++world_x;
   if (world_x < 0)
@@ -355,7 +355,7 @@ LABEL_10:
     world_y = 0;
   if (world_y >= DUNGEON_WIDTH)
     world_y = DUNGEON_LAST_INDEX;
-  if (v5 >= v76 >> 1)
+  if (tile_pixel_y >= tile_pixel_x >> 1)
   {
     if (!v9)
       goto LABEL_49;
@@ -364,7 +364,7 @@ LABEL_10:
   if (!v9)
   {
   LABEL_48:
-    if (v76 < 32)
+    if (tile_pixel_x < 32)
       goto LABEL_39;
   LABEL_49:
     v83 = 0;
