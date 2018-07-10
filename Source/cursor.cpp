@@ -258,36 +258,36 @@ void __cdecl CheckCursMove()
   char selected_player;                 // al
   char selected_player_3;               // al
   char player_id_2;                     // cl
-  int v53;                              // ecx
-  int *v54;                             // eax
-  int v55;                              // edx
-  int *v56;                             // ecx
-  char v57;                             // al
-  char v58;                             // cl
+  int cursor_player;                    // ecx
+  int *local_player_world_y_ptr;        // eax
+  int world_y_iterator;                 // edx
+  int *local_player_position_y_ptr_2;   // ecx
+  char selected_player_4;               // al
+  char player_id_3;                     // cl
   signed int cursor_monster_saved;      // edx
-  char v60;                             // al
-  char v61;                             // cl
-  char v62;                             // al
-  char v63;                             // al
-  char v64;                             // cl
-  char v65;                             // al
-  char v66;                             // al
-  char v67;                             // cl
-  char v68;                             // al
-  char v69;                             // al
-  char v70;                             // al
-  char v71;                             // al
-  char v72;                             // al
-  char v73;                             // cl
-  char v74;                             // al
-  char v75;                             // al
+  char selected_object_2;               // al
+  char object_id;                       // cl
+  char selected_object;                 // al
+  char selected_object_3;               // al
+  char object_id_2;                     // cl
+  char object_sel_flag;                 // al
+  char selected_object_4;               // al
+  char object_id_3;                     // cl
+  char selected_item_2;                 // al
+  char item_id;                         // al
+  char selected_item;                   // al
+  char selected_item_3;                 // al
+  char item_id_2;                       // al
+  char item_selected_flag;              // cl
+  char selected_item_4;                 // al
+  char item_id_3;                       // al
   int tile_pixel_x;                     // [esp+Ch] [ebp-18h]
-  char *v77;                            // [esp+Ch] [ebp-18h]
+  char *block_table_row_ptr;            // [esp+Ch] [ebp-18h]
   int original_tile_array_index;        // [esp+10h] [ebp-14h]
-  signed int v79;                       // [esp+14h] [ebp-10h]
-  signed int v80;                       // [esp+18h] [ebp-Ch]
+  signed int res_offset_iterator;       // [esp+14h] [ebp-10h]
+  signed int block_table_row_iterator;  // [esp+18h] [ebp-Ch]
   int v81;                              // [esp+1Ch] [ebp-8h]
-  int v82;                              // [esp+1Ch] [ebp-8h]
+  int player_id_iterator;               // [esp+1Ch] [ebp-8h]
   signed int add_to_index;              // [esp+20h] [ebp-4h]
 
   mouse_x = MouseX;
@@ -508,61 +508,61 @@ LABEL_40:
     }
     if (dFlags[0][tile_array_index + world_y] & 4)
     {
-      v53 = 0;
-      v54 = &plr[0].WorldY;
+      cursor_player = 0;
+      local_player_world_y_ptr = &plr[0].WorldY;
       do
       {
-        if (*(v54 - 1) == world_x && *v54 == world_y && v53 != myplr)
+        if (*(local_player_world_y_ptr - 1) == world_x && *local_player_world_y_ptr == world_y && cursor_player != myplr)
         {
           cursmx = world_x;
           cursmy = world_y;
-          pcursplr = v53;
+          pcursplr = cursor_player;
         }
-        v54 += 5430;
-        ++v53;
-      } while ((signed int)v54 < (signed int)&plr[4].WorldY);
+        local_player_world_y_ptr += 5430;
+        ++cursor_player;
+      } while ((signed int)local_player_world_y_ptr < (signed int)&plr[4].WorldY);
     }
     if (pcurs == CURSOR_RESURRECT)
     {
-      v79 = -1;
-      v77 = &nBlockTable[tile_array_index + 1944 + world_y];
+      res_offset_iterator = -1;
+      block_table_row_ptr = &nBlockTable[tile_array_index + 1944 + world_y];
       do
       {
-        v80 = -1;
-        v55 = world_y - 1;
+        block_table_row_iterator = -1;
+        world_y_iterator = world_y - 1;
         do
         {
-          if (v77[v80] & 4)
+          if (block_table_row_ptr[block_table_row_iterator] & 4)
           {
-            v82 = 0;
-            v56 = &plr[0].WorldY;
+            player_id_iterator = 0;
+            local_player_position_y_ptr_2 = &plr[0].WorldY;
             do
             {
-              if (*(v56 - 1) == world_x + v79 && *v56 == v55 && v82 != myplr)
+              if (*(local_player_position_y_ptr_2 - 1) == world_x + res_offset_iterator && *local_player_position_y_ptr_2 == world_y_iterator && player_id_iterator != myplr)
               {
-                cursmx = world_x + v79;
-                cursmy = v55;
-                pcursplr = v82;
+                cursmx = world_x + res_offset_iterator;
+                cursmy = world_y_iterator;
+                pcursplr = player_id_iterator;
               }
-              ++v82;
-              v56 += 5430;
-            } while ((signed int)v56 < (signed int)&plr[4].WorldY);
+              ++player_id_iterator;
+              local_player_position_y_ptr_2 += 5430;
+            } while ((signed int)local_player_position_y_ptr_2 < (signed int)&plr[4].WorldY);
           }
-          ++v80;
-          ++v55;
-        } while (v80 < 2);
-        ++v79;
-        v77 += DUNGEON_WIDTH;
-      } while (v79 < 2);
+          ++block_table_row_iterator;
+          ++world_y_iterator;
+        } while (block_table_row_iterator < 2);
+        ++res_offset_iterator;
+        block_table_row_ptr += DUNGEON_WIDTH;
+      } while (res_offset_iterator < 2);
       tile_array_index = original_tile_array_index;
     }
-    v57 = dPlayer[1][tile_array_index + 1 + world_y];
-    if (v57)
+    selected_player_4 = dPlayer[1][tile_array_index + 1 + world_y];
+    if (selected_player_4)
     {
-      v58 = v57 <= 0 ? -1 - v57 : v57 - 1;
-      if (v58 != myplr && plr[v58]._pHitPoints)
+      player_id_3 = selected_player_4 <= 0 ? -1 - selected_player_4 : selected_player_4 - 1;
+      if (player_id_3 != myplr && plr[player_id_3]._pHitPoints)
       {
-        pcursplr = v58;
+        pcursplr = player_id_3;
         cursmx = world_x + 1;
         cursmy = world_y + 1;
       }
@@ -594,90 +594,90 @@ LABEL_40:
       goto LABEL_306;
     if (add_to_index)
     {
-      v62 = dObject[0][tile_array_index + 1 + world_y];
-      if (!v62)
+      selected_object = dObject[0][tile_array_index + 1 + world_y];
+      if (!selected_object)
         goto LABEL_272;
-      v61 = v62 <= 0 ? -1 - v62 : v62 - 1;
-      if (SLOBYTE(object[v61]._oSelFlag) < 2)
+      object_id = selected_object <= 0 ? -1 - selected_object : selected_object - 1;
+      if (SLOBYTE(object[object_id]._oSelFlag) < 2)
         goto LABEL_272;
       cursmx = world_x;
       cursmy = world_y + 1;
     }
     else
     {
-      v60 = dObject[1][tile_array_index + world_y];
-      if (!v60)
+      selected_object_2 = dObject[1][tile_array_index + world_y];
+      if (!selected_object_2)
         goto LABEL_272;
-      v61 = v60 <= 0 ? -1 - v60 : v60 - 1;
-      if (SLOBYTE(object[v61]._oSelFlag) < 2)
+      object_id = selected_object_2 <= 0 ? -1 - selected_object_2 : selected_object_2 - 1;
+      if (SLOBYTE(object[object_id]._oSelFlag) < 2)
         goto LABEL_272;
       cursmy = world_y;
       cursmx = world_x + 1;
     }
-    pcursobj = v61;
+    pcursobj = object_id;
   LABEL_272:
-    v63 = dObject[0][tile_array_index + world_y];
-    if (v63)
+    selected_object_3 = dObject[0][tile_array_index + world_y];
+    if (selected_object_3)
     {
-      v64 = v63 <= 0 ? -1 - v63 : v63 - 1;
-      v65 = object[v64]._oSelFlag;
-      if (v65 == 1 || v65 == 3)
+      object_id_2 = selected_object_3 <= 0 ? -1 - selected_object_3 : selected_object_3 - 1;
+      object_sel_flag = object[object_id_2]._oSelFlag;
+      if (object_sel_flag == 1 || object_sel_flag == 3)
       {
         cursmx = world_x;
         cursmy = world_y;
-        pcursobj = v64;
+        pcursobj = object_id_2;
       }
     }
-    v66 = dObject[1][tile_array_index + 1 + world_y];
-    if (!v66 || (v66 <= 0 ? (v67 = -1 - v66) : (v67 = v66 - 1),
-                 SLOBYTE(object[v67]._oSelFlag) < 2))
+    selected_object_4 = dObject[1][tile_array_index + 1 + world_y];
+    if (!selected_object_4 || (selected_object_4 <= 0 ? (object_id_3 = -1 - selected_object_4) : (object_id_3 = selected_object_4 - 1),
+                               SLOBYTE(object[object_id_3]._oSelFlag) < 2))
     {
     LABEL_286:
       if (pcursobj != -1 || pcursmonst != -1)
         goto LABEL_306;
       if (add_to_index)
       {
-        v70 = dItem[0][tile_array_index + 1 + world_y];
-        if (v70 <= 0)
+        selected_item = dItem[0][tile_array_index + 1 + world_y];
+        if (selected_item <= 0)
           goto LABEL_296;
-        v69 = v70 - 1;
-        if (item[v69]._iSelFlag < 2)
+        item_id = selected_item - 1;
+        if (item[item_id]._iSelFlag < 2)
           goto LABEL_296;
         cursmx = world_x;
         cursmy = world_y + 1;
       }
       else
       {
-        v68 = dItem[1][tile_array_index + world_y];
-        if (v68 <= 0)
+        selected_item_2 = dItem[1][tile_array_index + world_y];
+        if (selected_item_2 <= 0)
           goto LABEL_296;
-        v69 = v68 - 1;
-        if (item[v69]._iSelFlag < 2)
+        item_id = selected_item_2 - 1;
+        if (item[item_id]._iSelFlag < 2)
           goto LABEL_296;
         cursmy = world_y;
         cursmx = world_x + 1;
       }
-      pcursitem = v69;
+      pcursitem = item_id;
     LABEL_296:
-      v71 = dItem[0][tile_array_index + world_y];
-      if (v71 > 0)
+      selected_item_3 = dItem[0][tile_array_index + world_y];
+      if (selected_item_3 > 0)
       {
-        v72 = v71 - 1;
-        v73 = item[v72]._iSelFlag;
-        if (v73 == 1 || v73 == 3)
+        item_id_2 = selected_item_3 - 1;
+        item_selected_flag = item[item_id_2]._iSelFlag;
+        if (item_selected_flag == 1 || item_selected_flag == 3)
         {
           cursmx = world_x;
           cursmy = world_y;
-          pcursitem = v72;
+          pcursitem = item_id_2;
         }
       }
-      v74 = dItem[1][tile_array_index + 1 + world_y];
-      if (v74 > 0)
+      selected_item_4 = dItem[1][tile_array_index + 1 + world_y];
+      if (selected_item_4 > 0)
       {
-        v75 = v74 - 1;
-        if (item[v75]._iSelFlag >= 2)
+        item_id_3 = selected_item_4 - 1;
+        if (item[item_id_3]._iSelFlag >= 2)
         {
-          pcursitem = v75;
+          pcursitem = item_id_3;
           cursmx = world_x + 1;
           cursmy = world_y + 1;
         }
@@ -691,7 +691,7 @@ LABEL_40:
       CheckRportal();
       goto LABEL_305;
     }
-    pcursobj = v67;
+    pcursobj = object_id_3;
     cursmx = world_x + 1;
     cursmy = world_y + 1;
     goto LABEL_285;
