@@ -16,8 +16,8 @@ char pcursobj;     // weak
 char pcursplr;     // weak
 int cursmx;
 int cursmy;
-int dword_4B8CCC; // weak
-int pcurs;        // idb
+int cursor_monster_2; // weak
+int pcurs;            // idb
 #define DUNGEON_WIDTH 112
 #define DUNGEON_LAST_INDEX 111
 
@@ -96,7 +96,7 @@ void __cdecl InitLevelCursor()
   SetCursor(CURSOR_HAND);
   cursmx = ViewX;
   cursmy = ViewY;
-  dword_4B8CCC = -1;
+  cursor_monster_2 = -1;
   pcursmonst = -1;
   pcursobj = -1;
   pcursitem = -1;
@@ -106,7 +106,7 @@ void __cdecl InitLevelCursor()
 // 4B8CC0: using guessed type char pcursitem;
 // 4B8CC1: using guessed type char pcursobj;
 // 4B8CC2: using guessed type char pcursplr;
-// 4B8CCC: using guessed type int dword_4B8CCC;
+// 4B8CCC: using guessed type int cursor_monster_2;
 
 //----- (004074D0) --------------------------------------------------------
 void __cdecl CheckTown()
@@ -217,37 +217,37 @@ void __cdecl CheckCursMove()
   BOOL off_by_one;                      // eax
   int cursor_monster;                   // ecx
   int monster_id;                       // edx
-  int v12;                              // ecx
-  int v13;                              // ebx
-  int v14;                              // ebx
-  int v15;                              // eax
+  int selected_tile_2;                  // ecx
+  int selected_tile_4;                  // ebx
+  int selected_tile_5;                  // ebx
+  int selected_monster;                 // eax
   bool player_not_invinsible;           // zf
-  int v17;                              // ecx
-  int v18;                              // eax
-  int v19;                              // ecx
-  int v20;                              // eax
-  int v21;                              // ecx
-  int v22;                              // eax
-  int v23;                              // eax
-  int v24;                              // ecx
-  int v25;                              // eax
-  int v26;                              // ecx
+  int selected_monster_id_5;            // ecx
+  int selected_monster_2;               // eax
+  int selected_monster_id_6;            // ecx
+  int selected_monster_4;               // eax
+  int selected_monster_id_7;            // ecx
+  int selected_monster_3;               // eax
+  int selected_monster_5;               // eax
+  int selected_monster_id_8;            // ecx
+  int selected_monster_6;               // eax
+  int selected_monster_id_9;            // ecx
   int tile_array_index;                 // ebx
-  int v28;                              // edx
-  int v29;                              // eax
-  int v30;                              // ecx
-  int v31;                              // eax
-  int v32;                              // eax
-  int v33;                              // eax
-  int v34;                              // ecx
-  int v35;                              // eax
-  int v36;                              // ecx
-  int v37;                              // eax
-  int v38;                              // eax
-  int v39;                              // ecx
-  int v40;                              // eax
-  int v41;                              // ecx
-  signed int v42;                       // eax
+  int selected_tile_6;                  // edx
+  int selected_monster_8;               // eax
+  int selected_monster_id_10;           // ecx
+  int cursor_offset_y_1;                // eax
+  int selected_monster_7;               // eax
+  int selected_monster_9;               // eax
+  int selected_monster_id_11;           // ecx
+  int selected_monster_11;              // eax
+  int selected_monster_id_11;           // ecx
+  int selected_monster_10;              // eax
+  int selected_monster_12;              // eax
+  int selected_monster_id_12;           // ecx
+  int selected_monster_13;              // eax
+  int selected_monster_id_13;           // ecx
+  signed int cursor_monster_3;          // eax
   int selected_tile;                    // ecx
   int selected_monster_id_2;            // eax
   int selected_monster_id;              // eax
@@ -286,7 +286,7 @@ void __cdecl CheckCursMove()
   int original_tile_array_index;        // [esp+10h] [ebp-14h]
   signed int res_offset_iterator;       // [esp+14h] [ebp-10h]
   signed int block_table_row_iterator;  // [esp+18h] [ebp-Ch]
-  int v81;                              // [esp+1Ch] [ebp-8h]
+  int selected_tile_3;                  // [esp+1Ch] [ebp-8h]
   int player_id_iterator;               // [esp+1Ch] [ebp-8h]
   signed int add_to_index;              // [esp+20h] [ebp-4h]
 
@@ -377,7 +377,7 @@ LABEL_40:
   pcursobj = -1;
   pcursitem = -1;
   monster_id = -1;
-  dword_4B8CCC = pcursmonst;
+  cursor_monster_2 = pcursmonst;
   pcursmonst = -1;
   if (pcursinvitem != -1)
     drawsbarflag = 1;
@@ -698,62 +698,62 @@ LABEL_40:
   }
   if (cursor_monster == -1)
     goto LABEL_128;
-  v12 = DUNGEON_WIDTH * world_x + world_y;
-  v81 = DUNGEON_WIDTH * world_x + world_y;
-  v13 = DUNGEON_WIDTH * world_x + world_y;
+  selected_tile_2 = DUNGEON_WIDTH * world_x + world_y;
+  selected_tile_3 = DUNGEON_WIDTH * world_x + world_y;
+  selected_tile_4 = DUNGEON_WIDTH * world_x + world_y;
   if (add_to_index)
   {
-    v14 = v13;
-    v15 = dMonster[1][v14 + 2];
-    if (!v15)
+    selected_tile_5 = selected_tile_4;
+    selected_monster = dMonster[1][selected_tile_5 + 2];
+    if (!selected_monster)
       goto LABEL_74;
-    player_not_invinsible = (dFlags[1][v12 + 2] & 0x40) == 0;
+    player_not_invinsible = (dFlags[1][selected_tile_2 + 2] & 0x40) == 0;
   }
   else
   {
-    v14 = v13;
-    v15 = dMonster[2][v14 + 1];
-    if (!v15)
+    selected_tile_5 = selected_tile_4;
+    selected_monster = dMonster[2][selected_tile_5 + 1];
+    if (!selected_monster)
       goto LABEL_74;
-    player_not_invinsible = (dFlags[2][v12 + 1] & 0x40) == 0;
+    player_not_invinsible = (dFlags[2][selected_tile_2 + 1] & 0x40) == 0;
   }
   if (!player_not_invinsible)
   {
-    v17 = v15 <= 0 ? -1 - v15 : v15 - 1;
-    if (v17 == dword_4B8CCC &&
-        (signed int)(monster[v17]._mhitpoints & 0xFFFFFFC0) > 0 &&
-        monster[v17].MData->mSelFlag & 4)
+    selected_monster_id_5 = selected_monster <= 0 ? -1 - selected_monster : selected_monster - 1;
+    if (selected_monster_id_5 == cursor_monster_2 &&
+        (signed int)(monster[selected_monster_id_5]._mhitpoints & 0xFFFFFFC0) > 0 &&
+        monster[selected_monster_id_5].MData->mSelFlag & 4)
     {
-      monster_id = v17;
+      monster_id = selected_monster_id_5;
       cursmx = world_x + 1;
       cursmy = world_y + 2;
-      pcursmonst = v17;
+      pcursmonst = selected_monster_id_5;
     }
   }
 LABEL_74:
-  v18 = dMonster[2][v14 + 2];
-  if (v18 && dFlags[2][v81 + 2] & 0x40)
+  selected_monster_2 = dMonster[2][selected_tile_5 + 2];
+  if (selected_monster_2 && dFlags[2][selected_tile_3 + 2] & 0x40)
   {
-    v19 = v18 <= 0 ? -1 - v18 : v18 - 1;
-    if (v19 == dword_4B8CCC &&
-        (signed int)(monster[v19]._mhitpoints & 0xFFFFFFC0) > 0 &&
-        monster[v19].MData->mSelFlag & 4)
+    selected_monster_id_6 = selected_monster_2 <= 0 ? -1 - selected_monster_2 : selected_monster_2 - 1;
+    if (selected_monster_id_6 == cursor_monster_2 &&
+        (signed int)(monster[selected_monster_id_6]._mhitpoints & 0xFFFFFFC0) > 0 &&
+        monster[selected_monster_id_6].MData->mSelFlag & 4)
     {
-      monster_id = v19;
+      monster_id = selected_monster_id_6;
       cursmx = world_x + 2;
       cursmy = world_y + 2;
-      pcursmonst = v19;
+      pcursmonst = selected_monster_id_6;
     }
   }
   if (add_to_index)
   {
-    v22 = dMonster[0][v14 + 1];
-    if (v22 && dFlags[0][v81 + 1] & 0x40)
+    selected_monster_3 = dMonster[0][selected_tile_5 + 1];
+    if (selected_monster_3 && dFlags[0][selected_tile_3 + 1] & 0x40)
     {
-      v21 = v22 <= 0 ? -1 - v22 : v22 - 1;
-      if (v21 == dword_4B8CCC &&
-          (signed int)(monster[v21]._mhitpoints & 0xFFFFFFC0) > 0 &&
-          monster[v21].MData->mSelFlag & 2)
+      selected_monster_id_7 = selected_monster_3 <= 0 ? -1 - selected_monster_3 : selected_monster_3 - 1;
+      if (selected_monster_id_7 == cursor_monster_2 &&
+          (signed int)(monster[selected_monster_id_7]._mhitpoints & 0xFFFFFFC0) > 0 &&
+          monster[selected_monster_id_7].MData->mSelFlag & 2)
       {
         cursmx = world_x;
         cursmy = world_y + 1;
@@ -763,50 +763,50 @@ LABEL_74:
   }
   else
   {
-    v20 = dMonster[1][v14];
-    if (v20 && dFlags[1][v81] & 0x40)
+    selected_monster_4 = dMonster[1][selected_tile_5];
+    if (selected_monster_4 && dFlags[1][selected_tile_3] & 0x40)
     {
-      v21 = v20 <= 0 ? -1 - v20 : v20 - 1;
-      if (v21 == dword_4B8CCC &&
-          (signed int)(monster[v21]._mhitpoints & 0xFFFFFFC0) > 0 &&
-          monster[v21].MData->mSelFlag & 2)
+      selected_monster_id_7 = selected_monster_4 <= 0 ? -1 - selected_monster_4 : selected_monster_4 - 1;
+      if (selected_monster_id_7 == cursor_monster_2 &&
+          (signed int)(monster[selected_monster_id_7]._mhitpoints & 0xFFFFFFC0) > 0 &&
+          monster[selected_monster_id_7].MData->mSelFlag & 2)
       {
         cursmy = world_y;
         cursmx = world_x + 1;
       LABEL_102:
-        monster_id = v21;
-        pcursmonst = v21;
+        monster_id = selected_monster_id_7;
+        pcursmonst = selected_monster_id_7;
         goto LABEL_103;
       }
     }
   }
 LABEL_103:
-  v23 = dMonster[0][v14];
-  if (v23 && dFlags[0][v81] & 0x40)
+  selected_monster_5 = dMonster[0][selected_tile_5];
+  if (selected_monster_5 && dFlags[0][selected_tile_3] & 0x40)
   {
-    v24 = v23 <= 0 ? -1 - v23 : v23 - 1;
-    if (v24 == dword_4B8CCC &&
-        (signed int)(monster[v24]._mhitpoints & 0xFFFFFFC0) > 0 &&
-        monster[v24].MData->mSelFlag & 1)
+    selected_monster_id_8 = selected_monster_5 <= 0 ? -1 - selected_monster_5 : selected_monster_5 - 1;
+    if (selected_monster_id_8 == cursor_monster_2 &&
+        (signed int)(monster[selected_monster_id_8]._mhitpoints & 0xFFFFFFC0) > 0 &&
+        monster[selected_monster_id_8].MData->mSelFlag & 1)
     {
-      monster_id = v24;
+      monster_id = selected_monster_id_8;
       cursmx = world_x;
       cursmy = world_y;
-      pcursmonst = v24;
+      pcursmonst = selected_monster_id_8;
     }
   }
-  v25 = dMonster[1][v14 + 1];
-  if (v25 && dFlags[1][v81 + 1] & 0x40)
+  selected_monster_6 = dMonster[1][selected_tile_5 + 1];
+  if (selected_monster_6 && dFlags[1][selected_tile_3 + 1] & 0x40)
   {
-    v26 = v25 <= 0 ? -1 - v25 : v25 - 1;
-    if (v26 == dword_4B8CCC &&
-        (signed int)(monster[v26]._mhitpoints & 0xFFFFFFC0) > 0 &&
-        monster[v26].MData->mSelFlag & 2)
+    selected_monster_id_9 = selected_monster_6 <= 0 ? -1 - selected_monster_6 : selected_monster_6 - 1;
+    if (selected_monster_id_9 == cursor_monster_2 &&
+        (signed int)(monster[selected_monster_id_9]._mhitpoints & 0xFFFFFFC0) > 0 &&
+        monster[selected_monster_id_9].MData->mSelFlag & 2)
     {
-      monster_id = v26;
+      monster_id = selected_monster_id_9;
       cursmx = world_x + 1;
       cursmy = world_y + 1;
-      pcursmonst = v26;
+      pcursmonst = selected_monster_id_9;
     }
   }
   if (monster_id == -1)
@@ -832,60 +832,60 @@ LABEL_103:
     original_tile_array_index = DUNGEON_WIDTH * world_x;
     if (add_to_index)
     {
-      v28 = tile_array_index + world_y;
-      v32 = dMonster[1][v28 + 2];
-      if (v32 && dFlags[1][tile_array_index + 2 + world_y] & 0x40)
+      selected_tile_6 = tile_array_index + world_y;
+      selected_monster_7 = dMonster[1][selected_tile_6 + 2];
+      if (selected_monster_7 && dFlags[1][tile_array_index + 2 + world_y] & 0x40)
       {
-        v30 = v32 <= 0 ? -1 - v32 : v32 - 1;
-        if ((signed int)(monster[v30]._mhitpoints & 0xFFFFFFC0) > 0 &&
-            monster[v30].MData->mSelFlag & 4)
+        selected_monster_id_10 = selected_monster_7 <= 0 ? -1 - selected_monster_7 : selected_monster_7 - 1;
+        if ((signed int)(monster[selected_monster_id_10]._mhitpoints & 0xFFFFFFC0) > 0 &&
+            monster[selected_monster_id_10].MData->mSelFlag & 4)
         {
           cursmx = world_x + 1;
-          v31 = world_y + 2;
+          cursor_offset_y_1 = world_y + 2;
           goto LABEL_145;
         }
       }
     }
     else
     {
-      v28 = tile_array_index + world_y;
-      v29 = dMonster[2][v28 + 1];
-      if (v29 && dFlags[2][tile_array_index + 1 + world_y] & 0x40)
+      selected_tile_6 = tile_array_index + world_y;
+      selected_monster_8 = dMonster[2][selected_tile_6 + 1];
+      if (selected_monster_8 && dFlags[2][tile_array_index + 1 + world_y] & 0x40)
       {
-        v30 = v29 <= 0 ? -1 - v29 : v29 - 1;
-        if ((signed int)(monster[v30]._mhitpoints & 0xFFFFFFC0) > 0 &&
-            monster[v30].MData->mSelFlag & 4)
+        selected_monster_id_10 = selected_monster_8 <= 0 ? -1 - selected_monster_8 : selected_monster_8 - 1;
+        if ((signed int)(monster[selected_monster_id_10]._mhitpoints & 0xFFFFFFC0) > 0 &&
+            monster[selected_monster_id_10].MData->mSelFlag & 4)
         {
           cursmx = world_x + 2;
-          v31 = world_y + 1;
+          cursor_offset_y_1 = world_y + 1;
         LABEL_145:
-          cursmy = v31;
-          pcursmonst = v30;
+          cursmy = cursor_offset_y_1;
+          pcursmonst = selected_monster_id_10;
           goto LABEL_146;
         }
       }
     }
   LABEL_146:
-    v33 = dMonster[2][v28 + 2];
-    if (v33 && dFlags[2][tile_array_index + 2 + world_y] & 0x40)
+    selected_monster_9 = dMonster[2][selected_tile_6 + 2];
+    if (selected_monster_9 && dFlags[2][tile_array_index + 2 + world_y] & 0x40)
     {
-      v34 = v33 <= 0 ? -1 - v33 : v33 - 1;
-      if ((signed int)(monster[v34]._mhitpoints & 0xFFFFFFC0) > 0 &&
-          monster[v34].MData->mSelFlag & 4)
+      selected_monster_id_11 = selected_monster_9 <= 0 ? -1 - selected_monster_9 : selected_monster_9 - 1;
+      if ((signed int)(monster[selected_monster_id_11]._mhitpoints & 0xFFFFFFC0) > 0 &&
+          monster[selected_monster_id_11].MData->mSelFlag & 4)
       {
-        pcursmonst = v34;
+        pcursmonst = selected_monster_id_11;
         cursmx = world_x + 2;
         cursmy = world_y + 2;
       }
     }
     if (add_to_index)
     {
-      v37 = dMonster[0][v28 + 1];
-      if (v37 && dFlags[0][tile_array_index + 1 + world_y] & 0x40)
+      selected_monster_10 = dMonster[0][selected_tile_6 + 1];
+      if (selected_monster_10 && dFlags[0][tile_array_index + 1 + world_y] & 0x40)
       {
-        v36 = v37 <= 0 ? -1 - v37 : v37 - 1;
-        if ((signed int)(monster[v36]._mhitpoints & 0xFFFFFFC0) > 0 &&
-            monster[v36].MData->mSelFlag & 2)
+        selected_monster_id_11 = selected_monster_10 <= 0 ? -1 - selected_monster_10 : selected_monster_10 - 1;
+        if ((signed int)(monster[selected_monster_id_11]._mhitpoints & 0xFFFFFFC0) > 0 &&
+            monster[selected_monster_id_11].MData->mSelFlag & 2)
         {
           cursmx = world_x;
           cursmy = world_y + 1;
@@ -895,59 +895,59 @@ LABEL_103:
     }
     else
     {
-      v35 = dMonster[1][v28];
-      if (v35 && dFlags[1][tile_array_index + world_y] & 0x40)
+      selected_monster_11 = dMonster[1][selected_tile_6];
+      if (selected_monster_11 && dFlags[1][tile_array_index + world_y] & 0x40)
       {
-        v36 = v35 <= 0 ? -1 - v35 : v35 - 1;
-        if ((signed int)(monster[v36]._mhitpoints & 0xFFFFFFC0) > 0 &&
-            monster[v36].MData->mSelFlag & 2)
+        selected_monster_id_11 = selected_monster_11 <= 0 ? -1 - selected_monster_11 : selected_monster_11 - 1;
+        if ((signed int)(monster[selected_monster_id_11]._mhitpoints & 0xFFFFFFC0) > 0 &&
+            monster[selected_monster_id_11].MData->mSelFlag & 2)
         {
           cursmy = world_y;
           cursmx = world_x + 1;
         LABEL_171:
-          pcursmonst = v36;
+          pcursmonst = selected_monster_id_11;
           goto LABEL_172;
         }
       }
     }
   LABEL_172:
-    v38 = dMonster[0][v28];
-    if (v38 && dFlags[0][tile_array_index + world_y] & 0x40)
+    selected_monster_12 = dMonster[0][selected_tile_6];
+    if (selected_monster_12 && dFlags[0][tile_array_index + world_y] & 0x40)
     {
-      v39 = v38 <= 0 ? -1 - v38 : v38 - 1;
-      if ((signed int)(monster[v39]._mhitpoints & 0xFFFFFFC0) > 0 &&
-          monster[v39].MData->mSelFlag & 1)
+      selected_monster_id_12 = selected_monster_12 <= 0 ? -1 - selected_monster_12 : selected_monster_12 - 1;
+      if ((signed int)(monster[selected_monster_id_12]._mhitpoints & 0xFFFFFFC0) > 0 &&
+          monster[selected_monster_id_12].MData->mSelFlag & 1)
       {
         cursmx = world_x;
         cursmy = world_y;
-        pcursmonst = v39;
+        pcursmonst = selected_monster_id_12;
       }
     }
-    v40 = dMonster[1][v28 + 1];
-    if (v40 && dFlags[1][tile_array_index + 1 + world_y] & 0x40)
+    selected_monster_13 = dMonster[1][selected_tile_6 + 1];
+    if (selected_monster_13 && dFlags[1][tile_array_index + 1 + world_y] & 0x40)
     {
-      v41 = v40 <= 0 ? -1 - v40 : v40 - 1;
-      if ((signed int)(monster[v41]._mhitpoints & 0xFFFFFFC0) > 0 &&
-          monster[v41].MData->mSelFlag & 2)
+      selected_monster_id_13 = selected_monster_13 <= 0 ? -1 - selected_monster_13 : selected_monster_13 - 1;
+      if ((signed int)(monster[selected_monster_id_13]._mhitpoints & 0xFFFFFFC0) > 0 &&
+          monster[selected_monster_id_13].MData->mSelFlag & 2)
       {
-        pcursmonst = v41;
+        pcursmonst = selected_monster_id_13;
         cursmx = world_x + 1;
         cursmy = world_y + 1;
       }
     }
-    v42 = pcursmonst;
+    cursor_monster_3 = pcursmonst;
     if (pcursmonst == -1)
       goto LABEL_207;
     if (monster[pcursmonst]._mFlags & 1)
     {
-      v42 = -1;
+      cursor_monster_3 = -1;
       cursmx = world_x;
       pcursmonst = -1;
       cursmy = world_y;
     }
-    if (v42 == -1)
+    if (cursor_monster_3 == -1)
       goto LABEL_207;
-    if (monster[v42]._mFlags & 0x20)
+    if (monster[cursor_monster_3]._mFlags & 0x20)
       goto LABEL_205;
     goto LABEL_206;
   }
@@ -959,7 +959,7 @@ LABEL_103:
 // 4B8CC0: using guessed type char pcursitem;
 // 4B8CC1: using guessed type char pcursobj;
 // 4B8CC2: using guessed type char pcursplr;
-// 4B8CCC: using guessed type int dword_4B8CCC;
+// 4B8CCC: using guessed type int cursor_monster_2;
 // 52569C: using guessed type int zoomflag;
 // 52575C: using guessed type int doomflag;
 // 5BB1ED: using guessed type char leveltype;
