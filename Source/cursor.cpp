@@ -18,6 +18,8 @@ int cursmx;
 int cursmy;
 int dword_4B8CCC; // weak
 int pcurs;        // idb
+#define DUNGEON_WIDTH 112
+#define DUNGEON_LAST_INDEX 111
 
 /* data */
 int InvItemWidth[180] = {
@@ -126,13 +128,13 @@ void __cdecl CheckTown()
       v2 = missileactive[v5];
       if (missile[v2]._mitype == MIS_TOWN)
       {
-        if ((v3 = missile[v2]._mix, v4 = v3 - 1, v0 == v3 - 1) &&
+        if ((v3 = missile[v2]._mix, modified_mouse_y_offset = v3 - 1, v0 == v3 - 1) &&
                 v1 == missile[v2]._miy ||
             v0 == v3 && v1 == missile[v2]._miy - 1 ||
-            v0 == v4 && v1 == missile[v2]._miy - 1 ||
+            v0 == modified_mouse_y_offset && v1 == missile[v2]._miy - 1 ||
             v0 == v3 - 2 && (v1 == missile[v2]._miy - 1 ||
                              v0 == v3 - 2 && v1 == missile[v2]._miy - 2) ||
-            v0 == v4 && v1 == missile[v2]._miy - 2 ||
+            v0 == modified_mouse_y_offset && v1 == missile[v2]._miy - 2 ||
             v0 == v3 && v1 == missile[v2]._miy)
         {
           trigflag[3] = 1;
@@ -203,90 +205,90 @@ void __cdecl CheckRportal()
 //----- (00407729) --------------------------------------------------------
 void __cdecl CheckCursMove()
 {
-  int mouse_x;                // esi
-  signed int mouse_y;         // edi
-  int mouse_x_offset;         // esi
-  int mouse_y_offset;         // edi
-  int v4;                     // edx
-  int v5;                     // ebx
-  int v6;                     // edi
-  int v7;                     // eax
-  int v8;                     // esi
-  BOOL v9;                    // eax
-  int cursor_monster;         // ecx
-  int v11;                    // edx
-  int v12;                    // ecx
-  int v13;                    // ebx
-  int v14;                    // ebx
-  int v15;                    // eax
-  bool player_not_invinsible; // zf
-  int v17;                    // ecx
-  int v18;                    // eax
-  int v19;                    // ecx
-  int v20;                    // eax
-  int v21;                    // ecx
-  int v22;                    // eax
-  int v23;                    // eax
-  int v24;                    // ecx
-  int v25;                    // eax
-  int v26;                    // ecx
-  int v27;                    // ebx
-  int v28;                    // edx
-  int v29;                    // eax
-  int v30;                    // ecx
-  int v31;                    // eax
-  int v32;                    // eax
-  int v33;                    // eax
-  int v34;                    // ecx
-  int v35;                    // eax
-  int v36;                    // ecx
-  int v37;                    // eax
-  int v38;                    // eax
-  int v39;                    // ecx
-  int v40;                    // eax
-  int v41;                    // ecx
-  signed int v42;             // eax
-  int v43;                    // ecx
-  int v44;                    // eax
-  int v45;                    // eax
-  int v46;                    // eax
-  int v47;                    // eax
-  char v48;                   // al
-  char v49;                   // cl
-  char v50;                   // al
-  char v51;                   // al
-  char v52;                   // cl
-  int v53;                    // ecx
-  int *v54;                   // eax
-  int v55;                    // edx
-  int *v56;                   // ecx
-  char v57;                   // al
-  char v58;                   // cl
-  signed int v59;             // edx
-  char v60;                   // al
-  char v61;                   // cl
-  char v62;                   // al
-  char v63;                   // al
-  char v64;                   // cl
-  char v65;                   // al
-  char v66;                   // al
-  char v67;                   // cl
-  char v68;                   // al
-  char v69;                   // al
-  char v70;                   // al
-  char v71;                   // al
-  char v72;                   // al
-  char v73;                   // cl
-  char v74;                   // al
-  char v75;                   // al
-  int v76;                    // [esp+Ch] [ebp-18h]
-  char *v77;                  // [esp+Ch] [ebp-18h]
-  int v78;                    // [esp+10h] [ebp-14h]
-  signed int v79;             // [esp+14h] [ebp-10h]
-  signed int v80;             // [esp+18h] [ebp-Ch]
-  int v81;                    // [esp+1Ch] [ebp-8h]
-  int v82;                    // [esp+1Ch] [ebp-8h]
-  signed int v83;             // [esp+20h] [ebp-4h]
+  int mouse_x;                 // esi
+  signed int mouse_y;          // edi
+  int mouse_x_offset;          // esi
+  int mouse_y_offset;          // edi
+  int modified_mouse_y_offset; // edx
+  int v5;                      // ebx
+  int world_x;                 // edi
+  int v7;                      // eax
+  int world_y;                 // esi
+  BOOL v9;                     // eax
+  int cursor_monster;          // ecx
+  int v11;                     // edx
+  int v12;                     // ecx
+  int v13;                     // ebx
+  int v14;                     // ebx
+  int v15;                     // eax
+  bool player_not_invinsible;  // zf
+  int v17;                     // ecx
+  int v18;                     // eax
+  int v19;                     // ecx
+  int v20;                     // eax
+  int v21;                     // ecx
+  int v22;                     // eax
+  int v23;                     // eax
+  int v24;                     // ecx
+  int v25;                     // eax
+  int v26;                     // ecx
+  int v27;                     // ebx
+  int v28;                     // edx
+  int v29;                     // eax
+  int v30;                     // ecx
+  int v31;                     // eax
+  int v32;                     // eax
+  int v33;                     // eax
+  int v34;                     // ecx
+  int v35;                     // eax
+  int v36;                     // ecx
+  int v37;                     // eax
+  int v38;                     // eax
+  int v39;                     // ecx
+  int v40;                     // eax
+  int v41;                     // ecx
+  signed int v42;              // eax
+  int v43;                     // ecx
+  int v44;                     // eax
+  int v45;                     // eax
+  int v46;                     // eax
+  int v47;                     // eax
+  char v48;                    // al
+  char v49;                    // cl
+  char v50;                    // al
+  char v51;                    // al
+  char v52;                    // cl
+  int v53;                     // ecx
+  int *v54;                    // eax
+  int v55;                     // edx
+  int *v56;                    // ecx
+  char v57;                    // al
+  char v58;                    // cl
+  signed int v59;              // edx
+  char v60;                    // al
+  char v61;                    // cl
+  char v62;                    // al
+  char v63;                    // al
+  char v64;                    // cl
+  char v65;                    // al
+  char v66;                    // al
+  char v67;                    // cl
+  char v68;                    // al
+  char v69;                    // al
+  char v70;                    // al
+  char v71;                    // al
+  char v72;                    // al
+  char v73;                    // cl
+  char v74;                    // al
+  char v75;                    // al
+  int v76;                     // [esp+Ch] [ebp-18h]
+  char *v77;                   // [esp+Ch] [ebp-18h]
+  int v78;                     // [esp+10h] [ebp-14h]
+  signed int v79;              // [esp+14h] [ebp-10h]
+  signed int v80;              // [esp+18h] [ebp-Ch]
+  int v81;                     // [esp+1Ch] [ebp-8h]
+  int v82;                     // [esp+1Ch] [ebp-8h]
+  signed int v83;              // [esp+20h] [ebp-4h]
 
   mouse_x = MouseX;
   mouse_y = MouseY;
@@ -334,25 +336,25 @@ LABEL_10:
     mouse_y_offset = 0;
   if (mouse_y_offset >= 480)
     mouse_y_offset = 480;
-  v4 = mouse_y_offset >> 5;
-  v5 = mouse_y_offset & 0x1F;
-  v76 = mouse_x_offset & 0x3F;
-  v6 = (mouse_x_offset >> 6) + (mouse_y_offset >> 5) + ViewX - (zoomflag != 0 ? 10 : 5);
+  modified_mouse_y_offset = mouse_y_offset >> 5;
+  v5 = mouse_y_offset & 31;
+  v76 = mouse_x_offset & 63;
+  world_x = (mouse_x_offset >> 6) + (mouse_y_offset >> 5) + ViewX - (zoomflag != 0 ? 10 : 5);
   v7 = v76 >> 1;
-  v8 = v4 + ViewY - (mouse_x_offset >> 6);
+  world_y = modified_mouse_y_offset + ViewY - (mouse_x_offset >> 6);
   if (v5<v76>> 1)
-    --v8;
+    --world_y;
   v9 = v5 >= 32 - v7;
   if (v9)
-    ++v6;
-  if (v6 < 0)
-    v6 = 0;
-  if (v6 >= 112)
-    v6 = 111;
-  if (v8 < 0)
-    v8 = 0;
-  if (v8 >= 112)
-    v8 = 111;
+    ++world_x;
+  if (world_x < 0)
+    world_x = 0;
+  if (world_x >= DUNGEON_WIDTH)
+    world_x = DUNGEON_LAST_INDEX;
+  if (world_y < 0)
+    world_y = 0;
+  if (world_y >= DUNGEON_WIDTH)
+    world_y = DUNGEON_LAST_INDEX;
   if (v5 >= v76 >> 1)
   {
     if (!v9)
@@ -389,8 +391,8 @@ LABEL_40:
     return;
   if (pcurs >= CURSOR_FIRSTITEM || spselflag)
   {
-    cursmx = v6;
-    cursmy = v8;
+    cursmx = world_x;
+    cursmy = world_y;
     return;
   }
   if (MouseY > 352)
@@ -411,27 +413,27 @@ LABEL_40:
   {
     if (v83)
     {
-      v27 = 112 * v6;
-      v78 = 112 * v6;
-      v43 = 112 * v6 + v8;
+      v27 = DUNGEON_WIDTH * world_x;
+      v78 = DUNGEON_WIDTH * world_x;
+      v43 = DUNGEON_WIDTH * world_x + world_y;
       v45 = dMonster[0][v43 + 1];
       if (v45 <= 0)
         goto LABEL_200;
       v11 = v45 - 1;
-      cursmx = v6;
-      cursmy = v8 + 1;
+      cursmx = world_x;
+      cursmy = world_y + 1;
     }
     else
     {
-      v27 = 112 * v6;
-      v78 = 112 * v6;
-      v43 = 112 * v6 + v8;
+      v27 = DUNGEON_WIDTH * world_x;
+      v78 = DUNGEON_WIDTH * world_x;
+      v43 = DUNGEON_WIDTH * world_x + world_y;
       v44 = dMonster[1][v43];
       if (v44 <= 0)
         goto LABEL_200;
       v11 = v44 - 1;
-      cursmx = v6 + 1;
-      cursmy = v8;
+      cursmx = world_x + 1;
+      cursmy = world_y;
     }
     pcursmonst = v11;
   LABEL_200:
@@ -439,17 +441,17 @@ LABEL_40:
     if (v46 > 0)
     {
       v11 = v46 - 1;
-      cursmx = v6;
+      cursmx = world_x;
       pcursmonst = v46 - 1;
-      cursmy = v8;
+      cursmy = world_y;
     }
     v47 = dMonster[1][v43 + 1];
     if (v47 > 0)
     {
       v11 = v47 - 1;
-      cursmx = v6 + 1;
+      cursmx = world_x + 1;
       pcursmonst = v47 - 1;
-      cursmy = v8 + 1;
+      cursmy = world_y + 1;
     }
     if (!towner[v11]._tSelFlag)
     LABEL_205:
@@ -470,8 +472,8 @@ LABEL_40:
         v49 = v50 <= 0 ? -1 - v50 : v50 - 1;
         if (v49 != myplr && plr[v49]._pHitPoints)
         {
-          cursmx = v6;
-          cursmy = v8 + 1;
+          cursmx = world_x;
+          cursmy = world_y + 1;
           goto LABEL_222;
         }
       }
@@ -484,8 +486,8 @@ LABEL_40:
         v49 = v48 <= 0 ? -1 - v48 : v48 - 1;
         if (v49 != myplr && plr[v49]._pHitPoints)
         {
-          cursmy = v8;
-          cursmx = v6 + 1;
+          cursmy = world_y;
+          cursmx = world_x + 1;
         LABEL_222:
           pcursplr = v49;
           goto LABEL_223;
@@ -499,8 +501,8 @@ LABEL_40:
       v52 = v51 <= 0 ? -1 - v51 : v51 - 1;
       if (v52 != myplr)
       {
-        cursmx = v6;
-        cursmy = v8;
+        cursmx = world_x;
+        cursmy = world_y;
         pcursplr = v52;
       }
     }
@@ -510,10 +512,10 @@ LABEL_40:
       v54 = &plr[0].WorldY;
       do
       {
-        if (*(v54 - 1) == v6 && *v54 == v8 && v53 != myplr)
+        if (*(v54 - 1) == world_x && *v54 == world_y && v53 != myplr)
         {
-          cursmx = v6;
-          cursmy = v8;
+          cursmx = world_x;
+          cursmy = world_y;
           pcursplr = v53;
         }
         v54 += 5430;
@@ -527,7 +529,7 @@ LABEL_40:
       do
       {
         v80 = -1;
-        v55 = v8 - 1;
+        v55 = world_y - 1;
         do
         {
           if (v77[v80] & 4)
@@ -536,9 +538,9 @@ LABEL_40:
             v56 = &plr[0].WorldY;
             do
             {
-              if (*(v56 - 1) == v6 + v79 && *v56 == v55 && v82 != myplr)
+              if (*(v56 - 1) == world_x + v79 && *v56 == v55 && v82 != myplr)
               {
-                cursmx = v6 + v79;
+                cursmx = world_x + v79;
                 cursmy = v55;
                 pcursplr = v82;
               }
@@ -550,7 +552,7 @@ LABEL_40:
           ++v55;
         } while (v80 < 2);
         ++v79;
-        v77 += 112;
+        v77 += DUNGEON_WIDTH;
       } while (v79 < 2);
       v27 = v78;
     }
@@ -561,8 +563,8 @@ LABEL_40:
       if (v58 != myplr && plr[v58]._pHitPoints)
       {
         pcursplr = v58;
-        cursmx = v6 + 1;
-        cursmy = v8 + 1;
+        cursmx = world_x + 1;
+        cursmy = world_y + 1;
       }
     }
     v59 = pcursmonst;
@@ -578,8 +580,8 @@ LABEL_40:
         v59 = -1;
         pcursitem = -1;
         pcursmonst = -1;
-        cursmx = v6;
-        cursmy = v8;
+        cursmx = world_x;
+        cursmy = world_y;
       }
       if (v59 != -1)
       {
@@ -598,8 +600,8 @@ LABEL_40:
       v61 = v62 <= 0 ? -1 - v62 : v62 - 1;
       if (SLOBYTE(object[v61]._oSelFlag) < 2)
         goto LABEL_272;
-      cursmx = v6;
-      cursmy = v8 + 1;
+      cursmx = world_x;
+      cursmy = world_y + 1;
     }
     else
     {
@@ -609,8 +611,8 @@ LABEL_40:
       v61 = v60 <= 0 ? -1 - v60 : v60 - 1;
       if (SLOBYTE(object[v61]._oSelFlag) < 2)
         goto LABEL_272;
-      cursmy = v8;
-      cursmx = v6 + 1;
+      cursmy = world_y;
+      cursmx = world_x + 1;
     }
     pcursobj = v61;
   LABEL_272:
@@ -621,8 +623,8 @@ LABEL_40:
       v65 = object[v64]._oSelFlag;
       if (v65 == 1 || v65 == 3)
       {
-        cursmx = v6;
-        cursmy = v8;
+        cursmx = world_x;
+        cursmy = world_y;
         pcursobj = v64;
       }
     }
@@ -641,8 +643,8 @@ LABEL_40:
         v69 = v70 - 1;
         if (item[v69]._iSelFlag < 2)
           goto LABEL_296;
-        cursmx = v6;
-        cursmy = v8 + 1;
+        cursmx = world_x;
+        cursmy = world_y + 1;
       }
       else
       {
@@ -652,8 +654,8 @@ LABEL_40:
         v69 = v68 - 1;
         if (item[v69]._iSelFlag < 2)
           goto LABEL_296;
-        cursmy = v8;
-        cursmx = v6 + 1;
+        cursmy = world_y;
+        cursmx = world_x + 1;
       }
       pcursitem = v69;
     LABEL_296:
@@ -664,8 +666,8 @@ LABEL_40:
         v73 = item[v72]._iSelFlag;
         if (v73 == 1 || v73 == 3)
         {
-          cursmx = v6;
-          cursmy = v8;
+          cursmx = world_x;
+          cursmy = world_y;
           pcursitem = v72;
         }
       }
@@ -676,29 +678,29 @@ LABEL_40:
         if (item[v75]._iSelFlag >= 2)
         {
           pcursitem = v75;
-          cursmx = v6 + 1;
-          cursmy = v8 + 1;
+          cursmx = world_x + 1;
+          cursmy = world_y + 1;
         }
       }
       if (pcursitem != -1)
         goto LABEL_306;
-      cursmx = v6;
-      cursmy = v8;
+      cursmx = world_x;
+      cursmy = world_y;
       CheckTrigForce();
       CheckTown();
       CheckRportal();
       goto LABEL_305;
     }
     pcursobj = v67;
-    cursmx = v6 + 1;
-    cursmy = v8 + 1;
+    cursmx = world_x + 1;
+    cursmy = world_y + 1;
     goto LABEL_285;
   }
   if (cursor_monster == -1)
     goto LABEL_128;
-  v12 = 112 * v6 + v8;
-  v81 = 112 * v6 + v8;
-  v13 = 112 * v6 + v8;
+  v12 = DUNGEON_WIDTH * world_x + world_y;
+  v81 = DUNGEON_WIDTH * world_x + world_y;
+  v13 = DUNGEON_WIDTH * world_x + world_y;
   if (v83)
   {
     v14 = v13;
@@ -723,8 +725,8 @@ LABEL_40:
         monster[v17].MData->mSelFlag & 4)
     {
       v11 = v17;
-      cursmx = v6 + 1;
-      cursmy = v8 + 2;
+      cursmx = world_x + 1;
+      cursmy = world_y + 2;
       pcursmonst = v17;
     }
   }
@@ -738,8 +740,8 @@ LABEL_74:
         monster[v19].MData->mSelFlag & 4)
     {
       v11 = v19;
-      cursmx = v6 + 2;
-      cursmy = v8 + 2;
+      cursmx = world_x + 2;
+      cursmy = world_y + 2;
       pcursmonst = v19;
     }
   }
@@ -753,8 +755,8 @@ LABEL_74:
           (signed int)(monster[v21]._mhitpoints & 0xFFFFFFC0) > 0 &&
           monster[v21].MData->mSelFlag & 2)
       {
-        cursmx = v6;
-        cursmy = v8 + 1;
+        cursmx = world_x;
+        cursmy = world_y + 1;
         goto LABEL_102;
       }
     }
@@ -769,8 +771,8 @@ LABEL_74:
           (signed int)(monster[v21]._mhitpoints & 0xFFFFFFC0) > 0 &&
           monster[v21].MData->mSelFlag & 2)
       {
-        cursmy = v8;
-        cursmx = v6 + 1;
+        cursmy = world_y;
+        cursmx = world_x + 1;
       LABEL_102:
         v11 = v21;
         pcursmonst = v21;
@@ -788,8 +790,8 @@ LABEL_103:
         monster[v24].MData->mSelFlag & 1)
     {
       v11 = v24;
-      cursmx = v6;
-      cursmy = v8;
+      cursmx = world_x;
+      cursmy = world_y;
       pcursmonst = v24;
     }
   }
@@ -802,8 +804,8 @@ LABEL_103:
         monster[v26].MData->mSelFlag & 2)
     {
       v11 = v26;
-      cursmx = v6 + 1;
-      cursmy = v8 + 1;
+      cursmx = world_x + 1;
+      cursmy = world_y + 1;
       pcursmonst = v26;
     }
   }
@@ -812,9 +814,9 @@ LABEL_103:
   if (monster[v11]._mFlags & 1)
   {
     v11 = -1;
-    cursmx = v6;
+    cursmx = world_x;
     pcursmonst = -1;
-    cursmy = v8;
+    cursmy = world_y;
   }
   if (v11 == -1)
     goto LABEL_128;
@@ -826,11 +828,11 @@ LABEL_103:
   if (v11 == -1)
   {
   LABEL_128:
-    v27 = 112 * v6;
-    v78 = 112 * v6;
+    v27 = DUNGEON_WIDTH * world_x;
+    v78 = DUNGEON_WIDTH * world_x;
     if (v83)
     {
-      v28 = v27 + v8;
+      v28 = v27 + world_y;
       v32 = dMonster[1][v28 + 2];
       if (v32 && dFlags[1][v27 + 2 + v8] & 0x40)
       {
@@ -838,15 +840,15 @@ LABEL_103:
         if ((signed int)(monster[v30]._mhitpoints & 0xFFFFFFC0) > 0 &&
             monster[v30].MData->mSelFlag & 4)
         {
-          cursmx = v6 + 1;
-          v31 = v8 + 2;
+          cursmx = world_x + 1;
+          v31 = world_y + 2;
           goto LABEL_145;
         }
       }
     }
     else
     {
-      v28 = v27 + v8;
+      v28 = v27 + world_y;
       v29 = dMonster[2][v28 + 1];
       if (v29 && dFlags[2][v27 + 1 + v8] & 0x40)
       {
@@ -854,8 +856,8 @@ LABEL_103:
         if ((signed int)(monster[v30]._mhitpoints & 0xFFFFFFC0) > 0 &&
             monster[v30].MData->mSelFlag & 4)
         {
-          cursmx = v6 + 2;
-          v31 = v8 + 1;
+          cursmx = world_x + 2;
+          v31 = world_y + 1;
         LABEL_145:
           cursmy = v31;
           pcursmonst = v30;
@@ -872,8 +874,8 @@ LABEL_103:
           monster[v34].MData->mSelFlag & 4)
       {
         pcursmonst = v34;
-        cursmx = v6 + 2;
-        cursmy = v8 + 2;
+        cursmx = world_x + 2;
+        cursmy = world_y + 2;
       }
     }
     if (v83)
@@ -885,8 +887,8 @@ LABEL_103:
         if ((signed int)(monster[v36]._mhitpoints & 0xFFFFFFC0) > 0 &&
             monster[v36].MData->mSelFlag & 2)
         {
-          cursmx = v6;
-          cursmy = v8 + 1;
+          cursmx = world_x;
+          cursmy = world_y + 1;
           goto LABEL_171;
         }
       }
@@ -900,8 +902,8 @@ LABEL_103:
         if ((signed int)(monster[v36]._mhitpoints & 0xFFFFFFC0) > 0 &&
             monster[v36].MData->mSelFlag & 2)
         {
-          cursmy = v8;
-          cursmx = v6 + 1;
+          cursmy = world_y;
+          cursmx = world_x + 1;
         LABEL_171:
           pcursmonst = v36;
           goto LABEL_172;
@@ -916,8 +918,8 @@ LABEL_103:
       if ((signed int)(monster[v39]._mhitpoints & 0xFFFFFFC0) > 0 &&
           monster[v39].MData->mSelFlag & 1)
       {
-        cursmx = v6;
-        cursmy = v8;
+        cursmx = world_x;
+        cursmy = world_y;
         pcursmonst = v39;
       }
     }
@@ -929,8 +931,8 @@ LABEL_103:
           monster[v41].MData->mSelFlag & 2)
       {
         pcursmonst = v41;
-        cursmx = v6 + 1;
-        cursmy = v8 + 1;
+        cursmx = world_x + 1;
+        cursmy = world_y + 1;
       }
     }
     v42 = pcursmonst;
@@ -939,9 +941,9 @@ LABEL_103:
     if (monster[pcursmonst]._mFlags & 1)
     {
       v42 = -1;
-      cursmx = v6;
+      cursmx = world_x;
       pcursmonst = -1;
-      cursmy = v8;
+      cursmy = world_y;
     }
     if (v42 == -1)
       goto LABEL_207;
