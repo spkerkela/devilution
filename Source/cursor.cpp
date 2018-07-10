@@ -214,9 +214,9 @@ void __cdecl CheckCursMove()
   int world_x;                          // edi
   int tile_x_center;                    // eax
   int world_y;                          // esi
-  BOOL v9;                              // eax
+  BOOL off_by_one;                      // eax
   int cursor_monster;                   // ecx
-  int v11;                              // edx
+  int monster_id;                       // edx
   int v12;                              // ecx
   int v13;                              // ebx
   int v14;                              // ebx
@@ -232,7 +232,7 @@ void __cdecl CheckCursMove()
   int v24;                              // ecx
   int v25;                              // eax
   int v26;                              // ecx
-  int v27;                              // ebx
+  int tile_array_index;                 // ebx
   int v28;                              // edx
   int v29;                              // eax
   int v30;                              // ecx
@@ -248,23 +248,23 @@ void __cdecl CheckCursMove()
   int v40;                              // eax
   int v41;                              // ecx
   signed int v42;                       // eax
-  int v43;                              // ecx
-  int v44;                              // eax
-  int v45;                              // eax
-  int v46;                              // eax
-  int v47;                              // eax
-  char v48;                             // al
-  char v49;                             // cl
-  char v50;                             // al
-  char v51;                             // al
-  char v52;                             // cl
+  int selected_tile;                    // ecx
+  int selected_monster_id_2;            // eax
+  int selected_monster_id;              // eax
+  int selected_monster_id_3;            // eax
+  int selected_monster_id_4;            // eax
+  char selected_player_2;               // al
+  char player_id;                       // cl
+  char selected_player;                 // al
+  char selected_player_3;               // al
+  char player_id_2;                     // cl
   int v53;                              // ecx
   int *v54;                             // eax
   int v55;                              // edx
   int *v56;                             // ecx
   char v57;                             // al
   char v58;                             // cl
-  signed int v59;                       // edx
+  signed int cursor_monster_saved;      // edx
   char v60;                             // al
   char v61;                             // cl
   char v62;                             // al
@@ -283,12 +283,12 @@ void __cdecl CheckCursMove()
   char v75;                             // al
   int tile_pixel_x;                     // [esp+Ch] [ebp-18h]
   char *v77;                            // [esp+Ch] [ebp-18h]
-  int v78;                              // [esp+10h] [ebp-14h]
+  int original_tile_array_index;        // [esp+10h] [ebp-14h]
   signed int v79;                       // [esp+14h] [ebp-10h]
   signed int v80;                       // [esp+18h] [ebp-Ch]
   int v81;                              // [esp+1Ch] [ebp-8h]
   int v82;                              // [esp+1Ch] [ebp-8h]
-  signed int v83;                       // [esp+20h] [ebp-4h]
+  signed int add_to_index;              // [esp+20h] [ebp-4h]
 
   mouse_x = MouseX;
   mouse_y = MouseY;
@@ -342,10 +342,10 @@ LABEL_10:
   world_x = (mouse_screen_position_x >> 6) + (mouse_screen_position_y >> 5) + ViewX - (zoomflag != 0 ? 10 : 5);
   tile_x_center = tile_pixel_x >> 1;
   world_y = modified_mouse_screen_position_y + ViewY - (mouse_screen_position_x >> 6);
-  if (v5<tile_pixel_x>> 1)
+  if (tile_pixel_y < tile_pixel_x / 2)
     --world_y;
-  v9 = tile_pixel_y >= 32 - tile_x_center;
-  if (v9)
+  off_by_one = tile_pixel_y >= 32 - tile_x_center;
+  if (off_by_one)
     ++world_x;
   if (world_x < 0)
     world_x = 0;
@@ -357,26 +357,26 @@ LABEL_10:
     world_y = DUNGEON_LAST_INDEX;
   if (tile_pixel_y >= tile_pixel_x >> 1)
   {
-    if (!v9)
+    if (!off_by_one)
       goto LABEL_49;
     goto LABEL_48;
   }
-  if (!v9)
+  if (!off_by_one)
   {
   LABEL_48:
     if (tile_pixel_x < 32)
       goto LABEL_39;
   LABEL_49:
-    v83 = 0;
+    add_to_index = 0;
     goto LABEL_40;
   }
 LABEL_39:
-  v83 = 1;
+  add_to_index = 1;
 LABEL_40:
   cursor_monster = pcursmonst;
   pcursobj = -1;
   pcursitem = -1;
-  v11 = -1;
+  monster_id = -1;
   dword_4B8CCC = pcursmonst;
   pcursmonst = -1;
   if (pcursinvitem != -1)
@@ -411,66 +411,66 @@ LABEL_40:
     return;
   if (!leveltype)
   {
-    if (v83)
+    if (add_to_index)
     {
-      v27 = DUNGEON_WIDTH * world_x;
-      v78 = DUNGEON_WIDTH * world_x;
-      v43 = DUNGEON_WIDTH * world_x + world_y;
-      v45 = dMonster[0][v43 + 1];
-      if (v45 <= 0)
+      tile_array_index = DUNGEON_WIDTH * world_x;
+      original_tile_array_index = DUNGEON_WIDTH * world_x;
+      selected_tile = DUNGEON_WIDTH * world_x + world_y;
+      selected_monster_id = dMonster[0][selected_tile + 1];
+      if (selected_monster_id <= 0)
         goto LABEL_200;
-      v11 = v45 - 1;
+      monster_id = selected_monster_id - 1;
       cursmx = world_x;
       cursmy = world_y + 1;
     }
     else
     {
-      v27 = DUNGEON_WIDTH * world_x;
-      v78 = DUNGEON_WIDTH * world_x;
-      v43 = DUNGEON_WIDTH * world_x + world_y;
-      v44 = dMonster[1][v43];
-      if (v44 <= 0)
+      tile_array_index = DUNGEON_WIDTH * world_x;
+      original_tile_array_index = DUNGEON_WIDTH * world_x;
+      selected_tile = DUNGEON_WIDTH * world_x + world_y;
+      selected_monster_id_2 = dMonster[1][selected_tile];
+      if (selected_monster_id_2 <= 0)
         goto LABEL_200;
-      v11 = v44 - 1;
+      monster_id = selected_monster_id_2 - 1;
       cursmx = world_x + 1;
       cursmy = world_y;
     }
-    pcursmonst = v11;
+    pcursmonst = monster_id;
   LABEL_200:
-    v46 = dMonster[0][v43];
-    if (v46 > 0)
+    selected_monster_id_3 = dMonster[0][selected_tile];
+    if (selected_monster_id_3 > 0)
     {
-      v11 = v46 - 1;
+      monster_id = selected_monster_id_3 - 1;
       cursmx = world_x;
-      pcursmonst = v46 - 1;
+      pcursmonst = selected_monster_id_3 - 1;
       cursmy = world_y;
     }
-    v47 = dMonster[1][v43 + 1];
-    if (v47 > 0)
+    selected_monster_id_4 = dMonster[1][selected_tile + 1];
+    if (selected_monster_id_4 > 0)
     {
-      v11 = v47 - 1;
+      monster_id = selected_monster_id_4 - 1;
       cursmx = world_x + 1;
-      pcursmonst = v47 - 1;
+      pcursmonst = selected_monster_id_4 - 1;
       cursmy = world_y + 1;
     }
-    if (!towner[v11]._tSelFlag)
+    if (!towner[monster_id]._tSelFlag)
     LABEL_205:
       pcursmonst = -1;
   LABEL_206:
     if (pcursmonst != -1)
     {
     LABEL_305:
-      v59 = pcursmonst;
+      cursor_monster_saved = pcursmonst;
       goto LABEL_306;
     }
   LABEL_207:
-    if (v83)
+    if (add_to_index)
     {
-      v50 = dPlayer[0][v27 + 1 + v8];
-      if (v50)
+      selected_player = dPlayer[0][tile_array_index + 1 + world_y];
+      if (selected_player)
       {
-        v49 = v50 <= 0 ? -1 - v50 : v50 - 1;
-        if (v49 != myplr && plr[v49]._pHitPoints)
+        player_id = selected_player <= 0 ? -1 - selected_player : selected_player - 1;
+        if (player_id != myplr && plr[player_id]._pHitPoints)
         {
           cursmx = world_x;
           cursmy = world_y + 1;
@@ -480,33 +480,33 @@ LABEL_40:
     }
     else
     {
-      v48 = dPlayer[1][v27 + v8];
-      if (v48)
+      selected_player_2 = dPlayer[1][tile_array_index + world_y];
+      if (selected_player_2)
       {
-        v49 = v48 <= 0 ? -1 - v48 : v48 - 1;
-        if (v49 != myplr && plr[v49]._pHitPoints)
+        player_id = selected_player_2 <= 0 ? -1 - selected_player_2 : selected_player_2 - 1;
+        if (player_id != myplr && plr[player_id]._pHitPoints)
         {
           cursmy = world_y;
           cursmx = world_x + 1;
         LABEL_222:
-          pcursplr = v49;
+          pcursplr = player_id;
           goto LABEL_223;
         }
       }
     }
   LABEL_223:
-    v51 = dPlayer[0][v27 + v8];
-    if (v51)
+    selected_player_3 = dPlayer[0][tile_array_index + world_y];
+    if (selected_player_3)
     {
-      v52 = v51 <= 0 ? -1 - v51 : v51 - 1;
-      if (v52 != myplr)
+      player_id_2 = selected_player_3 <= 0 ? -1 - selected_player_3 : selected_player_3 - 1;
+      if (player_id_2 != myplr)
       {
         cursmx = world_x;
         cursmy = world_y;
-        pcursplr = v52;
+        pcursplr = player_id_2;
       }
     }
-    if (dFlags[0][v27 + v8] & 4)
+    if (dFlags[0][tile_array_index + world_y] & 4)
     {
       v53 = 0;
       v54 = &plr[0].WorldY;
@@ -525,7 +525,7 @@ LABEL_40:
     if (pcurs == CURSOR_RESURRECT)
     {
       v79 = -1;
-      v77 = &nBlockTable[v27 + 1944 + v8];
+      v77 = &nBlockTable[tile_array_index + 1944 + world_y];
       do
       {
         v80 = -1;
@@ -554,9 +554,9 @@ LABEL_40:
         ++v79;
         v77 += DUNGEON_WIDTH;
       } while (v79 < 2);
-      v27 = v78;
+      tile_array_index = original_tile_array_index;
     }
-    v57 = dPlayer[1][v27 + 1 + v8];
+    v57 = dPlayer[1][tile_array_index + 1 + world_y];
     if (v57)
     {
       v58 = v57 <= 0 ? -1 - v57 : v57 - 1;
@@ -567,7 +567,7 @@ LABEL_40:
         cursmy = world_y + 1;
       }
     }
-    v59 = pcursmonst;
+    cursor_monster_saved = pcursmonst;
     if (pcursmonst != -1)
     {
     LABEL_285:
@@ -577,24 +577,24 @@ LABEL_40:
       if (pcurs == CURSOR_IDENTIFY)
       {
         pcursobj = -1;
-        v59 = -1;
+        cursor_monster_saved = -1;
         pcursitem = -1;
         pcursmonst = -1;
         cursmx = world_x;
         cursmy = world_y;
       }
-      if (v59 != -1)
+      if (cursor_monster_saved != -1)
       {
-        if (monster[v59]._mFlags & 0x20)
+        if (monster[cursor_monster_saved]._mFlags & 0x20)
           pcursmonst = -1;
       }
       return;
     }
     if (pcursplr != pcursmonst) /* check in future */
       goto LABEL_306;
-    if (v83)
+    if (add_to_index)
     {
-      v62 = dObject[0][v27 + 1 + v8];
+      v62 = dObject[0][tile_array_index + 1 + world_y];
       if (!v62)
         goto LABEL_272;
       v61 = v62 <= 0 ? -1 - v62 : v62 - 1;
@@ -605,7 +605,7 @@ LABEL_40:
     }
     else
     {
-      v60 = dObject[1][v27 + v8];
+      v60 = dObject[1][tile_array_index + world_y];
       if (!v60)
         goto LABEL_272;
       v61 = v60 <= 0 ? -1 - v60 : v60 - 1;
@@ -616,7 +616,7 @@ LABEL_40:
     }
     pcursobj = v61;
   LABEL_272:
-    v63 = dObject[0][v27 + v8];
+    v63 = dObject[0][tile_array_index + world_y];
     if (v63)
     {
       v64 = v63 <= 0 ? -1 - v63 : v63 - 1;
@@ -628,16 +628,16 @@ LABEL_40:
         pcursobj = v64;
       }
     }
-    v66 = dObject[1][v27 + 1 + v8];
+    v66 = dObject[1][tile_array_index + 1 + world_y];
     if (!v66 || (v66 <= 0 ? (v67 = -1 - v66) : (v67 = v66 - 1),
                  SLOBYTE(object[v67]._oSelFlag) < 2))
     {
     LABEL_286:
       if (pcursobj != -1 || pcursmonst != -1)
         goto LABEL_306;
-      if (v83)
+      if (add_to_index)
       {
-        v70 = dItem[0][v27 + 1 + v8];
+        v70 = dItem[0][tile_array_index + 1 + world_y];
         if (v70 <= 0)
           goto LABEL_296;
         v69 = v70 - 1;
@@ -648,7 +648,7 @@ LABEL_40:
       }
       else
       {
-        v68 = dItem[1][v27 + v8];
+        v68 = dItem[1][tile_array_index + world_y];
         if (v68 <= 0)
           goto LABEL_296;
         v69 = v68 - 1;
@@ -659,7 +659,7 @@ LABEL_40:
       }
       pcursitem = v69;
     LABEL_296:
-      v71 = dItem[0][v27 + v8];
+      v71 = dItem[0][tile_array_index + world_y];
       if (v71 > 0)
       {
         v72 = v71 - 1;
@@ -671,7 +671,7 @@ LABEL_40:
           pcursitem = v72;
         }
       }
-      v74 = dItem[1][v27 + 1 + v8];
+      v74 = dItem[1][tile_array_index + 1 + world_y];
       if (v74 > 0)
       {
         v75 = v74 - 1;
@@ -701,7 +701,7 @@ LABEL_40:
   v12 = DUNGEON_WIDTH * world_x + world_y;
   v81 = DUNGEON_WIDTH * world_x + world_y;
   v13 = DUNGEON_WIDTH * world_x + world_y;
-  if (v83)
+  if (add_to_index)
   {
     v14 = v13;
     v15 = dMonster[1][v14 + 2];
@@ -724,7 +724,7 @@ LABEL_40:
         (signed int)(monster[v17]._mhitpoints & 0xFFFFFFC0) > 0 &&
         monster[v17].MData->mSelFlag & 4)
     {
-      v11 = v17;
+      monster_id = v17;
       cursmx = world_x + 1;
       cursmy = world_y + 2;
       pcursmonst = v17;
@@ -739,13 +739,13 @@ LABEL_74:
         (signed int)(monster[v19]._mhitpoints & 0xFFFFFFC0) > 0 &&
         monster[v19].MData->mSelFlag & 4)
     {
-      v11 = v19;
+      monster_id = v19;
       cursmx = world_x + 2;
       cursmy = world_y + 2;
       pcursmonst = v19;
     }
   }
-  if (v83)
+  if (add_to_index)
   {
     v22 = dMonster[0][v14 + 1];
     if (v22 && dFlags[0][v81 + 1] & 0x40)
@@ -774,7 +774,7 @@ LABEL_74:
         cursmy = world_y;
         cursmx = world_x + 1;
       LABEL_102:
-        v11 = v21;
+        monster_id = v21;
         pcursmonst = v21;
         goto LABEL_103;
       }
@@ -789,7 +789,7 @@ LABEL_103:
         (signed int)(monster[v24]._mhitpoints & 0xFFFFFFC0) > 0 &&
         monster[v24].MData->mSelFlag & 1)
     {
-      v11 = v24;
+      monster_id = v24;
       cursmx = world_x;
       cursmy = world_y;
       pcursmonst = v24;
@@ -803,38 +803,38 @@ LABEL_103:
         (signed int)(monster[v26]._mhitpoints & 0xFFFFFFC0) > 0 &&
         monster[v26].MData->mSelFlag & 2)
     {
-      v11 = v26;
+      monster_id = v26;
       cursmx = world_x + 1;
       cursmy = world_y + 1;
       pcursmonst = v26;
     }
   }
-  if (v11 == -1)
+  if (monster_id == -1)
     goto LABEL_128;
-  if (monster[v11]._mFlags & 1)
+  if (monster[monster_id]._mFlags & 1)
   {
-    v11 = -1;
+    monster_id = -1;
     cursmx = world_x;
     pcursmonst = -1;
     cursmy = world_y;
   }
-  if (v11 == -1)
+  if (monster_id == -1)
     goto LABEL_128;
-  if (monster[v11]._mFlags & 0x20)
+  if (monster[monster_id]._mFlags & 0x20)
   {
-    v11 = -1;
+    monster_id = -1;
     pcursmonst = -1;
   }
-  if (v11 == -1)
+  if (monster_id == -1)
   {
   LABEL_128:
-    v27 = DUNGEON_WIDTH * world_x;
-    v78 = DUNGEON_WIDTH * world_x;
-    if (v83)
+    tile_array_index = DUNGEON_WIDTH * world_x;
+    original_tile_array_index = DUNGEON_WIDTH * world_x;
+    if (add_to_index)
     {
-      v28 = v27 + world_y;
+      v28 = tile_array_index + world_y;
       v32 = dMonster[1][v28 + 2];
-      if (v32 && dFlags[1][v27 + 2 + v8] & 0x40)
+      if (v32 && dFlags[1][tile_array_index + 2 + world_y] & 0x40)
       {
         v30 = v32 <= 0 ? -1 - v32 : v32 - 1;
         if ((signed int)(monster[v30]._mhitpoints & 0xFFFFFFC0) > 0 &&
@@ -848,9 +848,9 @@ LABEL_103:
     }
     else
     {
-      v28 = v27 + world_y;
+      v28 = tile_array_index + world_y;
       v29 = dMonster[2][v28 + 1];
-      if (v29 && dFlags[2][v27 + 1 + v8] & 0x40)
+      if (v29 && dFlags[2][tile_array_index + 1 + world_y] & 0x40)
       {
         v30 = v29 <= 0 ? -1 - v29 : v29 - 1;
         if ((signed int)(monster[v30]._mhitpoints & 0xFFFFFFC0) > 0 &&
@@ -867,7 +867,7 @@ LABEL_103:
     }
   LABEL_146:
     v33 = dMonster[2][v28 + 2];
-    if (v33 && dFlags[2][v27 + 2 + v8] & 0x40)
+    if (v33 && dFlags[2][tile_array_index + 2 + world_y] & 0x40)
     {
       v34 = v33 <= 0 ? -1 - v33 : v33 - 1;
       if ((signed int)(monster[v34]._mhitpoints & 0xFFFFFFC0) > 0 &&
@@ -878,10 +878,10 @@ LABEL_103:
         cursmy = world_y + 2;
       }
     }
-    if (v83)
+    if (add_to_index)
     {
       v37 = dMonster[0][v28 + 1];
-      if (v37 && dFlags[0][v27 + 1 + v8] & 0x40)
+      if (v37 && dFlags[0][tile_array_index + 1 + world_y] & 0x40)
       {
         v36 = v37 <= 0 ? -1 - v37 : v37 - 1;
         if ((signed int)(monster[v36]._mhitpoints & 0xFFFFFFC0) > 0 &&
@@ -896,7 +896,7 @@ LABEL_103:
     else
     {
       v35 = dMonster[1][v28];
-      if (v35 && dFlags[1][v27 + v8] & 0x40)
+      if (v35 && dFlags[1][tile_array_index + world_y] & 0x40)
       {
         v36 = v35 <= 0 ? -1 - v35 : v35 - 1;
         if ((signed int)(monster[v36]._mhitpoints & 0xFFFFFFC0) > 0 &&
@@ -912,7 +912,7 @@ LABEL_103:
     }
   LABEL_172:
     v38 = dMonster[0][v28];
-    if (v38 && dFlags[0][v27 + v8] & 0x40)
+    if (v38 && dFlags[0][tile_array_index + world_y] & 0x40)
     {
       v39 = v38 <= 0 ? -1 - v38 : v38 - 1;
       if ((signed int)(monster[v39]._mhitpoints & 0xFFFFFFC0) > 0 &&
@@ -924,7 +924,7 @@ LABEL_103:
       }
     }
     v40 = dMonster[1][v28 + 1];
-    if (v40 && dFlags[1][v27 + 1 + v8] & 0x40)
+    if (v40 && dFlags[1][tile_array_index + 1 + world_y] & 0x40)
     {
       v41 = v40 <= 0 ? -1 - v40 : v40 - 1;
       if ((signed int)(monster[v41]._mhitpoints & 0xFFFFFFC0) > 0 &&
