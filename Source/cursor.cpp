@@ -205,92 +205,92 @@ void __cdecl CheckRportal()
 //----- (00407729) --------------------------------------------------------
 void __cdecl CheckCursMove()
 {
-  int mouse_x;                          // esi
-  signed int mouse_y;                   // edi
+
+  BOOL off_by_one;                      // eax
+  bool player_not_invinsible;           // zf
+  char *block_table_row_ptr;            // [esp+Ch] [ebp-18h]
+  char item_id;                         // al
+  char item_id_2;                       // al
+  char item_id_3;                       // al
+  char item_selected_flag;              // cl
+  char object_id;                       // cl
+  char object_id_2;                     // cl
+  char object_id_3;                     // cl
+  char object_sel_flag;                 // al
+  char player_id;                       // cl
+  char player_id_2;                     // cl
+  char player_id_3;                     // cl
+  char selected_item;                   // al
+  char selected_item_2;                 // al
+  char selected_item_3;                 // al
+  char selected_item_4;                 // al
+  char selected_object;                 // al
+  char selected_object_2;               // al
+  char selected_object_3;               // al
+  char selected_object_4;               // al
+  char selected_player;                 // al
+  char selected_player_2;               // al
+  char selected_player_3;               // al
+  char selected_player_4;               // al
+  int *local_player_position_y_ptr_2;   // ecx
+  int *local_player_world_y_ptr;        // eax
+  int cursor_monster;                   // ecx
+  int cursor_offset_y_1;                // eax
+  int cursor_player;                    // ecx
+  int modified_mouse_screen_position_y; // edx
+  int monster_id;                       // edx
   int mouse_screen_position_x;          // esi
   int mouse_screen_position_y;          // edi
-  int modified_mouse_screen_position_y; // edx
-  int tile_pixel_y;                     // ebx
-  int world_x;                          // edi
-  int tile_x_center;                    // eax
-  int world_y;                          // esi
-  BOOL off_by_one;                      // eax
-  int cursor_monster;                   // ecx
-  int monster_id;                       // edx
-  int selected_tile_2;                  // ecx
-  int selected_tile_4;                  // ebx
-  int selected_tile_5;                  // ebx
+  int mouse_x;                          // esi
+  int original_tile_array_index;        // [esp+10h] [ebp-14h]
+  int player_id_iterator;               // [esp+1Ch] [ebp-8h]
   int selected_monster;                 // eax
-  bool player_not_invinsible;           // zf
-  int selected_monster_id_5;            // ecx
-  int selected_monster_2;               // eax
-  int selected_monster_id_6;            // ecx
-  int selected_monster_4;               // eax
-  int selected_monster_id_7;            // ecx
-  int selected_monster_3;               // eax
-  int selected_monster_5;               // eax
-  int selected_monster_id_8;            // ecx
-  int selected_monster_6;               // eax
-  int selected_monster_id_9;            // ecx
-  int tile_array_index;                 // ebx
-  int selected_tile_6;                  // edx
-  int selected_monster_8;               // eax
-  int selected_monster_id_10;           // ecx
-  int cursor_offset_y_1;                // eax
-  int selected_monster_7;               // eax
-  int selected_monster_9;               // eax
-  int selected_monster_id_11;           // ecx
-  int selected_monster_11;              // eax
-  int selected_monster_id_11;           // ecx
   int selected_monster_10;              // eax
+  int selected_monster_11;              // eax
   int selected_monster_12;              // eax
-  int selected_monster_id_12;           // ecx
   int selected_monster_13;              // eax
-  int selected_monster_id_13;           // ecx
-  signed int cursor_monster_3;          // eax
-  int selected_tile;                    // ecx
-  int selected_monster_id_2;            // eax
+  int selected_monster_2;               // eax
+  int selected_monster_3;               // eax
+  int selected_monster_4;               // eax
+  int selected_monster_5;               // eax
+  int selected_monster_6;               // eax
+  int selected_monster_7;               // eax
+  int selected_monster_8;               // eax
+  int selected_monster_9;               // eax
   int selected_monster_id;              // eax
+  int selected_monster_id_10;           // ecx
+  int selected_monster_id_11;           // ecx
+  int selected_monster_id_11;           // ecx
+  int selected_monster_id_12;           // ecx
+  int selected_monster_id_13;           // ecx
+  int selected_monster_id_2;            // eax
   int selected_monster_id_3;            // eax
   int selected_monster_id_4;            // eax
-  char selected_player_2;               // al
-  char player_id;                       // cl
-  char selected_player;                 // al
-  char selected_player_3;               // al
-  char player_id_2;                     // cl
-  int cursor_player;                    // ecx
-  int *local_player_world_y_ptr;        // eax
-  int world_y_iterator;                 // edx
-  int *local_player_position_y_ptr_2;   // ecx
-  char selected_player_4;               // al
-  char player_id_3;                     // cl
-  signed int cursor_monster_saved;      // edx
-  char selected_object_2;               // al
-  char object_id;                       // cl
-  char selected_object;                 // al
-  char selected_object_3;               // al
-  char object_id_2;                     // cl
-  char object_sel_flag;                 // al
-  char selected_object_4;               // al
-  char object_id_3;                     // cl
-  char selected_item_2;                 // al
-  char item_id;                         // al
-  char selected_item;                   // al
-  char selected_item_3;                 // al
-  char item_id_2;                       // al
-  char item_selected_flag;              // cl
-  char selected_item_4;                 // al
-  char item_id_3;                       // al
-  int tile_pixel_x;                     // [esp+Ch] [ebp-18h]
-  char *block_table_row_ptr;            // [esp+Ch] [ebp-18h]
-  int original_tile_array_index;        // [esp+10h] [ebp-14h]
-  signed int res_offset_iterator;       // [esp+14h] [ebp-10h]
-  signed int block_table_row_iterator;  // [esp+18h] [ebp-Ch]
+  int selected_monster_id_5;            // ecx
+  int selected_monster_id_6;            // ecx
+  int selected_monster_id_7;            // ecx
+  int selected_monster_id_8;            // ecx
+  int selected_monster_id_9;            // ecx
+  int selected_tile;                    // ecx
+  int selected_tile_2;                  // ecx
   int selected_tile_3;                  // [esp+1Ch] [ebp-8h]
-  int player_id_iterator;               // [esp+1Ch] [ebp-8h]
-  signed int add_to_index;              // [esp+20h] [ebp-4h]
-
+  int selected_tile_4;                  // ebx
+  int selected_tile_5;                  // ebx
+  int selected_tile_6;                  // edx
+  int tile_array_index;                 // ebx
+  int tile_pixel_x;                     // [esp+Ch] [ebp-18h]
+  int tile_pixel_y;                     // ebx
+  int tile_x_center;                    // eax
+  int world_x;                          // edi
+  int world_y;                          // esi
+  int world_y_iterator;                 // edx
   mouse_x = MouseX;
+  signed int add_to_index;             // [esp+20h] [ebp-4h]
+  signed int block_table_row_iterator; // [esp+18h] [ebp-Ch]
+  signed int cursor_monster_3;         // eax
+  signed int cursor_monster_saved;     // edx
+  signed int mouse_y;                  // edi
+  signed int res_offset_iterator;      // [esp+14h] [ebp-10h]
   mouse_y = MouseY;
   if (chrflag || questlog)
   {
