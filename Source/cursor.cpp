@@ -284,14 +284,15 @@ void __cdecl CheckCursMove()
   int world_x;                          // edi
   int world_y;                          // esi
   int world_y_iterator;                 // edx
-  mouse_x = MouseX;
-  signed int add_to_index;             // [esp+20h] [ebp-4h]
-  signed int block_table_row_iterator; // [esp+18h] [ebp-Ch]
-  signed int cursor_monster_3;         // eax
-  signed int cursor_monster_saved;     // edx
-  signed int mouse_y;                  // edi
-  signed int res_offset_iterator;      // [esp+14h] [ebp-10h]
+  signed int add_to_index;              // [esp+20h] [ebp-4h]
+  signed int block_table_row_iterator;  // [esp+18h] [ebp-Ch]
+  signed int cursor_monster_3;          // eax
+  signed int cursor_monster_saved;      // edx
+  signed int mouse_y;                   // edi
+  signed int res_offset_iterator;       // [esp+14h] [ebp-10h]
+
   mouse_y = MouseY;
+  mouse_x = MouseX;
   if (chrflag || questlog)
   {
     if (MouseX >= 160)
