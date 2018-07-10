@@ -1550,52 +1550,49 @@ void __fastcall PM_ChangeLightOff(int pnum)
 //----- (0044C13D) --------------------------------------------------------
 void __fastcall PM_ChangeOffset(int pnum)
 {
-  int v1;      // esi
-  int v2;      // eax
-  int v3;      // edi
-  int v4;      // ebx
-  int v5;      // ecx
-  int *v6;     // esi
-  int v7;      // edi
-  int v8;      // ebx
-  int v9;      // edx
-  int v10;     // edi
-  int v11;     // edi
-  int v12;     // edi
-  int v13;     // ecx
-  int v14;     // edx
-  int arglist; // [esp+8h] [ebp-8h]
-  int v16;     // [esp+Ch] [ebp-4h]
+  int player_id;         // esi
+  int player_id;         // eax
+  int current_x;         // edi
+  int velocity_x;        // ebx
+  int previous_x;        // ecx
+  int *current_y_ptr;    // esi
+  int new_x;             // edi
+  int velocity_y;        // ebx
+  int previous_y;        // edx
+  int current_y;         // edi
+  int new_y;             // edi
+  int new_x_offset;      // edi
+  int new_y_offset;      // edi
+  int previous_y_offset; // ecx
+  int previous_y_offset; // edx
 
-  v1 = pnum;
-  arglist = pnum;
+  player_id = pnum;
   if ((unsigned int)pnum >= 4)
     TermMsg("PM_ChangeOffset: illegal player %d", pnum);
-  v2 = v1;
-  v3 = plr[v1]._pVar6;
-  v4 = plr[v1]._pxvel;
-  v5 = v3;
-  v6 = &plr[v1]._pVar7;
-  v7 = v4 + v3;
-  v8 = plr[v2]._pyvel;
-  v9 = *v6;
-  v16 = v7;
-  plr[v2]._pVar6 = v7;
-  v10 = *v6;
-  ++plr[v2]._pVar8;
-  v11 = v8 + v10;
-  *v6 = v11;
-  v12 = v11 >> 8;
-  plr[v2]._pxoff = v16 >> 8;
-  plr[v2]._pyoff = v12;
-  v13 = v5 >> 8;
-  v14 = v9 >> 8;
-  if (arglist == myplr && ScrollInfo._sdir)
+  current_x = plr[player_id]._pVar6;
+  velocity_x = plr[player_id]._pxvel;
+  previous_x = current_x;
+  current_y_ptr = &plr[player_id]._pVar7;
+  new_x = velocity_x + current_x;
+  velocity_y = plr[player_id]._pyvel;
+  previous_y = *current_y_ptr;
+  plr[player_id]._pVar6 = new_x;
+  current_y = *current_y_ptr;
+  ++plr[player_id]._pVar8;
+  new_y = velocity_y + current_y;
+  *current_y_ptr = new_y;
+  new_x_offset = new_x >> 8;
+  new_y_offset = new_y >> 8;
+  plr[player_id]._pxoff = new_x_offset;
+  plr[player_id]._pyoff = new_y_offset;
+  previous_x_offset = previous_x >> 8;
+  previous_y_offset = previous_y >> 8;
+  if (player_id == myplr && ScrollInfo._sdir)
   {
-    ScrollInfo._sxoff += v13 - (v16 >> 8);
-    ScrollInfo._syoff += v14 - v12;
+    ScrollInfo._sxoff += previous_x_offset - new_x_offset;
+    ScrollInfo._syoff += previous_y_offset - new_y_offset;
   }
-  PM_ChangeLightOff(arglist);
+  PM_ChangeLightOff(player_id);
 }
 
 //----- (0044C1E2) --------------------------------------------------------
