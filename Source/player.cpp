@@ -2961,70 +2961,69 @@ int __fastcall PM_DoStand(int pnum) { return 0; }
 //----- (0044DB77) --------------------------------------------------------
 int __fastcall PM_DoWalk(int pnum)
 {
-  int v1;     // ebx
-  int v2;     // esi
-  int v3;     // eax
-  int v4;     // eax
-  int v5;     // ecx
-  int v6;     // eax
-  int v7;     // edx
-  int v8;     // eax
-  bool v9;    // zf
-  int result; // eax
+  int player_id;               // ebx
+  int current_animation_frame; // eax
+  int player_offset;           // eax
+  int world_x;                 // ecx
+  int world_y;                 // eax
+  int new_player_x;            // edx
+  int new_player_y;            // eax
+  bool in_town;                // zf
+  int result;                  // eax
 
-  v1 = pnum;
+  player_id = pnum;
   if ((unsigned int)pnum >= 4)
     TermMsg("PM_DoWalk: illegal player %d", pnum);
-  v2 = v1;
-  v3 = plr[v1]._pAnimFrame;
-  if (v3 == 3)
+  player_id = player_id;
+  current_animation_frame = plr[player_id]._pAnimFrame;
+  if (current_animation_frame == 3)
     goto LABEL_8;
-  if (plr[v2]._pWFrames != 8)
+  if (plr[player_id]._pWFrames != 8)
   {
-    if (v3 != 4)
+    if (current_animation_frame != 4)
       goto LABEL_9;
     goto LABEL_8;
   }
-  if (v3 == 7)
+  if (current_animation_frame == 7)
   LABEL_8:
-    PlaySfxLoc(0, plr[v2].WorldX, plr[v2].WorldY);
+    PlaySfxLoc(0, plr[player_id].WorldX, plr[player_id].WorldY);
 LABEL_9:
-  v4 = 8;
+  player_offset = 8;
   if (currlevel)
-    v4 = PWVel[3][SLOBYTE(plr[v2]._pClass)];
-  if (plr[v2]._pVar8 == v4)
+    player_offset = PWVel[3][SLOBYTE(plr[player_id]._pClass)];
+  if (plr[player_id]._pVar8 == player_offset)
   {
-    v5 = plr[v2].WorldX;
-    v6 = plr[v2].WorldY;
-    dPlayer[plr[v2].WorldX][v6] = 0;
-    v7 = v5 + plr[v2]._pVar1;
-    v8 = plr[v2]._pVar2 + v6;
-    plr[v2].WorldX = v7;
-    v9 = leveltype == 0;
-    dPlayer[v7][v8] = v1 + 1;
-    plr[v2].WorldY = v8;
-    if (!v9)
+    world_x = plr[player_id].WorldX;
+    world_y = plr[player_id].WorldY;
+    dPlayer[plr[player_id].WorldX][world_y] = 0;
+    new_player_x = world_x + plr[player_id]._pVar1;
+    new_player_y = plr[player_id]._pVar2 + world_y;
+    plr[player_id].WorldX = new_player_x;
+    in_town = leveltype == 0;
+    dPlayer[new_player_x][new_player_y] = player_id + 1;
+    plr[player_id].WorldY = new_player_y;
+    if (!in_town)
     {
-      ChangeLightXY(plr[v2]._plid, v7, v8);
-      ChangeVisionXY(plr[v2]._pvid, plr[v2].WorldX, plr[v2].WorldY);
+      ChangeLightXY(plr[player_id]._plid, new_player_x, new_player_y);
+      ChangeVisionXY(plr[player_id]._pvid, plr[player_id].WorldX, plr[player_id].WorldY);
     }
-    if (v1 == myplr && ScrollInfo._sdir)
+    if (player_id == myplr && ScrollInfo._sdir)
     {
-      ViewX = plr[v2].WorldX - ScrollInfo._sdx;
-      ViewY = plr[v2].WorldY - ScrollInfo._sdy;
+      ViewX = plr[player_id].WorldX - ScrollInfo._sdx;
+      ViewY = plr[player_id].WorldY - ScrollInfo._sdy;
     }
-    if (plr[v2].walkpath[0] == -1)
-      StartStand(v1, plr[v2]._pVar3);
+    if (plr[player_id].walkpath[0] == -1)
+      StartStand(player_id, plr[player_id]._pVar3);
     else
-      StartWalkStand(v1);
-    ClearPlrPVars(v1);
+      StartWalkStand(player_id);
+    ClearPlrPVars(player_id);
     if (leveltype)
-      ChangeLightOff(plr[v2]._plid, 0, 0);
+      ChangeLightOff(plr[player_id]._plid, 0, 0);
     result = 1;
   }
   else
   {
-    PM_ChangeOffset(v1);
+    PM_ChangeOffset(player_id);
     result = 0;
   }
   return result;
