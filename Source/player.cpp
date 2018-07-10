@@ -4705,16 +4705,16 @@ void __cdecl ProcessPlayers()
   unsigned char *player_level_load; // ecx
   char player_level_char;           // al
   int player_index;                 // ebp
-  int *v5;                          // esi
-  int v6;                           // eax
+  int *player_hitpoints_ptr;        // esi
+  int current_level;                // eax
   // int v7; // eax
-  int v8;    // eax
-  int v9;    // eax
-  int v10;   // eax
-  int v11;   // edi
-  int v12;   // eax
-  char *v13; // eax
-  char *v14; // eax
+  int player_hit_points;                   // eax
+  int player_base_mana;                    // eax
+  int player_base_mana_minus_current_mana; // eax
+  int keep_looping;                        // edi
+  int loop_after_command;                  // eax
+  char *player_anim_frame;                 // eax
+  char *player_anim_frame_width;           // eax
 
   player_id = myplr;
   if ((unsigned int)myplr >= 4)
@@ -4730,99 +4730,99 @@ void __cdecl ProcessPlayers()
   if (sfxdelay > 0 && !--sfxdelay)
     PlaySFX(sfxdnum);
   ValidatePlayer();
-  v5 = &plr[0]._pHitPoints;
+  player_hitpoints_ptr = &plr[0]._pHitPoints;
   do
   {
-    v6 = (int)(v5 - 89);
-    if (*((_BYTE *)v5 - 379) && currlevel == *(_DWORD *)v6 &&
-        (player_index == myplr || !*(_BYTE *)(v6 + 267)))
+    current_level = (int)(player_hitpoints_ptr - 89);
+    if (*((_BYTE *)player_hitpoints_ptr - 379) && currlevel == *(_DWORD *)current_level &&
+        (player_index == myplr || !*(_BYTE *)(current_level + 267)))
     {
       CheckCheatStats(player_index);
       //_LOBYTE(v7) = PlrDeathModeOK(v4);
-      if (!PlrDeathModeOK(player_index) && (signed int)(*v5 & 0xFFFFFFC0) <= 0)
+      if (!PlrDeathModeOK(player_index) && (signed int)(*player_hitpoints_ptr & 0xFFFFFFC0) <= 0)
         SyncPlrKill(player_index, -1);
       if (player_index == myplr)
       {
-        if (v5[5294] & 0x40 && currlevel)
+        if (player_hitpoints_ptr[5294] & 0x40 && currlevel)
         {
-          *v5 -= 4;
-          v8 = *v5;
-          *(v5 - 2) -= 4;
-          if ((signed int)(v8 & 0xFFFFFFC0) <= 0)
+          *player_hitpoints_ptr -= 4;
+          player_hit_points = *player_hitpoints_ptr;
+          *(player_hitpoints_ptr - 2) -= 4;
+          if ((signed int)(player_hit_points & 0xFFFFFFC0) <= 0)
             SyncPlrKill(player_index, 0);
           drawhpflag = 1;
         }
-        if (*((_BYTE *)v5 + 21179) & 8)
+        if (*((_BYTE *)player_hitpoints_ptr + 21179) & 8)
         {
-          v9 = v5[3];
-          if (v9 > 0)
+          player_base_mana = player_hitpoints_ptr[3];
+          if (player_base_mana > 0)
           {
-            v10 = v9 - v5[5];
-            v5[5] = 0;
+            player_base_mana_minus_current_mana = player_base_mana - player_hitpoints_ptr[5];
+            player_hitpoints_ptr[5] = 0;
             drawmanaflag = 1;
-            v5[3] = v10;
+            player_hitpoints_ptr[3] = player_base_mana_minus_current_mana;
           }
         }
       }
-      v11 = 0;
+      keep_looping = 0;
       do
       {
-        switch (*(v5 - 102))
+        switch (*(player_hitpoints_ptr - 102))
         {
         case PM_STAND:
-          v12 = PM_DoStand(player_index);
+          loop_after_command = PM_DoStand(player_index);
           goto LABEL_38;
         case PM_WALK:
-          v12 = PM_DoWalk(player_index);
+          loop_after_command = PM_DoWalk(player_index);
           goto LABEL_38;
         case PM_WALK2:
-          v12 = PM_DoWalk2(player_index);
+          loop_after_command = PM_DoWalk2(player_index);
           goto LABEL_38;
         case PM_WALK3:
-          v12 = PM_DoWalk3(player_index);
+          loop_after_command = PM_DoWalk3(player_index);
           goto LABEL_38;
         case PM_ATTACK:
-          v12 = PM_DoAttack(player_index);
+          loop_after_command = PM_DoAttack(player_index);
           goto LABEL_38;
         case PM_RATTACK:
-          v12 = PM_DoRangeAttack(player_index);
+          loop_after_command = PM_DoRangeAttack(player_index);
           goto LABEL_38;
         case PM_BLOCK:
-          v12 = PM_DoBlock(player_index);
+          loop_after_command = PM_DoBlock(player_index);
           goto LABEL_38;
         case PM_GOTHIT:
-          v12 = PM_DoGotHit(player_index);
+          loop_after_command = PM_DoGotHit(player_index);
           goto LABEL_38;
         case PM_DEATH:
-          v12 = PM_DoDeath(player_index);
+          loop_after_command = PM_DoDeath(player_index);
           goto LABEL_38;
         case PM_SPELL:
-          v12 = PM_DoSpell(player_index);
+          loop_after_command = PM_DoSpell(player_index);
           goto LABEL_38;
         case PM_NEWLVL:
-          v12 = PM_DoStand(player_index);
+          loop_after_command = PM_DoStand(player_index);
         LABEL_38:
-          v11 = v12;
+          keep_looping = loop_after_command;
           break;
         default:
           break;
         }
         CheckNewPath(player_index);
-      } while (v11);
-      v13 = (char *)(v5 - 69);
-      ++*(_DWORD *)v13;
-      if (*(v5 - 69) > *(v5 - 70))
+      } while (keep_looping);
+      player_anim_frame = (char *)(player_hitpoints_ptr - 69);
+      ++*(_DWORD *)player_anim_frame;
+      if (*(player_hitpoints_ptr - 69) > *(player_hitpoints_ptr - 70))
       {
-        *(_DWORD *)v13 = 0;
-        v14 = (char *)(v5 - 67);
-        ++*(_DWORD *)v14;
-        if (*(v5 - 67) > *(v5 - 68))
-          *(_DWORD *)v14 = 1;
+        *(_DWORD *)player_anim_frame = 0;
+        player_anim_frame_width = (char *)(player_hitpoints_ptr - 67);
+        ++*(_DWORD *)player_anim_frame_width;
+        if (*(player_hitpoints_ptr - 67) > *(player_hitpoints_ptr - 68))
+          *(_DWORD *)player_anim_frame_width = 1;
       }
     }
-    v5 += 5430;
+    player_hitpoints_ptr += 5430;
     ++player_index;
-  } while ((signed int)v5 < (signed int)&plr[4]._pHitPoints);
+  } while ((signed int)player_hitpoints_ptr < (signed int)&plr[4]._pHitPoints);
 }
 // 52A554: using guessed type int sfxdelay;
 
